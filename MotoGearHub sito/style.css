@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f5f5f5;
+    background-color: #f2f2f2;
     color: #333;
 }
 
@@ -18,13 +18,16 @@ body {
 }
 
 header {
-    background: #333;
-    color: #fff;
+    background: #fff;
+    color: #333;
     padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    font-size: 36px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 nav ul {
@@ -37,24 +40,25 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
+    font-size: 16px;
 }
 
 #hero {
-    background: url('hero-image.jpg') center/cover;
-    color: #fff;
+    background: #fff;
+    color: #333;
     text-align: center;
     padding: 100px 0;
 }
 
 #hero h2 {
-    font-size: 48px;
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
 #hero p {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 30px;
 }
 
@@ -62,9 +66,11 @@ nav ul li a {
     display: inline-block;
     background: #ff6600;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     text-decoration: none;
     border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s;
 }
 
 .btn:hover {
@@ -72,12 +78,21 @@ nav ul li a {
 }
 
 #featured-products {
+    background-color: #fff;
     padding: 50px 0;
 }
 
+#featured-products h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 footer {
-    background: #333;
+    background: #1a1a1a;
     color: #fff;
     text-align: center;
     padding: 20px 0;
+    font-size: 14px;
 }
+
