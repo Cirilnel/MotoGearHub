@@ -10,7 +10,7 @@ public class UserBean implements Serializable {
         nome = "";
         cognome = "";
         username = "";
-        password = "";
+        password = ""; 
         idUtente = 0;
         isAdmin = false;
     }
