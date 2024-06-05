@@ -32,24 +32,27 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("j_username");
         String password = request.getParameter("j_password");
-        String redirectedPage ="login.jsp";
+        String redirectedPage = "/login.jsp";
         boolean control = false;
 
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
         try {
-            Connection con = DriverManagerConnectionPool.getConnection();
-         
-            
-            
+            con = DriverManagerConnectionPool.getConnection();
+            System.out.println("Database connection established");
+
             String sql = "SELECT Username, Password, Nome, Cognome, is_admin FROM Utente WHERE Username = ? AND Password = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, checkPsw(password));
-            ResultSet rs = ps.executeQuery();
-            
-           
-            
+            rs = ps.executeQuery();
+
             if (rs.next()) {
                 control = true;
+                System.out.println("User found in the database");
+
                 UserBean registeredUser = new UserBean();
                 registeredUser.setUsername(rs.getString("Username"));
                 registeredUser.setNome(rs.getString("Nome"));
@@ -59,14 +62,23 @@ public class Login extends HttpServlet {
                 request.getSession().setAttribute("registeredUser", registeredUser);
                 request.getSession().setAttribute("username", rs.getString("Username"));
                 request.getSession().setAttribute("nome", rs.getString("Nome"));
-                
+
                 redirectedPage = "/index.jsp";
+            } else {
+                System.out.println("User not found or incorrect password");
             }
-            
-            DriverManagerConnectionPool.releaseConnection(con);
+
         } catch (Exception e) {
             e.printStackTrace();
             redirectedPage = "/login.jsp";
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) DriverManagerConnectionPool.releaseConnection(con);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (!control) {
@@ -90,19 +102,7 @@ public class Login extends HttpServlet {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        System.out.println("Generated hash: " + hashtext);
         return hashtext;
     }
-/*
-    protected boolean testConnection() {
-        try {
-            Connection con = DriverManagerConnectionPool.getConnection();
-            DriverManagerConnectionPool.releaseConnection(con);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    */
 }
-

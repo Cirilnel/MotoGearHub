@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>MotoGearHub</title>
-  <meta name="title" content="Kitter - Hight Quality Pet Food">
-  <meta name="description" content="This is an eCommerce html template made by codewithsadee">
 
   <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
 
@@ -16,7 +16,6 @@
 
  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap"
     rel="stylesheet">
@@ -257,10 +256,10 @@
               <div class="offer-card has-bg-image img-holder"
                 style="background-image: url('./images/offer-banner-3.png'); --width: 540; --height: 374;">
 
-				 <p class="card-subtitle">Ancora più vestibilità</p>	
+				 <p class="card-subtitle">Ancora più vestibilità </p>	
 				 <p class="card-subtitle">Sempre più ergonomia</p>
                 <h3 class="h3 card-title">
-                Novità di<span class="span">quest'anno</span>
+                Novità  di<span class="span">quest'anno</span>
                 </h3>
 
                 <a href="#" class="btn">Read More</a>
@@ -337,7 +336,7 @@
                     <a href="#" class="card-title">DAINESE VR46 DAEMON-X SAFETY HOODIE FULL ZIP</a>
                   </h3>
 
-                  <data class="card-price" value="45">309.95 €</data>
+                  <data class="card-price" value="45">309.95€</data>
 
                 </div>
 
@@ -363,7 +362,7 @@
                     <a href="#" class="card-title">RAVEN JEANS</a>
                   </h3>
 
-                  <data class="card-price" value="45">219.99 €</data>
+                  <data class="card-price" value="45">219.99€</data>
 
                 </div>
 
@@ -390,7 +389,7 @@
                     <a href="#" class="card-title">ALPINESTARS GP FORCE PHANTOM</a>
                   </h3>
 
-                  <data class="card-price" value="49">599.95 €</data>
+                  <data class="card-price" value="49">599.95€</data>
 
                 </div>
 
@@ -416,7 +415,7 @@
                   
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Stivali Mototecnica</a>
+                    <a href="#" class="card-title">STIVALI MOTOTECNICA</a>
                   </h3>
 
                   <data class="card-price" value="85">179.00 €</data>
@@ -473,7 +472,7 @@
                     <a href="#" class="card-title">GIUBBOTTO GIACCA MOTO DAINESE AVRO D2</a>
                   </h3>
 
-                  <data class="card-price" value="85">209.95 €</data>
+                  <data class="card-price" value="85">209.95€</data>
 
                 </div>
 
@@ -619,20 +618,19 @@
             <img src="./images/cta-banner.png" width="900" height="660" loading="lazy" alt="cat" class="w-100">
           </figure>
 
-          <div class="cta-content">
+				<!-- da cambiare immagine --> 
 
+          <div class="cta-content">
             <img src="./images/cta-icon.png" width="120" height="35" loading="lazy" alt="taste guarantee"
               class="img">
 
-            <h2 class="h2 section-title">Taste it, love it or we’ll replace it… Guaranteed!</h2>
+            <h2 class="h2 section-title">Scrivere qualcosa</h2>
 
             <p class="section-text">
-              At Petio, we believe your dog and cat will love their food so much that if they don’t … we’ll help you
-              find a
-              replacement. That’s our taste guarantee.
+        Prova
             </p>
 
-            <a href="#" class="btn">Find out more</a>
+            <a href="#" class="btn">Prova</a>
 
           </div>
 
@@ -872,7 +870,7 @@
       <div class="container">
 
         <p class="copyright">
-          &copy; 2022 Made with ♥ by <a href="#" class="copyright-link">codewithsadee.</a>
+          &copy; 2022 Made with â¥ by <a href="#" class="copyright-link">codewithsadee.</a>
         </p>
 
         <img src="./images/payment.png" width="397" height="32" loading="lazy" alt="payment method" class="img">
