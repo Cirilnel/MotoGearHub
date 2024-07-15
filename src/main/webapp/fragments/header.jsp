@@ -36,14 +36,29 @@
 
         <a href="#" class="navbar-action-btn">Log In</a>
       </nav>
-
+		
       <div class="header-actions">
 
-
-       <a href="login.jsp" class="action-btn user" aria-label="User">
-    	<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-	   </a>
-	   
+							<% if(request.getSession().getAttribute("logged") == null) {%>
+							 	<a href="login.jsp" class="action-btn user" aria-label="User">
+    								<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+	  							</a>   
+							<%} else if(request.getSession().getAttribute("is_admin") == Boolean.TRUE){ %>
+								<a href="admin.jsp" class="action-btn user" aria-label="User">
+    								<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+	  							</a> 
+	  							 <a href="logout" class="action-btn user" aria-label="Logout">
+  									<ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
+	   							</a>
+								<%} else{%>
+								<a href="profile.jsp" class="action-btn user" aria-label="User">
+    								<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+	  							</a> 
+	  							<a href="<%= request.getContextPath() %>/logout" class="action-btn user" aria-label="Logout">
+  								   <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
+	   							</a>
+								<%} %>
+       
 	   <a href="carrello.jsp" class="action-btn user" aria-label="User">
         <button class="action-btn" aria-label="cart">
           <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
