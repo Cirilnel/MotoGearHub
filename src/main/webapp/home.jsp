@@ -485,10 +485,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">Free Same-Day Delivery</h3>
+                <h3 class="h3 card-title">Spedizione in 1 giorno gratuita!</h3>
 
                 <p class="card-text">
-                  Order by 2pm local time to get free delivery on orders $35+ today.
+                  Ordina prima delle 14:00 per ottenere la spedizione gratuita su ordini di +35$
                 </p>
 
               </div>
@@ -502,10 +502,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">30 Day Return</h3>
+                <h3 class="h3 card-title">Rimborso entro 30 giorni</h3>
 
                 <p class="card-text">
-                  35% off your first order plus 5% off all future orders.
+                  Rimborso fino a più del 50% del valore dei prodotti garantito!
                 </p>
 
               </div>
@@ -519,10 +519,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">Security payment</h3>
+                <h3 class="h3 card-title">Transazioni sicure</h3>
 
                 <p class="card-text">
-                  25% off your online order of $50+. Available at most locations.
+                  Sconto del 25% sul tuo ordine online di $50+. Disponibile nella maggior parte di Italia.
                 </p>
 
               </div>
@@ -536,10 +536,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">24/7 Support</h3>
+                <h3 class="h3 card-title">Assistenza Clienti 24/7</h3>
 
                 <p class="card-text">
-                  Shop online to get orders over $35 shipped fast and free.
+                  Assistenza clienti disponibile ad ogni ora di ogni giorno!
                 </p>
 
               </div>
@@ -568,10 +568,9 @@
 				<!-- da cambiare immagine --> 
 
           <div class="cta-content">
-            <img src="./images/cta-icon.png" width="120" height="35" loading="lazy" alt="taste guarantee"
               class="img">
 
-            <h2 class="h2 section-title">Scrivere qualcosa</h2>
+            <h2 class="h2 section-title">La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità. I nostri prodotti sono progettati per aiutarti a rimanere sempre al sicuro sulla strada.</h2>
 
             <p class="section-text">
         Prova
@@ -652,182 +651,7 @@
     - #FOOTER
   -->
 
-  <footer class="footer" style="background-image: url('./images/footer-bg.jpg')">
-
-    <div class="footer-top section">
-      <div class="container">
-
-        <div class="footer-brand">
-
-          <a href="#" class="logo">Kitter</a>
-
-          <p class="footer-text">
-            If you have any question, please contact us at <a href="mailto:support@gmail.com"
-              class="link">support@gmail.com</a>
-          </p>
-
-          <ul class="contact-list">
-
-            <li class="contact-item">
-              <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
-
-              <address class="address">
-                30 Buttonwood St.Pataskala OH 43062
-              </address>
-            </li>
-
-            <li class="contact-item">
-              <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-
-              <a href="tel:+16234567891011" class="contact-link">(+1)-6234-56-789-1011</a>
-            </li>
-
-          </ul>
-
-          <ul class="social-list">
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-pinterest"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Corporate</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Careers</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">About Us</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Contact Us</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">FAQs</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Vendors</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Affiliate Program</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Information</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Online Store</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Privacy Policy</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Refund Policy</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Shipping Policy</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Terms of Service</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Track Order</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Services</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Grooming</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Positive Dog Training</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Veterinary Services</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Petco Insurance</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Pet Adoption</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Resource Center</a>
-          </li>
-
-        </ul>
-
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container">
-
-        <p class="copyright">
-          &copy; 2022 Made with â¥ by <a href="#" class="copyright-link">codewithsadee.</a>
-        </p>
-
-        <img src="./images/payment.png" width="397" height="32" loading="lazy" alt="payment method" class="img">
-
-      </div>
-    </div>
-
-  </footer>
-
-
+  <jsp:include page="fragments/footer.jsp" />
 
 
 
