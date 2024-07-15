@@ -27,11 +27,6 @@
           <li class="navbar-item">
             <a href="collezione.jsp" class="navbar-link" data-nav-link>Collezione</a>
           </li>
-
-          <li class="navbar-item">
-            <a href="contact.jsp" class="navbar-link" data-nav-link>Contatti</a>
-          </li>
-
         </ul>
 
         <a href="#" class="navbar-action-btn">Log In</a>
