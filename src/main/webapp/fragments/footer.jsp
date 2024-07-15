@@ -171,7 +171,7 @@
       <div class="container">
 
         <p class="copyright">
-          &copy; 2022 Made with ♥ by <a href="#" class="copyright-link">codewithsadee.</a>
+          &copy; 2024 MotoGearHub <a href="#" class="copyright-link"></a>
         </p>
 
         <img src="./images/payment.png" width="397" height="32" loading="lazy" alt="payment method" class="img">
