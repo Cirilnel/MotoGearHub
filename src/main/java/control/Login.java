@@ -41,7 +41,6 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("cognome", user.getCognome());
 			request.getSession().setAttribute("utente", user.getUsername());
 			request.getSession().setAttribute("email", user.getEmail());
-			request.getSession().setAttribute("password", user.getPassword());
 			request.getSession().setAttribute("logged", true);
 
 			if (user.isAdmin()) {

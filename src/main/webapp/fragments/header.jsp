@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/header.css">
 <meta charset="ISO-8859-1">
 </head>
  <header class="header" data-header>
@@ -38,7 +38,6 @@
       </nav>
 		
       <div class="header-actions">
-
 
 							<% if(request.getSession().getAttribute("logged") == null) {%>
 							 	<a href="login.jsp" class="action-btn user" aria-label="User">
