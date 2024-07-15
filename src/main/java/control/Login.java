@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,94 +16,68 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.DriverManagerConnectionPool;
-import model.UserBean;
+import model.UtenteBean;
+import model.UtenteDAO;
 
 @WebServlet("/Login.do")
 public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public Login() {
-        super();
-    }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("j_username");
-        String password = request.getParameter("j_password");
-        String redirectedPage = "/login.jsp";
-        boolean control = false;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+		String username = request.getParameter("usernameLogin");
+		String password64 = request.getParameter("passwordLogin");
+		UtenteBean user = checkLogin(username, password64);
 
-        try {
-            con = DriverManagerConnectionPool.getConnection();
-            System.out.println("Database connection established");
+		if (user != null) {
+			request.getSession().setAttribute("nome", user.getNome());
+			request.getSession().setAttribute("cognome", user.getCognome());
+			request.getSession().setAttribute("utente", user.getUsername());
+			request.getSession().setAttribute("email", user.getEmail());
+			request.getSession().setAttribute("password", user.getPassword());
+			request.getSession().setAttribute("logged", true);
 
-            String sql = "SELECT Username, Password, Nome, Cognome, is_admin FROM Utente WHERE Username = ? AND Password = ?";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, username);
-            ps.setString(2, checkPsw(password));
-            rs = ps.executeQuery();
+			if (user.isAdmin()) {
+				request.getSession().setAttribute("is_admin", true);
+				response.sendRedirect("home.jsp");
+			} else {
+				request.getSession().setAttribute("admin", false);
+				response.sendRedirect("home.jsp");
+			}
 
-            if (rs.next()) {
-                control = true;
-                System.out.println("User found in the database");
+			
+		} else {
+			request.getSession().setAttribute("logged", false);
+			request.getSession().setAttribute("error", "Username e/o password invalidi.");
+			response.sendRedirect("login.jsp?action=error");
+		}
+	}
 
-                UserBean registeredUser = new UserBean();
-                registeredUser.setUsername(rs.getString("Username"));
-                registeredUser.setNome(rs.getString("Nome"));
-                registeredUser.setCognome(rs.getString("Cognome"));
-                registeredUser.setPassword(rs.getString("Password"));
-                registeredUser.setAdmin(rs.getBoolean("is_admin"));
-                request.getSession().setAttribute("registeredUser", registeredUser);
-                request.getSession().setAttribute("username", rs.getString("Username"));
-                request.getSession().setAttribute("nome", rs.getString("Nome"));
-
-                redirectedPage = "/index.jsp";
-            } else {
-                System.out.println("User not found or incorrect password");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            redirectedPage = "/login.jsp";
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (con != null) DriverManagerConnectionPool.releaseConnection(con);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (!control) {
-            request.getSession().setAttribute("login-error", true);
-        } else {
-            request.getSession().setAttribute("login-error", false);
-        }
-        response.sendRedirect(request.getContextPath() + redirectedPage);
-    }
-
-    protected String checkPsw(String psw) {
-        String hashtext = null;
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(psw.getBytes());
-            BigInteger number = new BigInteger(1, messageDigest);
-            hashtext = number.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Generated hash: " + hashtext);
-        return hashtext;
-    }
+	private UtenteBean checkLogin(String username, String password64) 
+	{
+		UtenteDAO database = new UtenteDAO();
+		UtenteBean user = new UtenteBean();
+		
+		try 
+		{
+			user = database.doRetrieveByUsername(username);
+			
+			if(user.getUsername().equals(username) && user.getPassword().equals(password64)) {
+				return user;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

@@ -6,56 +6,274 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Utente;
-import model.DriverManagerConnectionPool;
 
-public class UtenteDAO {
+public class UtenteDAO extends AbstractDAO<UtenteBean>{
+	private static final String TABLE_NAME = "utente";
+	
+	@Override
+	public synchronized void doSave(UtenteBean bean) throws SQLException {
+		Connection con = null;
+		PreparedStatement statement = null;
+		
+		String query = "INSERT INTO " + UtenteDAO.TABLE_NAME + " (email, username, password, nome, cognome, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+			
+			statement.setString(1, bean.getEmail());
+			statement.setString(2, bean.getUsername());
+			statement.setString(3, bean.getPassword());
+			statement.setString(4, bean.getNome());
+			statement.setString(5, bean.getCognome());
+			statement.setBoolean(6, bean.isAdmin());
+			
+			statement.executeUpdate();
+			
+			con.commit();
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	
+	}
+	
+	@Override
+	public synchronized boolean doDelete(String key) throws SQLException {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		
+		String query = "DELETE FROM " + UtenteDAO.TABLE_NAME + " WHERE email = ?";
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+			statement.setString(1, key);
+			
+			result = statement.executeUpdate();
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		return result != 0;
+	}
+	
+	
+	public synchronized UtenteBean doRetrieveByEmail(String key) throws SQLException {
+		Connection con = null;
+		PreparedStatement statement = null;
+		UtenteBean utente = new UtenteBean();
+		
+		String query = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE email = ?";
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+			statement.setString(1, key);
+			
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				utente.setEmail(result.getString("email"));
+				utente.setUsername(result.getString("username"));
+				utente.setPassword(result.getString("password"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setAdmin(result.getBoolean("is_admin"));
+			}
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		
+		return utente;
+	
+	}
+	
+	public synchronized UtenteBean doRetrieveByUsername(String key) throws SQLException {
+		Connection con = null;
+		PreparedStatement statement = null;
+		UtenteBean utente = new UtenteBean();
+		
+		String query = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE username = ?";
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+			statement.setString(1, key);
+			
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				utente.setEmail(result.getString("email"));
+				utente.setUsername(result.getString("username"));
+				utente.setPassword(result.getString("password"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setAdmin(result.getBoolean("is_admin"));
+			}
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		
+		return utente;
+	}
+	
+	@Override
+	public synchronized List<UtenteBean> doRetrieveAll(String order) throws SQLException {
+		Connection con = null;
+		PreparedStatement statement = null;
+		
+		List<UtenteBean> utenti = new ArrayList<>();
+		
+		String query = "SELECT * FROM " + UtenteDAO.TABLE_NAME;
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+			
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				UtenteBean utente = new UtenteBean();
+				
+				utente.setEmail(result.getString("email"));
+				utente.setUsername(result.getString("username"));
+				utente.setPassword(result.getString("password"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setAdmin(result.getBoolean("is_admin"));
+				
+				utenti.add(utente);
+			}
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		
+		return utenti;
+	}
+	
+	public synchronized boolean doUpdate(UtenteBean bean, String key) throws SQLException {
+	    Connection con = null;
+	    PreparedStatement statement = null;
+	    int result = 0;
+	    
+	    String query = "UPDATE " + UtenteDAO.TABLE_NAME + " SET email = ?, username = ?, password = ?, nome = ?, cognome = ?, is_admin = ? WHERE email = ?";
+	    
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+	        statement = con.prepareStatement(query);
+	        
+	        statement.setString(1, bean.getEmail());
+	        statement.setString(2, bean.getUsername());
+	        statement.setString(3, bean.getPassword());
+	        statement.setString(4, bean.getNome());
+	        statement.setString(5, bean.getCognome());
+	        statement.setBoolean(6, bean.isAdmin());
+	        statement.setString(7, key); // key should be the original email for WHERE clause
+	        
+	        result = statement.executeUpdate();
+	        
+	        con.commit();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	        } finally {
+	            DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	    }
+	    return result != 0;
+	}
 
-    private final String INSERT_QUERY = "INSERT INTO Utente (Email, Cognome, Nome, Username, Password, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
-    private final String SELECT_ALL_QUERY = "SELECT * FROM Utente";
-    private final String SELECT_BY_USERNAME_QUERY = "SELECT * FROM Utente WHERE Username = ?";
-    private final String DELETE_QUERY = "DELETE FROM Utente WHERE Username = ?";
-    private final String UPDATE_QUERY = "UPDATE Utente SET Email = ?, Cognome = ?, Nome = ?, Password = ?, is_admin = ? WHERE Username = ?";
+	
+	public synchronized boolean checkEmail(String email) throws SQLException{
+		boolean alreadyUsed = false;
+		Connection con = null;
+		PreparedStatement statement = null;
+		
+		String query = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE email = ?";
 
-    public void insert(Utente utente) {
-        try (Connection connection = DriverManagerConnectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
 
-            preparedStatement.setString(1, utente.getEmail());
-            preparedStatement.setString(2, utente.getCognome());
-            preparedStatement.setString(3, utente.getNome());
-            preparedStatement.setString(4, utente.getUsername());
-            preparedStatement.setString(5, utente.getPassword());
-            preparedStatement.setBoolean(6, utente.isAdmin());
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next()) {
+				alreadyUsed = true;
+			}
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+		return alreadyUsed;
 
-    public List<Utente> selectAll() {
-        List<Utente> utenti = new ArrayList<>();
-        try (Connection connection = DriverManagerConnectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_QUERY);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
+	}
+	
+	public synchronized boolean checkUsername(String username) throws SQLException{
+		boolean alreadyUsed = false;
+		Connection con = null;
+		PreparedStatement statement = null;
 
-            while (resultSet.next()) {
-                Utente utente = new Utente();
-                utente.setIdUtente(resultSet.getInt("IdUtente"));
-                utente.setEmail(resultSet.getString("Email"));
-                utente.setCognome(resultSet.getString("Cognome"));
-                utente.setNome(resultSet.getString("Nome"));
-                utente.setUsername(resultSet.getString("Username"));
-                utente.setPassword(resultSet.getString("Password"));
-                utente.setAdmin(resultSet.getBoolean("is_admin"));
-                utenti.add(utente);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return utenti;
-    }
+		String query = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE username = ?";
 
-    // Implementa altri metodi CRUD come update, delete, ecc.
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+
+			statement.setString(1, username);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next()) {
+				alreadyUsed = true;
+			}
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+
+		return alreadyUsed;
+	}
 }

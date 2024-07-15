@@ -25,18 +25,31 @@
 <body style="background-image: url('./images/sfondo2.jpg');" >
     <div class="login-container">
         <h2 class="section-title">Registrazione</h2>
-        <form class="login-form" action="register.jsp" method="POST">
+        <form action="${pageContext.request.contextPath}/Register.do" method="POST" class="login-form" >
+        <input type="hidden" name="mode" value="register">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Cognome</label>
+                <input type="text" id="cognome" name="cognome" required>
+            </div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username">
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Conferma Password</label>
+                <input type="password" id="passwordCheck" name="passwordCheck" required>
             </div>
             <button type="submit" class="btn">Registrati</button>
         </form>

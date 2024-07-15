@@ -11,13 +11,20 @@
     <div class="login-container">
         <h2 class="section-title">Login</h2>
         <form action="${pageContext.request.contextPath}/Login.do" method="post" class="login-form">
+        <% 
+        String error = (String) session.getAttribute("error");
+		if (error != null) {
+	    out.println("<p style='color:red;'>" + error + "</p>");
+	    session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
+		}
+		%>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="usernameLogin" name="usernameLogin" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="passwordLogin" name="passwordLogin" required>
             </div>
             <button type="submit" class="btn">Login</button>
         </form>

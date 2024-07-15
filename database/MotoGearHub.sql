@@ -1,24 +1,25 @@
-DROP DATABASE MotoGearHub;
+DROP DATABASE IF EXISTS MotoGearHub;
 CREATE DATABASE MotoGearHub;
 
 USE MotoGearHub;
 
 CREATE TABLE Utente (
-    IdUtente INT PRIMARY KEY,
     Email VARCHAR(100),
-    Cognome VARCHAR(100),
-    Nome VARCHAR(100),
     Username VARCHAR(50),
-    Password VARCHAR(50),
-    is_admin BOOLEAN
+    Password VARCHAR(64),
+    Nome VARCHAR(100),
+    Cognome VARCHAR(100),
+    is_admin BOOLEAN,
+    PRIMARY KEY (Email),
+    UNIQUE (Username)
 );
 
 CREATE TABLE Carrello (
     IdCarrello INT PRIMARY KEY,
     Totale DECIMAL(10, 2),
     NumeroDiProdotti INT,
-    IdUtente INT,
-    FOREIGN KEY (IdUtente) REFERENCES Utente(IdUtente)
+    EmailUtente VARCHAR(100),
+    FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
 );
 
 CREATE TABLE Categoria (
@@ -48,9 +49,9 @@ CREATE TABLE Ordine (
     IdOrdine INT PRIMARY KEY,
     Costo DECIMAL(10, 2),
     Data DATE,
-    IdUtente INT,
+    EmailUtente VARCHAR(100),
     IdMetodoPagamento INT,
-    FOREIGN KEY (IdUtente) REFERENCES Utente(IdUtente),
+    FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
     FOREIGN KEY (IdMetodoPagamento) REFERENCES MetodoPagamento(IdMetodoPagamento)
 );
 
@@ -113,18 +114,18 @@ CREATE TABLE Contenente (
 );
 
 CREATE TABLE UtenteCarrello (
-    IdUtente INT,
+    EmailUtente VARCHAR(100),
     IdCarrello INT,
-    PRIMARY KEY (IdUtente, IdCarrello),
-    FOREIGN KEY (IdUtente) REFERENCES Utente(IdUtente),
+    PRIMARY KEY (EmailUtente, IdCarrello),
+    FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
     FOREIGN KEY (IdCarrello) REFERENCES Carrello(IdCarrello)
 );
 
 CREATE TABLE UtenteOrdine (
-    IdUtente INT,
+    EmailUtente VARCHAR(100),
     IdOrdine INT,
-    PRIMARY KEY (IdUtente, IdOrdine),
-    FOREIGN KEY (IdUtente) REFERENCES Utente(IdUtente),
+    PRIMARY KEY (EmailUtente, IdOrdine),
+    FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
     FOREIGN KEY (IdOrdine) REFERENCES Ordine(IdOrdine)
 );
 
@@ -146,14 +147,14 @@ CREATE TABLE OrdineSpedizione (
 
 -- Inserimento dati
 
-INSERT INTO Utente (IdUtente, Email, Cognome, Nome, Username, Password, is_admin) VALUES
-(1, 'mario.rossi@example.com', 'Rossi', 'Mario', 'mrossi', 'password1', FALSE),
-(2, 'luigi.bianchi@example.com', 'Bianchi', 'Luigi', 'lbianchi', 'password2', FALSE),
-(3, 'admin@example.com', 'Admin', 'Admin', 'admin', 'adminpass', TRUE);
+INSERT INTO Utente (Email, Username, Password, Nome, Cognome, is_admin) VALUES
+('mario.rossi@example.com', 'mrossi', 'password1', 'Mario', 'Rossi', FALSE),
+('luigi.bianchi@example.com', 'lbianchi', 'password2', 'Luigi', 'Bianchi', FALSE),
+('admin@example.com', 'admin', 'adminpass', 'Admin', 'Admin', TRUE);
 
-INSERT INTO Carrello (IdCarrello, Totale, NumeroDiProdotti, IdUtente) VALUES
-(1, 100.50, 3, 1),
-(2, 50.75, 2, 2);
+INSERT INTO Carrello (IdCarrello, Totale, NumeroDiProdotti, EmailUtente) VALUES
+(1, 100.50, 3, 'mario.rossi@example.com'),
+(2, 50.75, 2, 'luigi.bianchi@example.com');
 
 INSERT INTO Categoria (IdCategoria, NomeCategoria) VALUES
 (1, 'Stivale'),
@@ -173,10 +174,9 @@ INSERT INTO MetodoPagamento (IdMetodoPagamento, NomeBanca, TipoDiCarta, Iban) VA
 (1, 'BancaA', 'Visa', 'IT60X0542811101000000123456'),
 (2, 'BancaB', 'MasterCard', 'IT60X0542811101000000654321');
 
-INSERT INTO Ordine (IdOrdine, Costo, Data, IdUtente, IdMetodoPagamento) VALUES
-(1, 100.50, '2024-05-01', 1, 1),
-(2, 50.75, '2024-05-02', 2, 2);
-
+INSERT INTO Ordine (IdOrdine, Costo, Data, EmailUtente, IdMetodoPagamento) VALUES
+(1, 100.50, '2024-05-01', 'mario.rossi@example.com', 1),
+(2, 50.75, '2024-05-02', 'luigi.bianchi@example.com', 2);
 
 INSERT INTO Spedizione (IdSpedizione, IndirizzoSpedizione, GiornoDiArrivo, Corriere) VALUES
 (1, 'Via Roma 1, Milano', '2024-05-03', 'CorriereA'),
