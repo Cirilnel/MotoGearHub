@@ -148,7 +148,6 @@
           <li>
             <a href="#" class="footer-link">Misure tute motociclistiche</a>
           </li>
-
           <li>
             <a href="#" class="footer-link">Assicurazioni</a>
           </li>
