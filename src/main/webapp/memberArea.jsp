@@ -256,7 +256,7 @@
                 style="background-image: url('./images/offer-banner-3.png'); --width: 540; --height: 374;">
 
 				 <p class="card-subtitle">Ancora più vestibilità </p>	
-				 <p class="card-subtitle">Sempre più ergonomia</p>
+				 <p class="card-subtitle">Sempre più ergonomica!</p>
                 <h3 class="h3 card-title">
                 Novità  di<span class="span">quest'anno</span>
                 </h3>
