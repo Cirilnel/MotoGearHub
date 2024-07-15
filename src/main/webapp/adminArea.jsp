@@ -66,7 +66,7 @@
     	<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
 	   </a>
 	   
-	   <a href="login.jsp" class="action-btn user" aria-label="Logout">
+	   <a href="home.jsp" class="action-btn user" aria-label="Logout">
   		<ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
 	   </a>
 	   
