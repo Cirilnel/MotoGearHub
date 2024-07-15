@@ -39,6 +39,7 @@
 		
       <div class="header-actions">
 
+
 							<% if(request.getSession().getAttribute("logged") == null) {%>
 							 	<a href="login.jsp" class="action-btn user" aria-label="User">
     								<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
