@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/footer.css">
 <meta charset="ISO-8859-1">
 </head>
 <footer class="footer" style="background-image: url('./images/footer-bg.jpg')">

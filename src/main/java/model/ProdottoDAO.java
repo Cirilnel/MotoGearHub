@@ -15,7 +15,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 		Connection con = null;
 		PreparedStatement statement = null;
 		
-		String query = "INSERT INTO " + ProdottoDAO.TABLE_NAME + " (IdProdotto, marca, prezzo, quantitainmagazzino, nome, descrizione, idcategoria) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO " + ProdottoDAO.TABLE_NAME + " (IdProdotto, marca, prezzo, quantitainmagazzino, nome, descrizione,image, idcategoria) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
@@ -28,7 +28,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 			statement.setString(5, bean.getNome());
 			statement.setString(6, bean.getDescrizione());
 			statement.setInt(7, bean.getIdCategoria());
-			
+			statement.setString(8, bean.getImage());
 			statement.executeUpdate();
 			
 			con.commit();

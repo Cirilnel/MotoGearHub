@@ -30,6 +30,7 @@ CREATE TABLE Categoria (
 CREATE TABLE Prodotto (
     IdProdotto INT PRIMARY KEY,
     Marca VARCHAR(100),
+    Image VARCHAR(100),
     Prezzo DECIMAL(10, 2),
     QuantitaInMagazzino INT,
     Nome VARCHAR(100),

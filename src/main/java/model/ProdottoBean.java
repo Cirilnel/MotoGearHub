@@ -8,6 +8,7 @@ public class ProdottoBean {
     private String nome;
     private String descrizione;
     private int idCategoria;
+    private String image;
 
     // Getters and Setters
     public int getIdProdotto() {
@@ -18,7 +19,15 @@ public class ProdottoBean {
         this.idProdotto = idProdotto;
     }
 
-    public String getMarca() {
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getMarca() {
         return marca;
     }
 
