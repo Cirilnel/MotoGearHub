@@ -568,16 +568,15 @@
 			
           <div class="cta-content">
               class="img">
+              <div class="cta-content">
+              class="img">
+              <div class="cta-content">
+              class="img">
 
            <h2 class="h2 section-title" style="color: #FF0000;">
     La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità.<br>
     I nostri prodotti sono progettati specificamente per i motociclisti, costruiti con materiali sicuri ed ecologici,<br> e ti aiuteranno ad affrontare la strada in tranquillità.<br>Dai un'occhiata alle nuove collezioni!
 </h2>
-           
-            <p class="section-text">
-        try
-            </p>
-
         
           </div>
 
