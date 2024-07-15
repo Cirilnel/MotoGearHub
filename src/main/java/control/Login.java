@@ -46,10 +46,10 @@ public class Login extends HttpServlet {
 
 			if (user.isAdmin()) {
 				request.getSession().setAttribute("is_admin", true);
-				response.sendRedirect("home.jsp");
+				response.sendRedirect("adminArea.jsp");
 			} else {
-				request.getSession().setAttribute("admin", false);
-				response.sendRedirect("home.jsp");
+				request.getSession().setAttribute("is_admin", false);
+				response.sendRedirect("memberArea.jsp");
 			}
 
 			

@@ -15,17 +15,13 @@
         <ion-icon name="close-outline" aria-label="true" class="close-icon"></ion-icon>
       </button>
 
-      <a href="#" class="logo">MotoGearHub</a>
+      <a href="collezione?mode=home" class="logo">MotoGearHub</a>
 
       <nav class="navbar" data-navbar>
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#home" class="navbar-link" data-nav-link>Home</a>
-          </li>
-
-          <li class="navbar-item">
-            <a href="#shop" class="navbar-link" data-nav-link>Negozio</a>
+            <a href="collezione?mode=home" class="navbar-link" data-nav-link>Home</a>
           </li>
 
           <li class="navbar-item">
@@ -33,7 +29,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link>Contatti</a>
+            <a href="contact.jsp" class="navbar-link" data-nav-link>Contatti</a>
           </li>
 
         </ul>
@@ -43,13 +39,11 @@
 
       <div class="header-actions">
 
-        <button class="action-btn" aria-label="Search">
-          <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-        </button>
 
        <a href="login.jsp" class="action-btn user" aria-label="User">
     	<ion-icon name="person-outline" aria-hidden="true"></ion-icon>
 	   </a>
+	   
 	   <a href="carrello.jsp" class="action-btn user" aria-label="User">
         <button class="action-btn" aria-label="cart">
           <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>

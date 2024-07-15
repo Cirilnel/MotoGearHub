@@ -51,6 +51,7 @@
                 <ion-icon name="logo-twitter"></ion-icon>
               </a>
             </li>
+
             <li>
               <a href="#" class="social-link">
                 <ion-icon name="logo-pinterest"></ion-icon>
@@ -148,6 +149,7 @@
           <li>
             <a href="#" class="footer-link">Misure tute motociclistiche</a>
           </li>
+
           <li>
             <a href="#" class="footer-link">Assicurazioni</a>
           </li>
