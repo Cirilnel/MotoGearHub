@@ -56,7 +56,7 @@
             <div class="container">
                 <div class="logo">MotoGearHub</div>
                 <div class="footer-text">
-                    <p>&copy; 2024 MotoGearHub. Tutti i diritti riservati. Design by CodewithSadee.</p>
+                    <p>&copy; 2024 MotoGearHub. Tutti i diritti riservati.</p>
                 </div>
                 <div class="social-list">
                     <a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a>
