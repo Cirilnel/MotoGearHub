@@ -13,11 +13,11 @@
 
         <div class="footer-brand">
 
-          <a href="#" class="logo">Kitter</a>
+          <a href="#" class="logo">MotoGearHub</a>
 
           <p class="footer-text">
-            If you have any question, please contact us at <a href="mailto:support@gmail.com"
-              class="link">support@gmail.com</a>
+            Per qualsiasi problema, scrivici a <a href="mailto:support@gmail.com"
+              class="link">motogearsupport@gmail.com</a>
           </p>
 
           <ul class="contact-list">
@@ -33,7 +33,7 @@
             <li class="contact-item">
               <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
 
-              <a href="tel:+16234567891011" class="contact-link">(+1)-6234-56-789-1011</a>
+              <a href="tel:+16234567891011" class="contact-link">(+39)3782988732</a>
             </li>
 
           </ul>
@@ -71,19 +71,19 @@
         <ul class="footer-list">
 
           <li>
-            <p class="footer-list-title">Corporate</p>
+            <p class="footer-list-title">Lavora con noi</p>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Carriera</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Riguardo noi</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Contact Us</a>
+            <a href="#" class="footer-link">Contattaci</a>
           </li>
 
           <li>
@@ -91,11 +91,11 @@
           </li>
 
           <li>
-            <a href="#" class="footer-link">Vendors</a>
+            <a href="#" class="footer-link">Venditori autorizzati</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Affiliate Program</a>
+            <a href="#" class="footer-link">Programmi Affiliati</a>
           </li>
 
         </ul>
@@ -103,7 +103,7 @@
         <ul class="footer-list">
 
           <li>
-            <p class="footer-list-title">Information</p>
+            <p class="footer-list-title">Informazioni</p>
           </li>
 
           <li>
@@ -111,23 +111,23 @@
           </li>
 
           <li>
-            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Policy sulla privacy</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Refund Policy</a>
+            <a href="#" class="footer-link">Policy sui rimborsi</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Shipping Policy</a>
+            <a href="#" class="footer-link">Policy sulle spedizioni</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Termini di servizio </a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Track Order</a>
+            <a href="#" class="footer-link">Traccia Ordine</a>
           </li>
 
         </ul>
@@ -135,31 +135,31 @@
         <ul class="footer-list">
 
           <li>
-            <p class="footer-list-title">Services</p>
+            <p class="footer-list-title">Servizi</p>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Grooming</a>
+            <a href="#" class="footer-link">Valutazione caschi usati</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Positive Dog Training</a>
+            <a href="#" class="footer-link">Assistenza Online</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Veterinary Services</a>
+            <a href="#" class="footer-link">Misure tute motociclistiche</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Petco Insurance</a>
+            <a href="#" class="footer-link">Assicurazioni</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Pet Adoption</a>
+            <a href="#" class="footer-link">Noleggio</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Resource Center</a>
+            <a href="#" class="footer-link">Centro Risorse</a>
           </li>
 
         </ul>
