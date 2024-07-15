@@ -26,14 +26,14 @@
               <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
 
               <address class="address">
-                30 Buttonwood St.Pataskala OH 43062
+                Via Stolelle 15 Napoli 80121
               </address>
             </li>
 
             <li class="contact-item">
               <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
 
-              <a href="tel:+16234567891011" class="contact-link">(+39)3782988732</a>
+              <a href="tel:+16234567891011" class="contact-link">(+39) 3782988732</a>
             </li>
 
           </ul>
