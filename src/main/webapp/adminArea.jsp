@@ -43,7 +43,7 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="collezione?mode=home" class="navbar-link" data-nav-link>Home</a>
+            <a href="adminArea.jsp" class="navbar-link" data-nav-link>Home</a>
           </li>
 
           <li class="navbar-item">
