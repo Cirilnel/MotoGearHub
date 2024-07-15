@@ -570,7 +570,7 @@
           <div class="cta-content">
               class="img">
 
-            <h2 class="h2 section-title">La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità. I nostri prodotti sono progettati per aiutarti a rimanere sempre al sicuro sulla strada.</h2>
+            <h2 class="h2 section-title">La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità. Ogni viaggio sicuro è una vittoria. Con i nostri prodotti di alta qualità, progettati specificamente per i motociclisti, puoi affrontare ogni strada con la tranquillità di essere sempre protetto. Dalla scelta dei materiali ai dettagli di design, ogni elemento è studiato per garantire la massima sicurezza e comfort, perché la tua protezione è la nostra priorità.</h2>
 
             <p class="section-text">
         Prova
