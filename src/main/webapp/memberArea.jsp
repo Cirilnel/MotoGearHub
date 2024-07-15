@@ -537,10 +537,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">Free Same-Day Delivery</h3>
+                <h3 class="h3 card-title">Spedizione in 1 giorno gratuita!</h3>
 
                 <p class="card-text">
-                  Order by 2pm local time to get free delivery on orders $35+ today.
+                  Ordina prima delle 14:00 per ottenere la spedizione gratuita su ordini di +35$
                 </p>
 
               </div>
@@ -554,10 +554,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">30 Day Return</h3>
+                <h3 class="h3 card-title">Rimborso entro 30 giorni</h3>
 
                 <p class="card-text">
-                  35% off your first order plus 5% off all future orders.
+                  Rimborso fino a più del 50% del valore dei prodotti garantito!
                 </p>
 
               </div>
@@ -571,10 +571,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">Security payment</h3>
+                <h3 class="h3 card-title">Transazioni sicure</h3>
 
                 <p class="card-text">
-                  25% off your online order of $50+. Available at most locations.
+                  Sconto del 25% sul tuo ordine online di $50+. Disponibile nella maggior parte di Italia.
                 </p>
 
               </div>
@@ -588,10 +588,10 @@
                     alt="service icon">
                 </figure>
 
-                <h3 class="h3 card-title">24/7 Support</h3>
+                <h3 class="h3 card-title">Assistenza Clienti 24/7</h3>
 
                 <p class="card-text">
-                  Shop online to get orders over $35 shipped fast and free.
+                  Assistenza clienti disponibile ad ogni ora di ogni giorno!
                 </p>
 
               </div>
@@ -617,20 +617,19 @@
             <img src="./images/cta-banner.png" width="900" height="660" loading="lazy" alt="cat" class="w-100">
           </figure>
 
-				<!-- da cambiare immagine --> 
+				 
 
           <div class="cta-content">
-            <img src="./images/cta-icon.png" width="120" height="35" loading="lazy" alt="taste guarantee"
               class="img">
 
-            <h2 class="h2 section-title">Scrivere qualcosa</h2>
+            <h2 class="h2 section-title">La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità.<br>
+             I nostri prodotti sono progettati specificamente per i motociclisti, costruiti con materiali sicuri ed ecologici,<br> e ti aiuteranno ad affrontare la strada in tranquillità.<br>Dai un occhiata alle nuove collezioni!</h2>
 
             <p class="section-text">
-        Prova
+        try
             </p>
 
-            <a href="#" class="btn">Prova</a>
-
+        
           </div>
 
         </div>
