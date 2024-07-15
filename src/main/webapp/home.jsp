@@ -565,7 +565,6 @@
             <img src="./images/cta-banner.png" width="900" height="660" loading="lazy" alt="cat" class="w-100">
           </figure>
 
-			
           <div class="cta-content">
               class="img">
               <div class="cta-content">
