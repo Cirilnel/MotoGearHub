@@ -171,6 +171,10 @@ INSERT INTO Prodotto (IdProdotto, Marca,Image, Prezzo, QuantitaInMagazzino, Nome
 (3, 'Raven','./images/product-3.jpg' ,219.99, 20, 'RAVEN JEANS', 'Jeans atletici slim fit con protezioni premium CE Livello 2', 4),
 (4, 'Alpinestars','./images/product-4.jpg',599.95, 3, 'ALPINESTARS GP FORCE PHANTOM', 'La tuta in pelle GP Force Phantom è realizzata in pelle bovina per una resistenza senza limiti!', 4),
 (5, 'Mototecnica','./images/product-5.jpg',180.00, 10, 'STIVALI MOTOTECNICA', 'Stivali Touring impermeabili e confortevoli, con protezioni integrate, suola in gomma antiscivolo e chiusura con velcro regolabile.', 1);
+(6,'Alpinestars','./images/product-6.jpg',179.00,30,'ALPINESTARS GUANTI MOTO IN PELLE GP PLUS R V2 NERO/ROSSO FLUO','Guanti in ecopelle Alpinestars Neri/Rossi Fluo',5)
+(7,'Dainese','./images/product-7.jpg',209.95,15,'GIUBBOTTO GIACCA MOTO DAINESE AVRO D2','La giacca Dainese Avro D2 Tex dal look aggressivo è realizzata in tessuto leggero D-Synth 350 con inserti Microelastic per una vestibilità confortevole ed ideale per la guida in moto',4)
+(8,'Pirelli','./images/product-8.jpg',240.00,7,'Pirelli Diablo Rosso Corsa 2','Pneumatici da corsa Pirelli, colore rosso Ferrari',2)
+
 
 INSERT INTO MetodoPagamento (IdMetodoPagamento, NomeBanca, TipoDiCarta, Iban) VALUES
 (1, 'BancaA', 'Visa', 'IT60X0542811101000000123456'),
@@ -203,3 +207,4 @@ INSERT INTO Abbigliamento (IdAbbigliamento, Tipologia, Taglia, LivelloDiProtezio
 INSERT INTO Guanti (IdGuanti, Tipologia, LivelloDiProtezione) VALUES
 (1, 'Invernale', 'Alta'),
 (2, 'Estivo', 'Media');
+
