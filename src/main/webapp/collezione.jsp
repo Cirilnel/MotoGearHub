@@ -37,36 +37,68 @@
             text-align: center;
         }
         /* Stili per la sidebar delle categorie */
+       
+    .sidebar {
+        width: 200px;
+        background-color: #555; /* Grigio più scuro */
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+        position: sticky;
+        top: 0; /* Fai in modo che la sidebar parta dall'inizio della sezione */
+    }
+    .sidebar h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #fff; /* Testo bianco */
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar ul li {
+        margin-bottom: 10px;
+    }
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #fff; /* Testo bianco */
+        font-size: 1.2rem;
+        transition: color 0.3s;
+    }
+    .sidebar ul li a:hover {
+        color: #ccc; /* Colore chiaro al passaggio del mouse */
+    }
+
+    /* Media query per schermi con larghezza massima di 768px (tablet) */
+    @media (max-width: 768px) {
         .sidebar {
-            width: 200px;
-            background-color: #555; /* Grigio più scuro */
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-right: 20px;
-            position: sticky;
-            top: 0; /* Fai in modo che la sidebar parta dall'inizio della sezione */
+            width: 150px; /* Riduce la larghezza della sidebar */
+            padding: 15px; /* Riduce il padding della sidebar */
         }
         .sidebar h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #fff; /* Testo bianco */
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin-bottom: 10px;
+            font-size: 1.3rem; /* Riduce la dimensione del font */
         }
         .sidebar ul li a {
-            text-decoration: none;
-            color: #fff; /* Testo bianco */
-            font-size: 1.2rem;
-            transition: color 0.3s;
+            font-size: 1rem; /* Riduce la dimensione del font dei link */
         }
-        .sidebar ul li a:hover {
-            color: #ccc; /* Colore chiaro al passaggio del mouse */
+    }
+
+    /* Media query per schermi con larghezza massima di 480px (smartphone) */
+    @media (max-width: 480px) {
+        .sidebar {
+            width: 100%; /* Fa sì che la sidebar occupi l'intera larghezza dello schermo */
+            margin-right: 0; /* Rimuove il margine a destra */
+            padding: 10px; /* Riduce ulteriormente il padding */
+            box-shadow: none; /* Rimuove l'ombra */
         }
+        .sidebar h2 {
+            font-size: 1.2rem; /* Riduce ulteriormente la dimensione del font */
+        }
+        .sidebar ul li a {
+            font-size: 0.9rem; /* Riduce ulteriormente la dimensione del font dei link */
+        }
+    }
+
         /* Stili per la sezione dei prodotti */
         .product-section {
             padding: 50px 0;
