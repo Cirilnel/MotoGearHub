@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS MotoGearHub;
-CREATE DATABASE MotoGearHub;
+DROP SCHEMA IF EXISTS MotoGearHub;
+CREATE SCHEMA MotoGearHub;
 
 USE MotoGearHub;
 
@@ -149,9 +149,9 @@ CREATE TABLE OrdineSpedizione (
 -- Inserimento dati
 
 INSERT INTO Utente (Email, Username, Password, Nome, Cognome, is_admin) VALUES
-('mario.rossi@example.com', 'mrossi', 'password1', 'Mario', 'Rossi', FALSE),
-('luigi.bianchi@example.com', 'lbianchi', 'password2', 'Luigi', 'Bianchi', FALSE),
-('admin@example.com', 'admin', 'adminpass', 'Admin', 'Admin', TRUE);
+('mario.rossi@example.com', 'mrossi', 'cGFzc3dvcmQx', 'Mario', 'Rossi', FALSE),
+('luigi.bianchi@example.com', 'lbianchi', 'cGFzc3dvcmQy', 'Luigi', 'Bianchi', FALSE),
+('admin@example.com', 'admin', 'YWRtaW5wYXNz', 'Admin', 'Admin', TRUE);
 
 INSERT INTO Carrello (IdCarrello, Totale, NumeroDiProdotti, EmailUtente) VALUES
 (1, 100.50, 3, 'mario.rossi@example.com'),
