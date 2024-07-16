@@ -311,7 +311,7 @@ body {
     @media (max-width: 480px) {
         .sicurezza { 
         
-      
+      		            margin-top: 100px; /* Sposta il testo verso il basso di 100px */
             font-size: 14px; /* Riduce ancora la dimensione del font */
             padding: 20px 9px 9px 9px; /* Aggiunge spazio intorno al testo: 20px sopra, 9px a destra, 9px sotto e 9px a sinistra */
         }
@@ -328,6 +328,9 @@ body {
             padding: 15px; /* Aggiunge più spazio per migliorare la leggibilità */
         }
     }
+
+
+  
 
 
 
