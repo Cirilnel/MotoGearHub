@@ -301,7 +301,6 @@
                   <data class="card-price" value="45">309.95€</data>
 
                 </div>
-
               </div>
             </li>
 
