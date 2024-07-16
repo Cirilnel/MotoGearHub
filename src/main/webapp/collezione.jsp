@@ -27,6 +27,7 @@
         }
         .content {
             flex: 1;
+            display: flex;
         }
         /* Stili per l'header, da includere o definire in style.css */
         header {
@@ -35,12 +36,44 @@
             padding: 10px 0;
             text-align: center;
         }
+        /* Stili per la sidebar delle categorie */
+        .sidebar {
+            width: 200px;
+            background-color: #555; /* Grigio più scuro */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            position: sticky;
+            top: 0; /* Fai in modo che la sidebar parta dall'inizio della sezione */
+        }
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fff; /* Testo bianco */
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff; /* Testo bianco */
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        .sidebar ul li a:hover {
+            color: #ccc; /* Colore chiaro al passaggio del mouse */
+        }
         /* Stili per la sezione dei prodotti */
         .product-section {
             padding: 50px 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            flex: 1;
         }
         .product-card {
             background-color: white;
@@ -101,6 +134,11 @@
             .product-card {
                 max-width: 100%;
             }
+            .sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+                position: static; /* Sidebar non sticky su schermi piccoli */
+            }
         }
         /* Stili per il footer, da includere o definire in style.css */
         footer {
@@ -112,47 +150,61 @@
     </style>
 </head>
 <body id="top">
+    <!-- Header -->
+    <jsp:include page="fragments/header.jsp" />
 
     <div class="content">
-        <!-- Header -->
-        <jsp:include page="fragments/header.jsp" />
-        
-        <%
-            List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
-            if (prodotti != null) {
-        %>
-        <!-- Product Section -->
-        <section class="product-section">
-            <div class="container">
-                <div class="row">
-                    <!-- Product Cards -->
-                    <% 
-                        for (ProdottoBean prodotto : prodotti) {
-                    %>
-                  <div class="col-md-6 col-lg-4 mb-4">
-    <div class="product-card">
-        <div class="product-image">
-            <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
+        <!-- Sidebar con le categorie -->
+        <div class="sidebar">
+            <h2>Categorie</h2>
+            <ul>
+                <li><a href="#">Casco</a></li>
+                <li><a href="#">Stivale</a></li>
+                <li><a href="#">Pneumatici</a></li>
+                <li><a href="#">Abbigliamento</a></li>
+                <li><a href="#">Guanti</a></li>
+            </ul>
         </div>
-        <h2 class="product-title"><%= prodotto.getNome() %></h2>
-        <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
-        <p class="product-description"><%= prodotto.getDescrizione() %></p>
-        <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
-        <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
-        <a href="#" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
-    </div>
-</div>
-                    <% } %>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <%
+                List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
+                if (prodotti != null) {
+            %>
+            <!-- Product Section -->
+            <section class="product-section">
+                <div class="container">
+                    <div class="row">
+                        <!-- Product Cards -->
+                        <% 
+                            for (ProdottoBean prodotto : prodotti) {                            	
+                        %>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
+                                </div>
+                                <h2 class="product-title"><%= prodotto.getNome() %></h2>
+                                <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
+                                <p class="product-description"><%= prodotto.getDescrizione() %></p>
+                                <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
+                                <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
+                                <a href="#" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <%
-            } else {
-        %>
-        <p>Nessun prodotto disponibile.</p>
-        <%
-            }
-        %>
+            </section>
+            <%
+                } else {
+            %>
+            <p>Nessun prodotto disponibile.</p>
+            <%
+                }
+            %>
+        </div>
     </div>
 
     <!-- Footer -->

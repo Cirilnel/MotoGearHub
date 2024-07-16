@@ -25,7 +25,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="collezione.jsp" class="navbar-link" data-nav-link>Collezione</a>
+            <a href="${pageContext.request.contextPath}/collezione" class="navbar-link" data-nav-link>Collezione</a>
           </li>
         </ul>
 

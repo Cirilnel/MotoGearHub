@@ -129,6 +129,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 				prodotto.setIdProdotto(result.getInt("IdProdotto"));
 				prodotto.setMarca(result.getString("marca"));
 				prodotto.setPrezzo(result.getInt("prezzo"));
+				prodotto.setImage(result.getString("Image"));
 				prodotto.setQuantitaInMagazzino(result.getInt("quantitainmagazzino"));
 				prodotto.setNome(result.getString("nome"));
 				prodotto.setDescrizione(result.getString("descrizione"));
