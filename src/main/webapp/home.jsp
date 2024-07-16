@@ -555,12 +555,9 @@
                 <p class="card-text">
                   Assistenza clienti disponibile ad ogni ora di ogni giorno!
                 </p>
-
               </div>
             </li>
-
           </ul>
-
         </div>
       </section>
 

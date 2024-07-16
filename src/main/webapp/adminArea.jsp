@@ -564,7 +564,6 @@
             <img src="./images/cta-banner.png" width="900" height="660" loading="lazy" alt="cat" class="w-100">
           </figure>
 				 
-
 <h2 class="sicurezza">
     La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità.<br>
     I nostri prodotti sono progettati specificamente per i motociclisti, costruiti con materiali sicuri ed ecologici,<br> e ti aiuteranno ad affrontare la strada in tranquillità.<br>Dai un'occhiata alle nuove collezioni!
