@@ -25,60 +25,28 @@ public class Collezione extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String mode = request.getParameter("mode");
-        ProdottoDAO dao = new ProdottoDAO();
-        List<ProdottoBean> prodotti = new ArrayList<>();
-        List<ProdottoBean> randomProdotti = new ArrayList<>();
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher dispatcherToShop = request.getRequestDispatcher("collezione.jsp");
+		ProdottoDAO Prodotti = new ProdottoDAO();
+		
+		try {
+			List<ProdottoBean> ProdottiList = (List<ProdottoBean>) Prodotti.doRetrieveAll("");
+			request.getSession().setAttribute("ProdottiList", ProdottiList);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		dispatcherToShop.forward(request, response);
+	}
+		 
+		
+		
 
-        try {
-            // Recupera tutti i prodotti
-            prodotti = dao.doRetrieveAll("");
-
-            // Ottieni 3 prodotti casuali
-            randomProdotti = getRandomProducts(prodotti, 3);
-
-            // Imposta entrambe le liste nella sessione
-            request.getSession().setAttribute("prodotti", prodotti);
-            request.getSession().setAttribute("randomProdotti", randomProdotti);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        String targetPage = "/collezione.jsp"; // Default page
-
-        if ("home".equalsIgnoreCase(mode)) {
-            targetPage = "/home.jsp";
-        }
-
-        // Reindirizza alla pagina appropriata
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(targetPage);
-        dispatcher.forward(request, response);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    private List<ProdottoBean> getRandomProducts(List<ProdottoBean> products, int count) {
-        List<ProdottoBean> randomProducts = new ArrayList<>();
-        Set<Integer> selectedIndexes = new HashSet<>();
-        Random random = new Random();
-
-        if (products.size() <= count) {
-            // Se ci sono meno o esattamente il numero di prodotti richiesti, restituisci tutti i prodotti
-            return new ArrayList<>(products);
-        }
-
-        while (randomProducts.size() < count) {
-            int randomIndex = random.nextInt(products.size());
-            if (!selectedIndexes.contains(randomIndex)) {
-                randomProducts.add(products.get(randomIndex));
-                selectedIndexes.add(randomIndex);
-            }
-        }
-
-        return randomProducts;
-    }
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		doGet(request, response);	
+	}
 }
