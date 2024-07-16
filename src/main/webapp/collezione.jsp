@@ -158,11 +158,12 @@
         <div class="sidebar">
             <h2>Categorie</h2>
             <ul>
-                <li><a href="#">Casco</a></li>
-                <li><a href="#">Stivale</a></li>
-                <li><a href="#">Pneumatici</a></li>
-                <li><a href="#">Abbigliamento</a></li>
-                <li><a href="#">Guanti</a></li>
+            <br> <br> <br>
+                <li><a href="casco.jsp">Casco</a></li>
+                <li><a href="stivale.jsp">Stivale</a></li>
+                <li><a href="pneumatici.jsp">Pneumatici</a></li>
+                <li><a href="abbigliamento.jsp">Abbigliamento</a></li>
+                <li><a href="guanti.jsp">Guanti</a></li>
             </ul>
         </div>
 
