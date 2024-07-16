@@ -164,12 +164,12 @@ INSERT INTO Categoria (IdCategoria, NomeCategoria) VALUES
 (4, 'Abbigliamento'),
 (5, 'Guanti');
 
-INSERT INTO Prodotto (IdProdotto, Marca, Prezzo, QuantitaInMagazzino, Nome, Descrizione, IdCategoria) VALUES
-(1, 'MarcaA', 25.00, 100, 'Prodotto1', 'Descrizione del prodotto 1', 1),
-(2, 'MarcaB', 50.00, 50, 'Prodotto2', 'Descrizione del prodotto 2', 2),
-(3, 'MarcaC', 75.00, 30, 'Prodotto3', 'Descrizione del prodotto 3', 3),
-(4, 'MarcaD', 100.00, 20, 'Prodotto4', 'Descrizione del prodotto 4', 4),
-(5, 'MarcaE', 150.00, 10, 'Prodotto5', 'Descrizione del prodotto 5', 5);
+INSERT INTO Prodotto (IdProdotto, Marca,Image, Prezzo, QuantitaInMagazzino, Nome, Descrizione, IdCategoria) VALUES
+(1, 'MarcaA','Image1', 25.00, 100, 'Prodotto1', 'Descrizione del prodotto 1', 1),
+(2, 'MarcaB','Image2' ,50.00, 50, 'Prodotto2', 'Descrizione del prodotto 2', 2),
+(3, 'MarcaC','Image3' ,75.00, 30, 'Prodotto3', 'Descrizione del prodotto 3', 3),
+(4, 'MarcaD','Image4',100.00, 20, 'Prodotto4', 'Descrizione del prodotto 4', 4),
+(5, 'MarcaE','Image5',150.00, 10, 'Prodotto5', 'Descrizione del prodotto 5', 5);
 
 INSERT INTO MetodoPagamento (IdMetodoPagamento, NomeBanca, TipoDiCarta, Iban) VALUES
 (1, 'BancaA', 'Visa', 'IT60X0542811101000000123456'),
