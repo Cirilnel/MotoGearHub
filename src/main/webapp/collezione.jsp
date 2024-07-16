@@ -129,16 +129,19 @@
                     <% 
                         for (ProdottoBean prodotto : prodotti) {
                     %>
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="./images/product-3.jpg" alt="product-2">
-                            </div>
-                            <h2 class="product-title"><%= prodotto.getNome() %></h2>
-                            <p class="product-price">€<%= prodotto.getPrezzo() %></p>
-                            <a href="#" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
-                        </div>
-                    </div>
+                  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="product-card">
+        <div class="product-image">
+            <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
+        </div>
+        <h2 class="product-title"><%= prodotto.getNome() %></h2>
+        <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
+        <p class="product-description"><%= prodotto.getDescrizione() %></p>
+        <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
+        <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
+        <a href="#" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+    </div>
+</div>
                     <% } %>
                 </div>
             </div>
