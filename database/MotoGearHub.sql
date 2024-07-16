@@ -165,11 +165,11 @@ INSERT INTO Categoria (IdCategoria, NomeCategoria) VALUES
 (5, 'Guanti');
 
 INSERT INTO Prodotto (IdProdotto, Marca,Image, Prezzo, QuantitaInMagazzino, Nome, Descrizione, IdCategoria) VALUES
-(1, 'MarcaA','Image1', 25.00, 100, 'Prodotto1', 'Descrizione del prodotto 1', 1),
-(2, 'MarcaB','Image2' ,50.00, 50, 'Prodotto2', 'Descrizione del prodotto 2', 2),
-(3, 'MarcaC','Image3' ,75.00, 30, 'Prodotto3', 'Descrizione del prodotto 3', 3),
-(4, 'MarcaD','Image4',100.00, 20, 'Prodotto4', 'Descrizione del prodotto 4', 4),
-(5, 'MarcaE','Image5',150.00, 10, 'Prodotto5', 'Descrizione del prodotto 5', 5);
+(1, 'Alpinestars','./images/product-1.jpg', 999.95, 5, 'ALPINESTARS SUPERTECH R10', 'Casco Integrale in Fibra della ALPINESTARS Modello SUPERTECH R10', 3),
+(2, 'Dainese','./images/product-2.jpg' ,309.95, 9, 'DAINESE VR46 DAEMON-X SAFETY HOODIE FULL ZIP', 'Felpa Dainese in morbido tessuto con protezioni morbide Pro-Shape 2.0', 4),
+(3, 'Raven','./images/product-3.jpg' ,219.99, 20, 'RAVEN JEANS', 'Jeans atletici slim fit con protezioni premium CE Livello 2', 4),
+(4, 'Alpinestars','./images/product-4.jpg',599.95, 3, 'ALPINESTARS GP FORCE PHANTOM', 'La tuta in pelle GP Force Phantom è realizzata in pelle bovina per una resistenza senza limiti!', 4),
+(5, 'Mototecnica','./images/product-5.jpg',180.00, 10, 'STIVALI MOTOTECNICA', 'Stivali Touring impermeabili e confortevoli, con protezioni integrate, suola in gomma antiscivolo e chiusura con velcro regolabile.', 1);
 
 INSERT INTO MetodoPagamento (IdMetodoPagamento, NomeBanca, TipoDiCarta, Iban) VALUES
 (1, 'BancaA', 'Visa', 'IT60X0542811101000000123456'),
