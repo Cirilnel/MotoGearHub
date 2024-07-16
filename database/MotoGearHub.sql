@@ -157,6 +157,7 @@ INSERT INTO Carrello (IdCarrello, Totale, NumeroDiProdotti, EmailUtente) VALUES
 (1, 100.50, 3, 'mario.rossi@example.com'),
 (2, 50.75, 2, 'luigi.bianchi@example.com');
 
+
 INSERT INTO Categoria (IdCategoria, NomeCategoria) VALUES
 (1, 'Stivale'),
 (2, 'Pneumatici'),
