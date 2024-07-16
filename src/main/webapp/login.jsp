@@ -15,7 +15,7 @@
         String error = (String) session.getAttribute("error");
 		if (error != null) {
 	    out.println("<p style='color:red;'>" + error + "</p>");
-	    session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
+	    session.removeAttribute("error"); 
 		}
 		%>
             <div class="form-group">

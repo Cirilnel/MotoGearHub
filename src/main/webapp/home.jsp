@@ -22,6 +22,21 @@
 
  
   <link rel="preload" as="image" href="./images/hero-banner.jpg">
+  
+  <!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicurezza in Moto</title>
+   
+       
+    
+</head>
+</html>
+
+ 
+  
 
 </head>
 
@@ -550,32 +565,18 @@
         </div>
       </section>
 
-
-
-
-
-      <!-- 
-        - #CTA
-      -->
-
-      <section class="cta has-bg-image" aria-label="cta" style="background-image: url('./images/cta-bg.jpeg')">
-        <div class="container">
-
-          <figure class="cta-banner">
+      <section class="cta has-bg-image" aria-label="cta" style="background-image: url('./images/cta-bg.jpeg'); display: flex; align-items: center; justify-content: center; text-align: center; height: 100vh;">
+    <div class="container" style="text-align: center;">
+        <figure class="cta-banner">
             <img src="./images/cta-banner.png" width="900" height="660" loading="lazy" alt="cat" class="w-100">
-          </figure>
+        </figure>
 
-          <div class="cta-content">
-              class="img">
-              <div class="cta-content">
-              class="img">
-              <div class="cta-content">
-              class="img">
-
-           <h2 class="h2 section-title" style="color: #FF0000;">
+       <h2 class="sicurezza">
     La sicurezza in moto non è un optional: indossa sempre il casco, mantieni una guida prudente e rispetta i limiti di velocità.<br>
     I nostri prodotti sono progettati specificamente per i motociclisti, costruiti con materiali sicuri ed ecologici,<br> e ti aiuteranno ad affrontare la strada in tranquillità.<br>Dai un'occhiata alle nuove collezioni!
 </h2>
+
+</section>
         
           </div>
 

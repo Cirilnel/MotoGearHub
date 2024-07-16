@@ -153,6 +153,31 @@ body {
 ::-webkit-scrollbar-thumb:hover { background-color: hsl(0, 0%, 70%); }
 
 
+.sicurezza {
+            position: relative; 
+            top: -250px;
+            color: red; 
+            font-family: Arial, sans-serif; 
+            text-align: center;
+        }
+
+        /* Media query per schermi con larghezza massima di 768px (tablet) */
+        @media (max-width: 768px) {
+            .sicurezza {
+                top: -250px; /* Modifica la posizione per schermi più piccoli */
+                font-size: 18px; /* Riduce la dimensione del font */
+                padding: 10px; /* Aggiunge un po' di padding per migliorare la leggibilità */
+            }
+        }
+
+        /* Media query per schermi con larghezza massima di 480px (smartphone) */
+        @media (max-width: 480px) {
+            .sicurezza {
+                top: -100px; /* Modifica ulteriormente la posizione per schermi molto piccoli */
+                font-size: 16px; /* Riduce ancora la dimensione del font */
+                padding: 15px; /* Aggiunge più padding per una migliore leggibilità */
+            }
+        }
 
 
 
@@ -259,6 +284,51 @@ body {
 
 .w-100 { width: 100%; }
 
+
+ 
+   sicurezza {
+        position: relative;
+        color: red; 
+        font-family: Arial, sans-serif; 
+        text-align: center;
+        line-height: 1.6; /* Altezza della riga per una migliore leggibilità */
+        max-width: 100%; /* Larghezza massima del contenuto per adattarsi al viewport */
+        width: 80%; /* Larghezza del contenuto su schermi più larghi */
+        margin: 0 auto; /* Centra il contenuto orizzontalmente */
+        padding: 20px; /* Aggiunge spazio intorno al testo */
+        box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+    }
+
+    /* Media query per schermi con larghezza massima di 768px (tablet) */
+    @media (max-width: 768px) {
+        .sicurezza {
+            font-size: 14px; /* Riduce ulteriormente la dimensione del font */
+            padding: 15px; /* Aggiunge più spazio per migliorare la leggibilità */
+        }
+    }
+
+    /* Media query per schermi con larghezza massima di 480px (smartphone) */
+    @media (max-width: 480px) {
+        .sicurezza { 
+        
+      
+            font-size: 14px; /* Riduce ancora la dimensione del font */
+            padding: 20px 9px 9px 9px; /* Aggiunge spazio intorno al testo: 20px sopra, 9px a destra, 9px sotto e 9px a sinistra */
+        }
+    
+
+
+            
+            
+        }
+    
+    
+    @media (max-width: 1172px) {
+        .sicurezza {
+            font-size: 16px; /* Riduce la dimensione del font */
+            padding: 15px; /* Aggiunge più spazio per migliorare la leggibilità */
+        }
+    }
 
 
 
