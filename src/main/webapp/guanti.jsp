@@ -60,7 +60,7 @@
                                 <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
                                <% 
                             	 if(request.getSession().getAttribute("email")!=null){%>
-                                <a href="/carrelloaggiungi" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                                <a href="${pageContext.request.contextPath}/carrelloaggiungi" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
                             </div>
                         </div>
                         <% }} %>
