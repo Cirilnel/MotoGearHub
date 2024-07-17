@@ -1,22 +1,26 @@
 package model;
+
+import java.math.BigDecimal;
+
 public class CarrelloBean {
+
     private int idCarrello;
-    private double totale;
+    private BigDecimal totale;
     private int numeroDiProdotti;
     private String emailUtente;
 
-    // Costruttore vuoto
-    public CarrelloBean() {}
+    // Costruttori, getter e setter
 
-    // Costruttore con tutti i campi
-    public CarrelloBean(int idCarrello, double totale, int numeroDiProdotti, String emailUtente) {
+    public CarrelloBean() {
+    }
+
+    public CarrelloBean(int idCarrello, BigDecimal totale, int numeroDiProdotti, String emailUtente) {
         this.idCarrello = idCarrello;
         this.totale = totale;
         this.numeroDiProdotti = numeroDiProdotti;
         this.emailUtente = emailUtente;
     }
 
-    // Getter e Setter
     public int getIdCarrello() {
         return idCarrello;
     }
@@ -25,11 +29,11 @@ public class CarrelloBean {
         this.idCarrello = idCarrello;
     }
 
-    public double getTotale() {
+    public BigDecimal getTotale() {
         return totale;
     }
 
-    public void setTotale(double totale) {
+    public void setTotale(BigDecimal totale) {
         this.totale = totale;
     }
 
@@ -49,13 +53,4 @@ public class CarrelloBean {
         this.emailUtente = emailUtente;
     }
 
-    @Override
-    public String toString() {
-        return "Carrello{" +
-                "idCarrello=" + idCarrello +
-                ", totale=" + totale +
-                ", numeroDiProdotti=" + numeroDiProdotti +
-                ", emailUtente='" + emailUtente + '\'' +
-                '}';
-    }
 }
