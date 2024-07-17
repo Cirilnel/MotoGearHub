@@ -1,165 +1,193 @@
 html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: 'Nunito Sans', Arial, sans-serif;
-        }
-        body {
-            background-color: #9C9C9C;
-            display: flex;
-            flex-direction: column;
-        }
-        .content {
-            flex: 1;
-            display: flex;
-        }
-        /* Stili per l'header, da includere o definire in style.css */
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        /* Stili per la sidebar delle categorie */
-       
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: #9C9C9C;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+}
+
+/* Stili per l'header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Stili per la sidebar delle categorie */
+.sidebar {
+    width: 200px;
+    background-color: #555; /* Grigio più scuro */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    position: sticky;
+    top: 0; /* Fai in modo che la sidebar parta dall'inizio della sezione */
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fff; /* Testo bianco */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff; /* Testo bianco */
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #ccc; /* Colore chiaro al passaggio del mouse */
+}
+
+/* Media query per schermi con larghezza massima di 768px (tablet) */
+@media (max-width: 768px) {
     .sidebar {
-        width: 200px;
-        background-color: #555; /* Grigio piÃ¹ scuro */
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-right: 20px;
-        position: sticky;
-        top: 0; /* Fai in modo che la sidebar parta dall'inizio della sezione */
+        width: 150px; /* Riduce la larghezza della sidebar */
+        padding: 15px; /* Riduce il padding della sidebar */
     }
     .sidebar h2 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        color: #fff; /* Testo bianco */
-    }
-    .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    .sidebar ul li {
-        margin-bottom: 10px;
+        font-size: 1.3rem; /* Riduce la dimensione del font */
     }
     .sidebar ul li a {
-        text-decoration: none;
-        color: #fff; /* Testo bianco */
-        font-size: 1.2rem;
-        transition: color 0.3s;
+        font-size: 1rem; /* Riduce la dimensione del font dei link */
     }
-    .sidebar ul li a:hover {
-        color: #ccc; /* Colore chiaro al passaggio del mouse */
-    }
+}
 
-    /* Media query per schermi con larghezza massima di 768px (tablet) */
-    @media (max-width: 768px) {
-        .sidebar {
-            width: 150px; /* Riduce la larghezza della sidebar */
-            padding: 15px; /* Riduce il padding della sidebar */
-        }
-        .sidebar h2 {
-            font-size: 1.3rem; /* Riduce la dimensione del font */
-        }
-        .sidebar ul li a {
-            font-size: 1rem; /* Riduce la dimensione del font dei link */
-        }
+/* Media query per schermi con larghezza massima di 480px (smartphone) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%; /* Fa sì che la sidebar occupi l'intera larghezza dello schermo */
+        margin-right: 0; /* Rimuove il margine a destra */
+        padding: 10px; /* Riduce ulteriormente il padding */
+        box-shadow: none; /* Rimuove l'ombra */
     }
-
-    /* Media query per schermi con larghezza massima di 480px (smartphone) */
-    @media (max-width: 480px) {
-        .sidebar {
-            width: 100%; /* Fa sÃ¬ che la sidebar occupi l'intera larghezza dello schermo */
-            margin-right: 0; /* Rimuove il margine a destra */
-            padding: 10px; /* Riduce ulteriormente il padding */
-            box-shadow: none; /* Rimuove l'ombra */
-        }
-        .sidebar h2 {
-            font-size: 1.2rem; /* Riduce ulteriormente la dimensione del font */
-        }
-        .sidebar ul li a {
-            font-size: 0.9rem; /* Riduce ulteriormente la dimensione del font dei link */
-        }
+    .sidebar h2 {
+        font-size: 1.2rem; /* Riduce ulteriormente la dimensione del font */
     }
+    .sidebar ul li a {
+        font-size: 0.9rem; /* Riduce ulteriormente la dimensione del font dei link */
+    }
+}
 
-        /* Stili per la sezione dei prodotti */
-        .product-section {
-            padding: 50px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            flex: 1;
-        }
-        .product-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            margin: 20px;
-            text-align: center;
-            flex: 1 1 300px; /* FlessibilitÃ  per adattarsi alla larghezza disponibile */
-            height: 100%; /* Altezza fissa per tutte le carte */
-        }
-        .product-card .product-image {
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        .product-card img {
-            border-radius: 5px;
-            max-width: 100%;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-        .product-card .product-title {
-            font-family: 'Bangers', cursive;
-            font-size: 1.8rem;
-            color: #333;
-            margin: 10px 0;
-        }
-        .product-card .product-price {
-            font-size: 1.2rem;
-            color: #009688;
-            margin: 5px 0;
-        }
-        .product-card .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
-        .product-card .btn:hover {
-            background-color: #cc0000;
-        }
-        .product-card .btn ion-icon {
-            margin-right: 5px;
-        }
-        @media (max-width: 768px) {
-            .product-card {
-                max-width: 100%;
-            }
-            .sidebar {
-                width: 100%;
-                margin-bottom: 20px;
-                position: static; /* Sidebar non sticky su schermi piccoli */
-            }
-        }
-        /* Stili per il footer, da includere o definire in style.css */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
+/* Stili per la sezione dei prodotti */
+.product-section {
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+    flex: 1 1 300px; /* Flessibilità per adattarsi alla larghezza disponibile */
+    height: 100%; /* Altezza fissa per tutte le carte */
+}
+
+.product-card .product-image {
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card img {
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card .product-title {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-card .product-price {
+    font-size: 1.2rem;
+    color: #009688;
+    margin: 5px 0;
+}
+
+.product-card .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.product-card .btn:hover {
+    background-color: #cc0000;
+}
+
+.product-card .btn ion-icon {
+    margin-right: 5px;
+}
+
+/* Media query per schermi con larghezza massima di 768px (tablet) */
+@media (max-width: 768px) {
+    .product-card {
+        max-width: 100%;
+    }
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        position: static; /* Sidebar non sticky su schermi piccoli */
+    }
+}
+
+/* Media query per schermi con larghezza minima di 769px (desktop) */
+@media (min-width: 769px) {
+    .product-card {
+        max-width: 300px; /* Larghezza fissa per le carte prodotto */
+        width: 300px; /* Larghezza fissa per le carte prodotto */
+    }
+}
+
+/* Stili per il footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
