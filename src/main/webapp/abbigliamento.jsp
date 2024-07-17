@@ -185,7 +185,7 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
+                                    <img src="./images/<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
                                 </div>
                                 <h2 class="product-title"><%= prodotto.getNome() %></h2>
                                 <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
