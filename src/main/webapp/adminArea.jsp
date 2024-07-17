@@ -67,93 +67,103 @@
       -->
 
       <section class="section category" aria-label="category">
-        <div class="container">
+    <div class="container">
 
-          <h2 class="h2 section-title">
+        <h2 class="h2 section-title">
             <span class="span">Migliori</span> categorie
-          </h2>
+        </h2>
 
-          <ul class="has-scrollbar">
+        <ul class="has-scrollbar">
 
             <li class="scrollbar-item">
-              <div class="category-card">
+                <div class="category-card">
 
-                <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
-                  <img src="./images/category-1.jpg" width="330" height="300" loading="lazy" alt="Cat Food"
-                    class="img-cover">
-                </figure>
+                    <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
+                        <a href="casco.jsp">
+                            <img src="./images/category-1.jpg" width="330" height="300" loading="lazy" alt="Cat Food"
+                                class="img-cover">
+                        </a>
+                    </figure>
 
-                <h3 class="h3">
-                  <a href="#" class="card-title">Caschi</a>
-                </h3>
+                    <h3 class="h3">
+                        <a href="casco.jsp" class="card-title">Caschi</a>
+                    </h3>
 
-              </div>
+                </div>
             </li>
 
             <li class="scrollbar-item">
-              <div class="category-card">
+                <div class="category-card">
 
-                <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
-                  <img src="./images/category-2.jpg" width="330" height="300" loading="lazy" alt="Cat Toys"
-                    class="img-cover">
-                </figure>
+                    <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
+                        <a href="abbigliamento.jsp">
+                            <img src="./images/category-2.jpg" width="330" height="300" loading="lazy" alt="Cat Toys"
+                                class="img-cover">
+                        </a>
+                    </figure>
 
-                <h3 class="h3">
-                  <a href="#" class="card-title">Abbigliamento da moto</a>
-                </h3>
+                    <h3 class="h3">
+                        <a href="abbigliamento.jsp" class="card-title">Abbigliamento da moto</a>
+                    </h3>
 
-              </div>
+                </div>
             </li>
 
             <li class="scrollbar-item">
-              <div class="category-card">
+                <div class="category-card">
 
-                <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
-                  <img src="./images/category-3.jpg" width="330" height="300" loading="lazy" alt="Dog Food"
-                    class="img-cover">
-                </figure>
+                    <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
+                        <a href="guanti.jsp">
+                            <img src="./images/category-3.jpg" width="330" height="300" loading="lazy" alt="Dog Food"
+                                class="img-cover">
+                        </a>
+                    </figure>
 
-                <h3 class="h3">
-                  <a href="#" class="card-title">Guanti</a>
-                </h3>
+                    <h3 class="h3">
+                        <a href="guanti.jsp" class="card-title">Guanti</a>
+                    </h3>
 
-              </div>
+                </div>
             </li>
 
             <li class="scrollbar-item">
-              <div class="category-card">
+                <div class="category-card">
 
-                <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
-                  <img src="./images/category-4.jpg" width="330" height="300" loading="lazy" alt="Dog Toys"
-                    class="img-cover">
-                </figure>
+                    <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
+                        <a href="stivale.jsp">
+                            <img src="./images/category-4.jpg" width="330" height="300" loading="lazy" alt="Dog Toys"
+                                class="img-cover">
+                        </a>
+                    </figure>
 
-                <h3 class="h3">
-                  <a href="#" class="card-title">Stivali da moto</a>
-                </h3>
+                    <h3 class="h3">
+                        <a href="stivale.jsp" class="card-title">Stivali da moto</a>
+                    </h3>
 
-              </div>
+                </div>
             </li>
 
             <li class="scrollbar-item">
-              <div class="category-card">
+                <div class="category-card">
 
-                <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
-                  <img src="./images/category-5.jpg" width="330" height="300" loading="lazy"
-                    alt="Dog Sumpplements" class="img-cover">
-                </figure>
+                    <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
+                        <a href="pneumatici.jsp">
+                            <img src="./images/category-5.jpg" width="330" height="300" loading="lazy" alt="Dog Supplements"
+                                class="img-cover">
+                        </a>
+                    </figure>
 
-                <h3 class="h3">
-                  <a href="#" class="card-title">Pneumatici</a>
-                </h3>
+                    <h3 class="h3">
+                        <a href="pneumatici.jsp" class="card-title">Pneumatici</a>
+                    </h3>
 
-              </div>
+                </div>
             </li>
 
-          </ul>
+        </ul>
 
-        </div>
-      </section>
+    </div>
+</section>
 
 
 
@@ -217,247 +227,6 @@
 
         </div>
       </section>
-
-
-
-
-
-      <!-- 
-        - #PRODUCT
-      -->
-
-      <section class="section product" id="shop" aria-label="product">
-        <div class="container">
-
-          <h2 class="h2 section-title">
-            <span class="span">Più</span> Venduti
-          </h2>
-
-          <ul class="grid-list">
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-1.jpg" width="360" height="360" loading="lazy"
-                    alt="Commodo leo sed porta" class="img-cover default">
-                  <img src="./images/product-1_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Commodo leo sed porta" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-                
-                  <h3 class="h3">
-                    <a href="#" class="card-title">ALPINESTARS SUPERTECH R10</a>
-                  </h3>
-
-                  <data class="card-price" value="15">999.95 €</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-2.jpg" width="360" height="360" loading="lazy"
-                    alt="Purus consequat congue sit" class="img-cover default">
-                  <img src="./images/product-2_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Purus consequat congue sit" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-                
-                  <h3 class="h3">
-                    <a href="#" class="card-title">DAINESE VR46 DAEMON-X SAFETY HOODIE FULL ZIP</a>
-                  </h3>
-
-                  <data class="card-price" value="45">309.95€</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-3.jpg" width="360" height="360" loading="lazy"
-                    alt="Morbi vel arcu scelerisque" class="img-cover default">
-                  <img src="./images/product-3_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Morbi vel arcu scelerisque" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-                  <h3 class="h3">
-                    <a href="#" class="card-title">RAVEN JEANS</a>
-                  </h3>
-
-                  <data class="card-price" value="45">219.99€</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-4.jpg" width="360" height="360" loading="lazy"
-                    alt="Morbi vel arcu scelerisque" class="img-cover default">
-                  <img src="./images/product-4_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Morbi vel arcu scelerisque" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">ALPINESTARS GP FORCE PHANTOM</a>
-                  </h3>
-
-                  <data class="card-price" value="49">599.95€</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-5.jpg" width="360" height="360" loading="lazy"
-                    alt="Morbi vel arcu scelerisque" class="img-cover default">
-                  <img src="./images/product-5_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Morbi vel arcu scelerisque" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-	
-                  
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">STIVALI MOTOTECNICA</a>
-                  </h3>
-
-                  <data class="card-price" value="85">179.00 €</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-6.jpg" width="360" height="360" loading="lazy"
-                    alt="Nam justo libero porta ege" class="img-cover default">
-                  <img src="./images/product-6_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Nam justo libero porta ege" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">ALPINESTARS GUANTI MOTO IN PELLE GP PLUS R V2 NERO/ROSSO FLUO</a>
-                  </h3>
-
-                  <data class="card-price" value="85">179.00 €</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-7.jpg" width="360" height="360" loading="lazy"
-                    alt="Nam justo libero porta ege" class="img-cover default">
-                  <img src="./images/product-7_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Nam justo libero porta ege" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">GIUBBOTTO GIACCA MOTO DAINESE AVRO D2</a>
-                  </h3>
-
-                  <data class="card-price" value="85">209.95€</data>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="product-card">
-
-                <div class="card-banner img-holder" style="--width: 360; --height: 360;">
-                  <img src="./images/product-8.jpg" width="360" height="360" loading="lazy"
-                    alt="Etiam commodo leo sed" class="img-cover default">
-                  <img src="./images/product-8_0.jpg" width="360" height="360" loading="lazy"
-                    alt="Etiam commodo leo sed" class="img-cover hover">
-
-                  <button class="card-action-btn" aria-label="add to card" title="Add To Card">
-                    <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
-                  </button>
-                </div>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">Pirelli Diablo Rosso Corsa 2</a>
-                  </h3>
-
-                  <data class="card-price" value="55">240.00 €</data>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-
 
 
 
