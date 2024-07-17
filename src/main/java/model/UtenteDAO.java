@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtenteDAO extends AbstractDAO<UtenteBean>{
+public class UtenteDAO implements BeanDAO<UtenteBean,String>{
 	private static final String TABLE_NAME = "utente";
 	
 	@Override
@@ -275,5 +275,48 @@ public class UtenteDAO extends AbstractDAO<UtenteBean>{
 		}
 
 		return alreadyUsed;
+	}
+
+	@Override
+	public synchronized UtenteBean doRetrieveByKey(String code) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		UtenteBean bean = new UtenteBean();
+
+		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE email = ?";
+
+		try {
+		
+			 connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, code);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setEmail(rs.getString("email"));
+				bean.setUsername(rs.getString("username"));
+				bean.setPassword(rs.getString("password"));
+				bean.setAdmin(rs.getBoolean("Tipo_utente"));
+				
+
+			}
+
+		}finally {
+		
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if(connection != null)
+					connection.close();
+			}
+		} 
+		return bean;
+		
 	}
 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
+public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer>{
 	private static final String TABLE_NAME = "prodotto";
 
 	@Override
@@ -44,7 +44,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 	}
 	
 	@Override
-	public synchronized boolean doDelete(String key) throws SQLException {
+	public synchronized boolean doDelete(Integer key) throws SQLException {
 		Connection con = null;
 		PreparedStatement statement = null;
 		int result = 0;
@@ -53,7 +53,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			statement = con.prepareStatement(query);
-			statement.setString(1, key);
+			statement.setInt(1, key);
 			
 			result = statement.executeUpdate();
 			
@@ -72,7 +72,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 	}
 	
 	@Override
-	public synchronized ProdottoBean doRetrieveByKey(String key) throws SQLException {
+	public synchronized ProdottoBean doRetrieveByKey(Integer key) throws SQLException {
 		Connection con = null;
 		PreparedStatement statement = null;
 		ProdottoBean prodotto = new ProdottoBean();
@@ -82,7 +82,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			statement = con.prepareStatement(query);
-			statement.setString(1, key);
+			statement.setInt(1, key);
 			
 			ResultSet result = statement.executeQuery();
 			
@@ -150,7 +150,7 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 		return prodotti;
 	}
 	
-	@Override
+	
 	public synchronized boolean doUpdate(ProdottoBean bean) throws SQLException {
 	    Connection con = null;
 	    PreparedStatement statement = null;

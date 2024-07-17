@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarrelloDAO extends AbstractDAO<CarrelloBean> {
+public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
     private static String TABLE_NAME = "Carrello";
 
     @Override
@@ -41,7 +41,7 @@ public class CarrelloDAO extends AbstractDAO<CarrelloBean> {
     }
 
     @Override
-    public boolean doDelete(String Key) throws SQLException {
+    public boolean doDelete(Integer Key) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -52,7 +52,7 @@ public class CarrelloDAO extends AbstractDAO<CarrelloBean> {
         try {
             connection = DriverManagerConnectionPool.getConnection();
             preparedStatement = connection.prepareStatement(deleteSQL);
-            preparedStatement.setString(1, Key);
+            preparedStatement.setInt(1, Key);
 
             result = preparedStatement.executeUpdate();
 
@@ -70,7 +70,7 @@ public class CarrelloDAO extends AbstractDAO<CarrelloBean> {
     }
 
     @Override
-    public CarrelloBean doRetrieveByKey(String Key) throws SQLException {
+    public CarrelloBean doRetrieveByKey(Integer Key) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -81,7 +81,7 @@ public class CarrelloDAO extends AbstractDAO<CarrelloBean> {
         try {
             connection = DriverManagerConnectionPool.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, Key);
+            preparedStatement.setInt(1, Key);
 
             ResultSet rs = preparedStatement.executeQuery();
 

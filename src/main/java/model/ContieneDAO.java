@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContieneDAO extends AbstractDAO<ContieneBean> {
+public class ContieneDAO implements BeanDAO<ContieneBean,ContenenteCarrelloCombinedKey> {
     private static final String TABLE_NAME = "contiene";
     
     public ContieneDAO() {
@@ -46,55 +46,60 @@ public class ContieneDAO extends AbstractDAO<ContieneBean> {
     }
     
     @Override
-    public synchronized boolean doDelete(String key) throws SQLException {
-        Connection con = null;
-        PreparedStatement statement = null;
+    public boolean doDelete(ContenenteCarrelloCombinedKey key) throws SQLException {
+		Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
         int result = 0;
-        String query = "DELETE FROM " + ContieneDAO.TABLE_NAME + " WHERE nome = ?";
+
+        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE ID_prodotto = ? AND ID_carrello = ?";
 
         try {
-            con = DriverManagerConnectionPool.getConnection();
-            statement = con.prepareStatement(query);
-            statement.setString(1, key);
+        	connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(deleteSQL);
 
-            result = statement.executeUpdate();
+            String idProdotto = key.getIdProdotto() == 0 ? "*" : String.valueOf(key.getIdProdotto());
+            String idCarrello = key.getIdCarrello() == 0 ? "*" : String.valueOf(key.getIdCarrello());
+
+            preparedStatement.setString(1, idProdotto);
+            preparedStatement.setString(2, idCarrello);
+
+            result = preparedStatement.executeUpdate();
         } finally {
             try {
-                if (statement != null) {
-                    statement.close();
-                }
+                if (preparedStatement != null)
+                    preparedStatement.close();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(con);
+                if (connection != null)
+                    connection.close();
             }
         }
-
-        return result != 0;
+        return (result != 0);
     }
     
     @Override
-    public ContieneBean doRetrieveByKey(String key) throws SQLException {
+    public ContieneBean doRetrieveByKey(ContenenteCarrelloCombinedKey key) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ContieneBean bean = null;
 
-        String[] parts = key.split("-");
-        int idProdotto = Integer.parseInt(parts[0]);
-        int idCarrello = Integer.parseInt(parts[1]);
 
         String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE IdProdotto = ? AND IdCarrello = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idProdotto);
-            preparedStatement.setInt(2, idCarrello);
+
+            preparedStatement.setInt(1, key.getIdProdotto());
+            preparedStatement.setInt(2, key.getIdCarrello());
 
             ResultSet rs = preparedStatement.executeQuery();
+
             if (rs.next()) {
                 bean = new ContieneBean();
-                bean.setIdProdotto(rs.getInt("IdProdotto"));
-                bean.setIdCarrello(rs.getInt("IdCarrello"));
-                bean.setQuantita(rs.getInt("Quantita"));
+                bean.setIdProdotto(rs.getInt("ID_prodotto"));
+                bean.setIdCarrello(rs.getInt("ID_Carrello"));
+                bean.setQuantita(rs.getInt("quantita"));
             }
         } finally {
             try {

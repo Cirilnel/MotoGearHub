@@ -1,120 +1,74 @@
 package control;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import model.CarrelloBean;
 import model.CarrelloDAO;
 import model.ContieneBean;
 import model.ContenenteCarrelloCombinedKey;
 import model.ContieneDAO;
-import model.ProdottoBean;
-import model.ProdottoDAO;
 import model.UtenteBean;
-import model.UtenteDAO;
+import org.json.JSONObject;
 
 @WebServlet("/carrelloaggiungi")
-public class Carrello extends HttpServlet{
+public class Carrello extends HttpServlet {
+    private static final long serialVersionUID = 7112366996429439147L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -676741214133898517L;
-	
-	
-	public Carrello() {
-		super();
-	}
-	
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		
-		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("home.jsp");
-		if(request.getSession().getAttribute("email")==null) {
-			dispatcherToCart.forward(request, response);
-			return;
-		}
-			
-		String email = (String) request.getSession().getAttribute("email");
-			
-		
-		List<String> errors = new ArrayList<>();
-		
-		
-
-		
-		if(email == null || email.trim().isEmpty()) {
-			errors.add("Il campo username non può essere vuoto!");
-		}
-		
-        if (!errors.isEmpty()) {
-        	request.setAttribute("errors", errors);
-        	dispatcherToCart.forward(request, response);
-        	return;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        JSONObject jsonResponse = new JSONObject();
+        int quantity;
+        String idProdotto = request.getParameter("AddProdottoId");
+        
+        if(request.getParameter("quantity")==null)
+        	 quantity=1;
+        else
+        	quantity = Integer.parseInt(request.getParameter("quantity"));
+    
+        if (request.getSession().getAttribute("email") == null) {
+            jsonResponse.put("success", false);
+            jsonResponse.put("message", "User not logged in");
+            out.print(jsonResponse);
+            return;
         }
-        
-        email = email.trim();
-        
-        
-		
-		try {
-			CarrelloDAO Carrello = new CarrelloDAO();
-	        CarrelloBean CarrelloBean = Carrello.doRetrieveByUserKey(email);
-	        if(CarrelloBean == null) {
-	        	System.out.println("prova");
-	        }
-	        //System.out.println("email"+CarrelloBean.getEmail());
-			int idCarrello = CarrelloBean.getIdCarrello();
-			//System.out.println(idCarrello);
-			
-			
-			
-			ContieneDAO Contenente = new ContieneDAO();
-			ProdottoDAO Prodotti = new ProdottoDAO();
-			
-			request.getSession().setAttribute("idCarrello", idCarrello);
-		
-			List<ContieneBean> ContenenteCarrelloBeanList = (List<ContieneBean>) Contenente.doRetrieveByCarrelloKey(idCarrello);
-			request.getSession().setAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello), ContenenteCarrelloBeanList);
-			for(ContieneBean ContenenteCarrello :ContenenteCarrelloBeanList) {
-				//int quantità = ContenenteCarrello.getQuantita();
-				int idProdotto = ContenenteCarrello.getIdProdotto();
-				ProdottoBean Prodotto = Prodotti.doRetrieveByKey(String.valueOf(idProdotto));
-				//request.getSession().setAttribute(Integer.toString(idCarrello)+Integer.toString(ContenenteCarrello.getIdProdotto()),quantità);
-				request.getSession().setAttribute("ProdottoCarrello"+Integer.toString(idProdotto), Prodotto);
-				ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("ProdottoCarrello"+idProdotto);
-				
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-		
-		
-		dispatcherToCart.forward(request, response);
-		
-		
-	}
-		
-		
-		
+       
+        String email = (String) request.getSession().getAttribute("email");
+        CarrelloDAO carrelli = new CarrelloDAO();
+        ContieneDAO contenenteCarrelli = new ContieneDAO();
+     
+        try {
+            int idCarrello = carrelli.doRetrieveByUserKey(email).getIdCarrello();
+            ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(Integer.parseInt(idProdotto), idCarrello);
+            ContieneBean contenenteCarrello = contenenteCarrelli.doRetrieveByKey(key);
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		doGet(request, response);
-	}
+           
+            if (contenenteCarrello == null) {
+                ContieneBean newContenenteCarrello = new ContieneBean(idCarrello, Integer.parseInt(idProdotto), quantity);
+                contenenteCarrelli.doSave(newContenenteCarrello);
+            } else {
+                contenenteCarrello.setQuantita(contenenteCarrello.getQuantita() + quantity);
+                contenenteCarrelli.doSave(contenenteCarrello);
+            }
+
+            jsonResponse.put("success", true);
+            jsonResponse.put("message", "Product added to cart successfully");
+        } catch (Exception e) {
+            jsonResponse.put("success", false);
+            jsonResponse.put("message", "Error adding product to cart: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        out.print(jsonResponse);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 }
-	
