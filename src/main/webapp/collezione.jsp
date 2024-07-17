@@ -19,12 +19,13 @@
     <!-- Header -->
     <jsp:include page="fragments/header.jsp" />
 
+    <!-- Menu Button for Sidebar -->
+    <button class="menu-btn">☰ Menu</button>
+
     <div class="content">
-        <!-- Sidebar con le categorie -->
         <div class="sidebar">
             <h2>Categorie</h2>
             <ul>
-            <br> <br> <br>
                 <li><a href="casco.jsp">Casco</a></li>
                 <li><a href="stivale.jsp">Stivale</a></li>
                 <li><a href="pneumatici.jsp">Pneumatici</a></li>
@@ -32,47 +33,40 @@
                 <li><a href="guanti.jsp">Guanti</a></li>
             </ul>
         </div>
-
-        <!-- Main Content -->
+         
         <div class="main-content">
-            <%
+            <% 
                 List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
-                if (prodotti != null) {
+                if (prodotti != null) { 
             %>
-            <!-- Product Section -->
             <section class="product-section">
                 <div class="container">
                     <div class="row">
-                        <!-- Product Cards -->
-                        <% 
-                            for (ProdottoBean prodotto : prodotti) {                            	
-                        %>
+                        <% for (ProdottoBean prodotto : prodotti) { %>
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="product-card">
                                 <div class="product-image">
                                     <img src="./images/<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
                                 </div>
-                                <h2 class="product-title"><%= prodotto.getNome() %></h2>
-                                <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
-                                <p class="product-description"><%= prodotto.getDescrizione() %></p>
-                                <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
-                                <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
-                                <% 
-                            	 if(request.getSession().getAttribute("email")!=null){%>
-                                <a href="${pageContext.request.contextPath}/carrelloaggiungi" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                                <div class="product-details">
+                                    <h2 class="product-title"><%= prodotto.getNome() %></h2>
+                                    <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
+                                    <p class="product-description"><%= prodotto.getDescrizione() %></p>
+                                    <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
+                                    <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
+                                    <% if (request.getSession().getAttribute("email") != null) { %>
+                                    <a href="${pageContext.request.contextPath}/carrelloaggiungi" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                                    <% } %>
+                                </div>
                             </div>
                         </div>
                         <% } %>
                     </div>
                 </div>
             </section>
-            <%}
-                } else {
-            %>
+            <% } else { %>
             <p>Nessun prodotto disponibile.</p>
-            <%
-                }
-            %>
+            <% } %>
         </div>
     </div>
 
@@ -99,11 +93,15 @@
         backTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Mostra/nascondi la sidebar
+        const menuBtn = document.querySelector('.menu-btn');
+        const content = document.querySelector('.content');
+
+        menuBtn.addEventListener('click', () => {
+            content.classList.toggle('show-sidebar');
+        });
     </script>
 
-    <!-- Script Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
