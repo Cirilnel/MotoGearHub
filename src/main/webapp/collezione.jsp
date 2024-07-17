@@ -55,7 +55,7 @@
                                     <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
                                     <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
                                     <% if (request.getSession().getAttribute("email") != null) { %>
-                                    <a href="${pageContext.request.contextPath}/carrelloaggiungi" class="btn">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                                <a href="" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
                                     <% } %>
                                 </div>
                             </div>
