@@ -18,101 +18,99 @@ import model.UtenteBean;
 import model.UtenteDAO;
 
 @WebServlet("/Register.do")
-public class Register extends HttpServlet{
-	private static final long serialVersionUID = 1L;
+public class Register extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String mode = request.getParameter("mode");
-		UtenteDAO dbUtenti = new UtenteDAO();
-		String path = null;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String mode = request.getParameter("mode");
+        UtenteDAO dbUtenti = new UtenteDAO();
+        String path = null;
 
-		if(mode.equals("register")) {
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			String passwordCheck = request.getParameter("passwordCheck");
-			String email = request.getParameter("email");
-			String nome = request.getParameter("nome");
-			String cognome = request.getParameter("cognome");
-			Encoder encoder = Base64.getEncoder();
-			String pwd64 = null;
-			String pwdchk64 = null;
-			
-			pwd64 = encoder.encodeToString(password.getBytes());
-			pwdchk64 = encoder.encodeToString(passwordCheck.getBytes());
-			
-			
-			try {
-				if(pwd64.equals(pwdchk64)) {
-					UtenteBean utente = new UtenteBean();
-					UtenteBean utenteRicercato = new UtenteBean();
-					boolean flag = false;
-					List<UtenteBean> listaUtenti = dbUtenti.doRetrieveAll("");
-					Iterator<UtenteBean> iterUtenti = listaUtenti.iterator();
-					
-					utente.setUsername(username);
-					utente.setPassword(pwd64);
-					
-					while(iterUtenti.hasNext()) {
-						utenteRicercato = iterUtenti.next();
-						if(!utenteRicercato.getUsername().equalsIgnoreCase(utente.getUsername())) {
-							if(utenteRicercato.getEmail().equalsIgnoreCase(email)) {
-								flag = true;
-								break;
-							}
-						}
-					}
-					
-					utente.setEmail(email);
-					utente.setNome(nome);
-					utente.setCognome(cognome);
-					utente.setAdmin(false);
-					
-					if(!flag) {
-						dbUtenti.doSave(utente);
-						request.getSession().setAttribute("result", "Registrato con successo!");
-					} else {
-						request.getSession().setAttribute("error", "Registrazione non completata. Riprovare.");
-					}
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			path = "collezione?mode=home";
-			request.removeAttribute("acquisto");
-			
-			RequestDispatcher view = request.getRequestDispatcher(path);
-			view.forward(request, response);
-		} else if(mode.equals("checkEmail")) {
-			response.setContentType("text/plain");
-			String email = request.getParameter("email");
-			
-			try {
-				if(dbUtenti.checkEmail(email)) {
-					response.getWriter().print("non disponibile");
-				} else {
-					response.getWriter().print("disponibile");
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if(mode.equalsIgnoreCase("checkUsername")) {
-			response.setContentType("text/plain");
-			String username = request.getParameter("username");
-			
-			try {
-				if(dbUtenti.checkUsername(username)) {
-					response.getWriter().print("non disponibile");
-				} else {
-					response.getWriter().print("disponibile");
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	
+        if (mode.equals("register")) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String passwordCheck = request.getParameter("passwordCheck");
+            String email = request.getParameter("email");
+            String nome = request.getParameter("nome");
+            String cognome = request.getParameter("cognome");
+            Encoder encoder = Base64.getEncoder();
+            String pwd64 = encoder.encodeToString(password.getBytes());
+            String pwdchk64 = encoder.encodeToString(passwordCheck.getBytes());
+            
+            try {
+                if (pwd64.equals(pwdchk64)) {
+                    UtenteBean utente = new UtenteBean();
+                    UtenteBean utenteRicercato = new UtenteBean();
+                    boolean flag = false;
+                    List<UtenteBean> listaUtenti = dbUtenti.doRetrieveAll("");
+                    Iterator<UtenteBean> iterUtenti = listaUtenti.iterator();
+                    
+                    utente.setUsername(username);
+                    utente.setPassword(pwd64);
+                    
+                    while (iterUtenti.hasNext()) {
+                        utenteRicercato = iterUtenti.next();
+                        if (!utenteRicercato.getUsername().equalsIgnoreCase(utente.getUsername())) {
+                            if (utenteRicercato.getEmail().equalsIgnoreCase(email)) {
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    utente.setEmail(email);
+                    utente.setNome(nome);
+                    utente.setCognome(cognome);
+                    utente.setAdmin(false);
+                    
+                    if (!flag) {
+                        dbUtenti.doSave(utente);
+                        request.getSession().setAttribute("result", "Registrato con successo!");
+                        path = "login.jsp";  // Redirige alla pagina di login in caso di successo
+                    } else {
+                        request.setAttribute("error", "Email già registrata.");
+                        path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
+                    }
+                } else {
+                    request.setAttribute("error", "Le password non coincidono.");
+                    path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("error", "Errore nel processo di registrazione. Riprovare.");
+                path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
+            }
+            
+            request.removeAttribute("acquisto");
+            RequestDispatcher view = request.getRequestDispatcher(path);
+            view.forward(request, response);
+        } else if (mode.equals("checkEmail")) {
+            response.setContentType("text/plain");
+            String email = request.getParameter("email");
+            
+            try {
+                if (dbUtenti.checkEmail(email)) {
+                    response.getWriter().print("non disponibile");
+                } else {
+                    response.getWriter().print("disponibile");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (mode.equalsIgnoreCase("checkUsername")) {
+            response.setContentType("text/plain");
+            String username = request.getParameter("username");
+            
+            try {
+                if (dbUtenti.checkUsername(username)) {
+                    response.getWriter().print("non disponibile");
+                } else {
+                    response.getWriter().print("disponibile");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

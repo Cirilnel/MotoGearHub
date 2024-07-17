@@ -13,7 +13,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="./css/category.css">
+    <link rel="stylesheet" href="./css/category.css">
 </head>
 <body id="top">
     <!-- Header -->

@@ -20,19 +20,36 @@
             --fs-3: 1.75rem;
             --fs-6: 1rem;
         }
+
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            font-size: var(--fs-6);
+        }
     </style>
 </head>
 <body style="background-image: url('./images/sfondo2.jpg');" >
     <div class="login-container">
         <h2 class="section-title">Registrazione</h2>
-        <form action="${pageContext.request.contextPath}/Register.do" method="POST" class="login-form" >
-        <input type="hidden" name="mode" value="register">
+
+        <!-- Messaggio di errore -->
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+            <div class="error-message"><%= error %></div>
+        <%
+            }
+        %>
+
+        <form action="${pageContext.request.contextPath}/Register.do" method="POST" class="login-form">
+            <input type="hidden" name="mode" value="register">
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome" required>
             </div>
             <div class="form-group">
-                <label for="username">Cognome</label>
+                <label for="cognome">Cognome</label>
                 <input type="text" id="cognome" name="cognome" required>
             </div>
             <div class="form-group">
@@ -48,13 +65,13 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="password">Conferma Password</label>
+                <label for="passwordCheck">Conferma Password</label>
                 <input type="password" id="passwordCheck" name="passwordCheck" required>
             </div>
             <button type="submit" class="btn">Registrati</button>
         </form>
         <div class="register-link">
-            Hai gi√† un account? <a href="login.jsp">Accedi</a>
+            Hai gi‡ un account? <a href="login.jsp">Accedi</a>
         </div>
     </div>
 </body>
