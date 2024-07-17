@@ -40,7 +40,7 @@ public class Carrello extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		
-		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("collezione.jsp");
+		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("home.jsp");
 		if(request.getSession().getAttribute("email")==null) {
 			dispatcherToCart.forward(request, response);
 			return;

@@ -1,5 +1,8 @@
 function AddToCart(productId) {
-    let quantityElement = document.getElementById('quantity');
+    // Aggiungi un alert per verificare l'esecuzione della funzione
+    
+
+    let quantityElement = document.getElementById('Quantità');
     let quantity;
     if (quantityElement) {
         quantity = quantityElement.value;
@@ -36,3 +39,14 @@ function AddToCart(productId) {
         });
     });
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.product-item button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Chiamiamo la funzione AddToCart quando il pulsante viene cliccato
+            let productId = button.getAttribute('data-product-id');
+            AddToCart(productId);
+        });
+    });
+});

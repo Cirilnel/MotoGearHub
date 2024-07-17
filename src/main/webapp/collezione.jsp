@@ -14,6 +14,9 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/category.css">
+    <script src="<%=request.getContextPath()%>/AddToCart.js" defer></script>
+
+    
 </head>
 <body id="top">
     <!-- Header -->
@@ -52,8 +55,11 @@
                                     <p class="product-description"><%= prodotto.getDescrizione() %></p>
                                     <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
                                     <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
+                                    
                                     <% if (request.getSession().getAttribute("email") != null) { %>
-                                <a href="" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                                	<form onsubmit="event.preventDefault()">
+                                	<button type="submit" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart </button>
+                                   	</form>
                                     <% } %>
                                 </div>
                             </div>

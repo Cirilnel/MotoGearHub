@@ -15,7 +15,7 @@
         <ion-icon name="close-outline" aria-label="true" class="close-icon"></ion-icon>
       </button>
 
-      <a href="collezione?mode=home" class="logo">MotoGearHub</a>
+      <a href="home.jsp" class="logo">MotoGearHub</a>
 
       <nav class="navbar" data-navbar>
         <ul class="navbar-list">
