@@ -19,12 +19,10 @@
     <!-- Header -->
     <jsp:include page="fragments/header.jsp" />
 
-    <!-- Menu Button for Sidebar -->
-    <button class="menu-btn">☰ Menu</button>
-
     <div class="content">
         <div class="sidebar">
             <h2>Categorie</h2>
+            <br><br><br>
             <ul>
                 <li><a href="casco.jsp">Casco</a></li>
                 <li><a href="stivale.jsp">Stivale</a></li>
@@ -97,13 +95,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Mostra/nascondi la sidebar
-        const menuBtn = document.querySelector('.menu-btn');
-        const content = document.querySelector('.content');
-
-        menuBtn.addEventListener('click', () => {
-            content.classList.toggle('show-sidebar');
-        });
+      
     </script>
 
 </body>

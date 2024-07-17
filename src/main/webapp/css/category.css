@@ -145,9 +145,6 @@ footer {
     display: none; /* Nasconde la sidebar su schermi molto piccoli */
   }
 
-  .menu-btn {
-    display: block; /* Mostra il pulsante del menu */
-  }
 
   .content.show-sidebar .sidebar {
     display: block;
