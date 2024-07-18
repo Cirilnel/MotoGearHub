@@ -141,7 +141,7 @@
                             <h3 class="h3">Riepilogo ordine</h3>
                             <h3 class="h3">Totale: <%= totalCost %>€</h3>
                             <!-- Pulsante di checkout -->
-                            <button class="btn checkout-btn" <%= cartItems.isEmpty() ? "disabled" : "" %> onclick="window.location.href='finalizza.jsp'">Procedi al pagamento</button>
+                             <button type="button" onclick="window.location.href='finalizza.jsp'">Procedi al pagamento</button>
                         </div>
                 <% 
                     }
