@@ -1,0 +1,203 @@
+/* Stili base per html e body */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+body {
+  background-color: #9C9C9C;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  padding-top: 70px; /* Altezza dell'header più un po' di margine */
+}
+
+/* Stili per la sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #555;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  position: sticky;
+  top: 70px; /* Altezza dell'header */
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #ccc;
+}
+
+/* Stili per la sezione dei prodotti */
+.row {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.product-title,
+.product-brand,
+.product-description,
+.product-price,
+.product-stock {
+  margin-bottom: 10px;
+}
+
+/* Stili per il footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Stili per il pulsante del menu */
+.menu-btn {
+  display: none;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    margin-right: 0;
+    padding: 10px;
+    box-shadow: none;
+    position: static;
+    top: auto;
+  }
+
+  .sidebar h2 {
+    font-size: 1.2rem;
+  }
+
+  .sidebar ul li a {
+    font-size: 0.9rem;
+  }
+
+  .row {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    display: none; /* Nasconde la sidebar su schermi molto piccoli */
+  }
+
+  .content.show-sidebar .sidebar {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 70px; /* Altezza dell'header */
+    width: 70%;
+    height: calc(100% - 70px); /* Altezza totale meno l'header */
+    z-index: 999;
+    background-color: #555;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .content.show-sidebar {
+    position: relative;
+  }
+}
+
+@media (min-width: 992px) {
+  .row {
+    grid-template-columns: repeat(3, 280px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .row {
+    grid-template-columns: repeat(4, 280px);
+  }
+}
+
+/* Nuovo layout per schermi più grandi */
+@media (min-width: 1400px) {
+  .row {
+    grid-template-columns: repeat(5, 280px); /* Aumenta il numero di colonne */
+  }
+}
+
+.product-card .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.product-card .btn:hover {
+    background-color: #cc0000;
+}
+
+.product-card .btn ion-icon {
+    margin-right: 5px;
+}
