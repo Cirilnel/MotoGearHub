@@ -1,13 +1,15 @@
 'use strict';
 
-
-
 /**
- * add event on element
+ * Add event on element
  */
-
 const addEventOnElem = function (elem, type, callback) {
-  if (elem.length > 1) {
+  if (!elem) {
+    console.error(`Element not found for selector: ${elem}`);
+    return; // Verifica se elem esiste
+  }
+
+  if (NodeList.prototype.isPrototypeOf(elem) || HTMLCollection.prototype.isPrototypeOf(elem)) {
     for (let i = 0; i < elem.length; i++) {
       elem[i].addEventListener(type, callback);
     }
@@ -16,48 +18,48 @@ const addEventOnElem = function (elem, type, callback) {
   }
 }
 
-
-
 /**
- * navbar toggle
+ * Navbar toggle
  */
-
 const navToggler = document.querySelector("[data-nav-toggler]");
 const navbar = document.querySelector("[data-navbar]");
 const navbarLinks = document.querySelectorAll("[data-nav-link]");
 
 const toggleNavbar = function () {
-  navbar.classList.toggle("active");
-  navToggler.classList.toggle("active");
+  if (navbar) navbar.classList.toggle("active");
+  if (navToggler) navToggler.classList.toggle("active");
 }
 
 addEventOnElem(navToggler, "click", toggleNavbar);
 
-
 const closeNavbar = function () {
-  navbar.classList.remove("active");
-  navToggler.classList.remove("active");
+  if (navbar) navbar.classList.remove("active");
+  if (navToggler) navToggler.classList.remove("active");
 }
 
 addEventOnElem(navbarLinks, "click", closeNavbar);
 
-
-
 /**
- * active header when window scroll down to 100px
+ * Active header when window scroll down to 100px
  */
-
 const header = document.querySelector("[data-header]");
 const backTopBtn = document.querySelector("[data-back-top-btn]");
 
 const activeElemOnScroll = function () {
   if (window.scrollY > 100) {
-    header.classList.add("active");
-    backTopBtn.classList.add("active");
+    if (header) header.classList.add("active");
+    if (backTopBtn) backTopBtn.classList.add("active");
   } else {
-    header.classList.remove("active");
-    backTopBtn.classList.remove("active");
+    if (header) header.classList.remove("active");
+    if (backTopBtn) backTopBtn.classList.remove("active");
   }
 }
 
 addEventOnElem(window, "scroll", activeElemOnScroll);
+
+// Debug: verifica che gli elementi siano correttamente selezionati
+console.log('navToggler:', navToggler);
+console.log('navbar:', navbar);
+console.log('navbarLinks:', navbarLinks);
+console.log('header:', header);
+console.log('backTopBtn:', backTopBtn);

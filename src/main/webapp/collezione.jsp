@@ -10,14 +10,13 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/category.css">
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <script src="<%=request.getContextPath()%>/AddToCart.js" defer></script>
-
-    
+    <script src="<%=request.getContextPath()%>/AddToCart.js"></script>
+   
 </head>
 <body id="top">
     <!-- Header -->
@@ -59,7 +58,7 @@
                                     
                                     <% if (request.getSession().getAttribute("email") != null) { %>
                                 	<form onsubmit="event.preventDefault()">
-                                	<button type="submit" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart </button>
+                                	<button type="submit" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart</button>
                                    	</form>
                                     <% } %>
                                 </div>
@@ -84,6 +83,8 @@
     </button>
 
     <script>
+        console.log("Script inline caricato correttamente");
+        
         // Mostra/nascondi il pulsante "Back to Top"
         const backTopBtn = document.querySelector('.back-top-btn');
         window.addEventListener('scroll', () => {
@@ -98,10 +99,6 @@
         backTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-       
-       
     </script>
-
 </body>
 </html>
