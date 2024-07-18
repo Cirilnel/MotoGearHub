@@ -7,6 +7,7 @@
     <title>Finalizza Pagamento</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/category.css">
+    
     <script src="<%= request.getContextPath() %>/checkoutValidation.js"></script>
 </head>
 <body class="content">
@@ -54,7 +55,7 @@
                         </div>
                         <div class="payment-method">
                             <h2>Inserisci informazioni di pagamento</h2>
-                            <form id="checkoutForm" action="<%= request.getContextPath() %>/validate" method="post">
+                            <form id="checkoutForm" action="<%= request.getContextPath() %>/order" method="post">
                                 <label for="cardNumber">Numero di Carta:</label>
                                 <input type="text" id="cardNumber" name="cardNumber" required>
                                 
