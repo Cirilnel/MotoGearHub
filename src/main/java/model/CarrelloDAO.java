@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.ObjectName;
+
 public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
     private static String TABLE_NAME = "Carrello";
 
@@ -16,7 +18,7 @@ public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + CarrelloDAO.TABLE_NAME
-                + " (IdCarrello, Totale, NumeroDiProdotti, EmailUtente) VALUES (?, ?, ?, ?)";
+                + " (IdCarrello, Totale, NumeroDiProdotti, EmailUtente) VALUES (?, ?, ?, ?)"; 
 
         try {
             connection = DriverManagerConnectionPool.getConnection();
@@ -25,7 +27,6 @@ public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
             preparedStatement.setBigDecimal(2, data.getTotale());
             preparedStatement.setInt(3, data.getNumeroDiProdotti());
             preparedStatement.setString(4, data.getEmailUtente());
-
             preparedStatement.executeUpdate();
 
             connection.commit();

@@ -12,7 +12,7 @@ import model.CarrelloDAO;
 import model.ContieneBean;
 import model.ContenenteCarrelloCombinedKey;
 import model.ContieneDAO;
-import model.UtenteBean;
+
 import org.json.JSONObject;
 
 @WebServlet("/carrelloaggiungi")
@@ -25,8 +25,8 @@ public class Carrello extends HttpServlet {
         JSONObject jsonResponse = new JSONObject();
         int quantity;
         String idProdotto = request.getParameter("AddProdottoId");
-        
-        if(request.getParameter("quantity")==null)
+         
+        if(request.getParameter("quantity")==null) 
         	 quantity=1;
         else
         	quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -37,7 +37,7 @@ public class Carrello extends HttpServlet {
             out.print(jsonResponse);
             return;
         }
-       
+        
         String email = (String) request.getSession().getAttribute("email");
         CarrelloDAO carrelli = new CarrelloDAO();
         ContieneDAO contenenteCarrelli = new ContieneDAO();
@@ -46,7 +46,7 @@ public class Carrello extends HttpServlet {
             int idCarrello = carrelli.doRetrieveByUserKey(email).getIdCarrello();
             ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(Integer.parseInt(idProdotto), idCarrello);
             ContieneBean contenenteCarrello = contenenteCarrelli.doRetrieveByKey(key);
-
+            
            
             if (contenenteCarrello == null) {
                 ContieneBean newContenenteCarrello = new ContieneBean(idCarrello, Integer.parseInt(idProdotto), quantity);
@@ -55,7 +55,7 @@ public class Carrello extends HttpServlet {
                 contenenteCarrello.setQuantita(contenenteCarrello.getQuantita() + quantity);
                 contenenteCarrelli.doSave(contenenteCarrello);
             }
-
+ 
             jsonResponse.put("success", true);
             jsonResponse.put("message", "Product added to cart successfully");
         } catch (Exception e) {

@@ -34,9 +34,6 @@ public class ContenenteCarrelloCombinedKey{
     public void setIdCarrello(int idCarrello) {
         this.idCarrello = idCarrello;
     }
-    @Override
-    public String toString() {
-        return idProdotto + "_" + idCarrello;
-    }
+    
     
 }
