@@ -47,13 +47,14 @@ CREATE TABLE MetodoPagamento (
 );
 
 CREATE TABLE Ordine (
-    IdOrdine INT PRIMARY KEY,
-    Costo DECIMAL(10, 2),
-    Data DATE,
-    EmailUtente VARCHAR(100),
-    IdMetodoPagamento INT,
-    FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
-    FOREIGN KEY (IdMetodoPagamento) REFERENCES MetodoPagamento(IdMetodoPagamento)
+    ID_ordine INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    NCarta VARCHAR(16) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    data DATE NOT NULL,
+    spesa FLOAT NOT NULL,
+    indirizzo VARCHAR(50) NOT NULL,
+    FOREIGN KEY (email) REFERENCES Utente(email),
+    FOREIGN KEY (NCarta) REFERENCES Metodo_Di_Pagamento(NCarta)
 );
 
 CREATE TABLE Spedizione (
@@ -130,13 +131,6 @@ CREATE TABLE UtenteOrdine (
     FOREIGN KEY (IdOrdine) REFERENCES Ordine(IdOrdine)
 );
 
-CREATE TABLE MetodoPagamentoOrdine (
-    IdMetodoPagamento INT,
-    IdOrdine INT,
-    PRIMARY KEY (IdMetodoPagamento, IdOrdine),
-    FOREIGN KEY (IdMetodoPagamento) REFERENCES MetodoPagamento(IdMetodoPagamento),
-    FOREIGN KEY (IdOrdine) REFERENCES Ordine(IdOrdine)
-);
 
 CREATE TABLE OrdineSpedizione (
     IdOrdine INT,
@@ -176,13 +170,7 @@ INSERT INTO Prodotto (IdProdotto, Marca,Image, Prezzo, QuantitaInMagazzino, Nome
 (8,'Pirelli','product-8.jpg',240.00,7,'Pirelli Diablo Rosso Corsa 2','Pneumatici da corsa Pirelli, colore rosso Ferrari',2);
 
 
-INSERT INTO MetodoPagamento (IdMetodoPagamento, NomeBanca, TipoDiCarta, Iban) VALUES
-(1, 'BancaA', 'Visa', 'IT60X0542811101000000123456'),
-(2, 'BancaB', 'MasterCard', 'IT60X0542811101000000654321');
 
-INSERT INTO Ordine (IdOrdine, Costo, Data, EmailUtente, IdMetodoPagamento) VALUES
-(1, 100.50, '2024-05-01', 'mario.rossi@example.com', 1),
-(2, 50.75, '2024-05-02', 'luigi.bianchi@example.com', 2);
 
 INSERT INTO Spedizione (IdSpedizione, IndirizzoSpedizione, GiornoDiArrivo, Corriere) VALUES
 (1, 'Via Roma 1, Milano', '2024-05-03', 'CorriereA'),
