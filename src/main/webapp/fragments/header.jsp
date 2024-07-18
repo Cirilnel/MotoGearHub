@@ -54,7 +54,7 @@
 	   							</a>
 								<%} %>
        
-	   <a href="carrello.jsp" class="action-btn user" aria-label="User">
+	   <a href="<%= request.getContextPath() %>/carrello" class="action-btn user" aria-label="User">
         <button class="action-btn" aria-label="cart">
           <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
 

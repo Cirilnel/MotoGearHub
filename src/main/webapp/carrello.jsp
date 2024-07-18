@@ -1,13 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="model.*"%>
 <!DOCTYPE html>
 <html lang="it">
-<%@ page contentType="text/html; charset=UTF-8" %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MotoGearHub - Carrello</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        body {
+       body {
             background-color: #9C9C9C;
             margin: 0;
             padding: 0;
@@ -82,37 +82,84 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Inclusione dell'header -->
     <jsp:include page="fragments/header.jsp" />
 
-    <!-- Main Content -->
+    <!-- Contenuto principale -->
     <main>
         <section class="section cart">
             <div class="container">
                 <h2 class="section-title">Il tuo carrello</h2>
-                <div class="grid-list">
-                    <p>Il tuo carrello è vuoto.</p>
-                </div>
-                <div class="cart-summary">
-                    <h3 class="h3">Riepilogo ordine</h3>
-                    <p>Totale prodotti: €0.00</p>
-                    <p>Spedizione: €0.00</p>
-                    <h3 class="h3">Totale: €0.00</h3>
-                    <button class="btn checkout-btn" disabled>Procedi al pagamento</button>
-                    <br><br><br><br><br><br><br>
-                </div>
+
+                <% 
+                // Verifica se l'utente è loggato
+                if(request.getSession().getAttribute("email") != null){
+                    // Recupera dati dal carrello dalla sessione
+                    List<ContieneBean> cartItems = (List<ContieneBean>) request.getSession().getAttribute("contieneCarrelloBeanList" + request.getSession().getAttribute("idCarrello"));
+
+                    // Se il carrello è vuoto
+                    if(cartItems == null || cartItems.isEmpty()) {
+                %>
+                        <div class="grid-list">
+                            <p>Il tuo carrello è vuoto.</p>
+                        </div>
+                <% 
+                    } else {
+                        // Se il carrello contiene prodotti
+                        float totalCost = 0;
+                        %>
+                        <div class="grid-list">
+                            <% 
+                            // Itera attraverso gli elementi del carrello
+                            for(ContieneBean item : cartItems) {
+                                ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("prodottoCarrello" + item.getIdProdotto());
+                                int quantity = item.getQuantita();
+                            %>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <!-- Immagine del prodotto -->
+                                    </div>
+                                    <div class="product-details">
+                                        <h3 class="product-title"><%= product.getNome() %></h3>
+                                        <p class="product-price">Prezzo: <%= product.getPrezzo() %>€</p>
+                                        <p class="product-quantity">Quantità: <%= quantity %></p>
+                                        <button type="button" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
+                                    </div>
+                                </div>
+                            <% 
+                                // Calcola il costo totale
+                                totalCost += quantity * product.getPrezzo();
+                            } %>
+                        </div>
+                        <!-- Riepilogo ordine -->
+                        <div class="cart-summary">
+                            <h3 class="h3">Riepilogo ordine</h3>
+                            <p>Totale prodotti: <%= totalCost %>€</p>
+                            <p>Spedizione: €0.00</p>
+                            <h3 class="h3">Totale: <%= totalCost %>€</h3>
+                            <!-- Pulsante di checkout -->
+                            <button class="btn checkout-btn" <%= cartItems.isEmpty() ? "disabled" : "" %> onclick="window.location.href='finalizza.jsp'">Procedi al pagamento</button>
+                        </div>
+                <% 
+                    }
+                } else {
+                %>
+                    <div class="error-message">
+                        <p>Devi effettuare l'accesso per visualizzare questa pagina.</p>
+                    </div>
+                <% 
+                } %>
             </div>
         </section>
     </main>
 
-
-
+    <!-- Pulsante per tornare in cima -->
     <button class="back-top-btn">
         <ion-icon name="arrow-up-outline"></ion-icon>
     </button>
 
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-        <!-- Footer -->
+    <!-- Inclusione del footer -->
     <jsp:include page="fragments/footer.jsp" />
+
 </body>
 </html>

@@ -77,7 +77,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer>{
 		PreparedStatement statement = null;
 		ProdottoBean prodotto = new ProdottoBean();
 		
-		String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE id = ?";
+		String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE IdProdotto = ?";
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
