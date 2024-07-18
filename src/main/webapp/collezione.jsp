@@ -53,9 +53,7 @@
                                     <h2 class="product-title"><%= prodotto.getNome() %></h2>
                                     <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
                                     <p class="product-description"><%= prodotto.getDescrizione() %></p>
-                                    <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
-                                    <p class="product-stock"><strong>Quantità in magazzino:</strong> <%= prodotto.getQuantitaInMagazzino() %></p>
-                                    
+                                    <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>                                    
                                     <% if (request.getSession().getAttribute("email") != null) { %>
                                 	<form onsubmit="event.preventDefault()">
                                 	<button type="submit" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart</button>

@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="model.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="model.*" %>
 <!DOCTYPE html>
 <html lang="it">
 <head>
+	
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MotoGearHub - Carrello</title>
@@ -79,6 +81,7 @@
             padding: 10px 0;
         }
     </style>
+    <script src="<%= request.getContextPath() %>/UpdateQuantityCart.js"></script>
 </head>
 <body>
 
@@ -118,6 +121,8 @@
                                 <div class="product-card">
                                     <div class="product-image">
                                         <!-- Immagine del prodotto -->
+                                        <img src="./images/<%= product.getImage() %>" alt="<%= product.getNome() %>">
+                                        
                                     </div>
                                     <div class="product-details">
                                         <h3 class="product-title"><%= product.getNome() %></h3>
@@ -134,8 +139,6 @@
                         <!-- Riepilogo ordine -->
                         <div class="cart-summary">
                             <h3 class="h3">Riepilogo ordine</h3>
-                            <p>Totale prodotti: <%= totalCost %>€</p>
-                            <p>Spedizione: €0.00</p>
                             <h3 class="h3">Totale: <%= totalCost %>€</h3>
                             <!-- Pulsante di checkout -->
                             <button class="btn checkout-btn" <%= cartItems.isEmpty() ? "disabled" : "" %> onclick="window.location.href='finalizza.jsp'">Procedi al pagamento</button>

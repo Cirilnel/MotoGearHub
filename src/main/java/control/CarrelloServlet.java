@@ -74,7 +74,6 @@ public class CarrelloServlet extends HttpServlet {
             for (ContieneBean contieneCarrello : contieneCarrelloBeanList) {
                 int idProdotto = contieneCarrello.getIdProdotto();
                 ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(idProdotto);
-                System.out.println(idProdotto);
                 request.getSession().setAttribute("prodottoCarrello" + idProdotto, prodotto);
             }
 

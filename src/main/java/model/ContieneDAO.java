@@ -44,19 +44,35 @@ public class ContieneDAO implements BeanDAO<ContieneBean, ContenenteCarrelloComb
 
     
     @Override
-    public boolean doDelete(ContenenteCarrelloCombinedKey key) throws SQLException {
-        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE IdProdotto = ? AND IdCarrello = ?";
+    public synchronized boolean doDelete(ContenenteCarrelloCombinedKey key) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
         
-        try (Connection connection = DriverManagerConnectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
-
-            preparedStatement.setInt(1, key.getIdProdotto());
-            preparedStatement.setInt(2, key.getIdCarrello());
-
-            int result = preparedStatement.executeUpdate();
+        String deleteSQL = "DELETE FROM " + ContieneDAO.TABLE_NAME + " WHERE IdProdotto = ? AND IdCarrello = ?";
+        
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(deleteSQL);
+            
+            statement.setInt(1, key.getIdProdotto());
+            statement.setInt(2, key.getIdCarrello());
+            
+            int result = statement.executeUpdate();
+            
+            con.commit();
+            
             return (result != 0);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
         }
     }
+
     
     @Override
     public ContieneBean doRetrieveByKey(ContenenteCarrelloCombinedKey key) throws SQLException {

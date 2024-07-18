@@ -54,7 +54,7 @@ public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
             connection = DriverManagerConnectionPool.getConnection();
             preparedStatement = connection.prepareStatement(deleteSQL);
             preparedStatement.setInt(1, Key);
-
+            
             result = preparedStatement.executeUpdate();
 
             connection.commit();

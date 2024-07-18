@@ -4,7 +4,6 @@ public class ProdottoBean {
     private int idProdotto;
     private String marca;
     private int prezzo;
-    private int quantitaInMagazzino;
     private String nome;
     private String descrizione;
     private int idCategoria;
@@ -20,14 +19,14 @@ public class ProdottoBean {
     }
 
     public String getImage() {
-		return image;
-	}
+        return image;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public String getMarca() {
+    public String getMarca() {
         return marca;
     }
 
@@ -41,14 +40,6 @@ public class ProdottoBean {
 
     public void setPrezzo(int prezzo) {
         this.prezzo = prezzo;
-    }
-
-    public int getQuantitaInMagazzino() {
-        return quantitaInMagazzino;
-    }
-
-    public void setQuantitaInMagazzino(int quantitaInMagazzino) {
-        this.quantitaInMagazzino = quantitaInMagazzino;
     }
 
     public String getNome() {

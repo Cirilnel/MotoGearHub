@@ -1,16 +1,6 @@
 function AddToCart(productId) {
-    // Aggiungi un alert per verificare l'esecuzione della funzione
-    
-
     let quantityElement = document.getElementById('Quantità');
-    let quantity;
-    if (quantityElement) {
-        quantity = quantityElement.value;
-    }
-    
-    if (quantity == null) {
-        quantity = 1;
-    }
+    let quantity = quantityElement ? quantityElement.value : 1;
 
     fetch('carrelloaggiungi', {
         method: 'POST',
@@ -21,13 +11,24 @@ function AddToCart(productId) {
     })
     .then(response => response.json())
     .then(data => {
-        // Gestisci la risposta del server qui
-        Swal.fire({
-            icon: 'success',
-            title: 'Successo',
-            text: 'Prodotto aggiunto al carrello!',
-            confirmButtonColor: '#E09777' // Questo colore verrà applicato dal CSS globale
-        });
+        if (data.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successo',
+                text: 'Prodotto aggiunto al carrello!',
+                confirmButtonColor: '#E09777'
+            });
+
+            // Aggiorna il pallino rosso
+            updateCartBadge(quantity);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Errore',
+                text: 'Non è stato possibile aggiungere il prodotto al carrello.',
+                confirmButtonColor: '#E09777'
+            });
+        }
     })
     .catch(error => {
         console.error('Errore:', error);
@@ -35,16 +36,24 @@ function AddToCart(productId) {
             icon: 'error',
             title: 'Errore',
             text: 'Si è verificato un errore durante l\'aggiornamento della quantità.',
-            confirmButtonColor: '#E09777' // Questo colore verrà applicato dal CSS globale
+            confirmButtonColor: '#E09777'
         });
     });
+}
+
+function updateCartBadge(quantity) {
+    const cartBadge = document.querySelector('.btn-badge');
+    if (cartBadge) {
+        let currentQuantity = parseInt(cartBadge.textContent);
+        currentQuantity += parseInt(quantity);
+        cartBadge.textContent = currentQuantity;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('.product-item button').forEach(button => {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
-            // Chiamiamo la funzione AddToCart quando il pulsante viene cliccato
             let productId = button.getAttribute('data-product-id');
             AddToCart(productId);
         });
