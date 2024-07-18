@@ -16,12 +16,7 @@
             font-family: 'Nunito Sans', Arial, sans-serif;
         }
         /* Stili per l'header, da includere o definire in style.css */
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
+       
         /* Stili per la sezione dei prodotti */
         .product-section {
             padding: 50px 0;
@@ -80,7 +75,11 @@
             text-align: center;
             padding: 10px 0;
         }
+        
+        .h3 { color: var(--eerie-black);
     </style>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<%= request.getContextPath() %>/UpdateQuantityCart.js"></script>
 </head>
 <body>
@@ -92,7 +91,7 @@
     <main>
         <section class="section cart">
             <div class="container">
-                <h2 class="section-title">Il tuo carrello</h2>
+<h2 class="section-title" style="font-family: Arial, sans-serif; font-size: 28px; color: #333; margin-bottom: 15px; border-bottom: 2px solid #000000; padding-bottom: 10px;">Il tuo carrello</h2>
 
                 <% 
                 // Verifica se l'utente è loggato
@@ -128,7 +127,7 @@
                                         <h3 class="product-title"><%= product.getNome() %></h3>
                                         <p class="product-price">Prezzo: <%= product.getPrezzo() %>€</p>
                                         <p class="product-quantity">Quantità: <%= quantity %></p>
-                                        <button type="button" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
+                                        <button type="button" class="btn" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
                                     </div>
                                 </div>
                             <% 
@@ -137,12 +136,15 @@
                             } %>
                         </div>
                         <!-- Riepilogo ordine -->
-                        <div class="cart-summary">
-                            <h3 class="h3">Riepilogo ordine</h3>
-                            <h3 class="h3">Totale: <%= totalCost %>€</h3>
-                            <!-- Pulsante di checkout -->
-                             <button type="button" onclick="window.location.href='finalizza.jsp'">Procedi al pagamento</button>
-                        </div>
+                        <h3 class="h3" style="font-family: Arial, sans-serif; font-size: 24px; color: #333; margin-bottom: 10px;">Riepilogo ordine</h3>
+<h3 class="h3" style="font-family: Arial, sans-serif; font-size: 24px; color: #333; margin-bottom: 20px;">Totale: <%= totalCost %>€</h3>
+<!-- Pulsante di checkout -->
+<button type="button" 
+        onclick="window.location.href='finalizza.jsp'" 
+        style="background-color: #28a745; color: white; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
+    Procedi al pagamento
+</button>
+
                 <% 
                     }
                 } else {
