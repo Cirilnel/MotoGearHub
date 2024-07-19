@@ -11,7 +11,7 @@ const addressErrorMessage = "L'indirizzo di spedizione è obbligatorio";
 
 // Funzione principale di validazione del form
 function validate() {
-	alert("prg");
+
     let valid = true;
     let form = document.getElementById("checkoutForm");
 
