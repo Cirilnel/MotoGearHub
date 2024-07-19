@@ -18,14 +18,22 @@ public class PneumaticiRedirectServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Inoltra la richiesta alla servlet carrello2
-    	if(request.getSession().getAttribute("email") != null) {
-			  RequestDispatcher carrelloDispatcher = request.getRequestDispatcher("/carrello2");
-	          carrelloDispatcher.include(request, response);
-			}			
-   
-        // Dopo aver incluso carrello2, effettua un redirect a home.jsp
-        response.sendRedirect(request.getContextPath() + "/pneumatici.jsp");
+        // Check if the user is logged in
+        if (request.getSession().getAttribute("email") != null) {
+            // Include the carrello2 servlet
+            RequestDispatcher carrelloDispatcher = request.getRequestDispatcher("/carrello2");
+            carrelloDispatcher.include(request, response);
+        }
+
+        // Check if the user is an admin
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+        if (Boolean.TRUE.equals(isAdmin)) {
+            // Redirect to pneumaticiAdmin.jsp if user is an admin
+            response.sendRedirect(request.getContextPath() + "/pneumaticiAdmin.jsp");
+        } else {
+            // Redirect to pneumatici.jsp if user is not an admin
+            response.sendRedirect(request.getContextPath() + "/pneumatici.jsp");
+        }
     }
 
     @Override
