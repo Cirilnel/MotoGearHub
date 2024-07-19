@@ -39,15 +39,17 @@ CREATE TABLE Prodotto (
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria)
 );
 
-CREATE TABLE MetodoPagamento (
-    IdMetodoPagamento INT PRIMARY KEY,
-    NomeBanca VARCHAR(100),
-    TipoDiCarta VARCHAR(50),
-    Iban VARCHAR(34)
+CREATE TABLE Metodo_Di_Pagamento (
+    email VARCHAR(50) NOT NULL,
+    NCarta VARCHAR(16) PRIMARY KEY NOT NULL,
+    CVV VARCHAR(50) NOT NULL,
+    data DATE NOT NULL,
+    FOREIGN KEY (email) REFERENCES Utente(email)
 );
 
+
 CREATE TABLE Ordine (
-    ID_ordine INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IdOrdine INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     NCarta VARCHAR(16) NOT NULL,
     email VARCHAR(50) NOT NULL,
     data DATE NOT NULL,
@@ -130,6 +132,7 @@ CREATE TABLE UtenteOrdine (
     FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
     FOREIGN KEY (IdOrdine) REFERENCES Ordine(IdOrdine)
 );
+
 
 
 CREATE TABLE OrdineSpedizione (
