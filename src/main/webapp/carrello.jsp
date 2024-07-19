@@ -163,7 +163,7 @@ function clearCart() {
                                 style="background-color: #28a745; color: white; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
                             Procedi al pagamento
                         </button>
-                         
+                         <br>
                       <button type="button" 
                                 onclick="window.location.href='finalizza.jsp'" 
                                 style="background-color: #dc3545; color: white; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
