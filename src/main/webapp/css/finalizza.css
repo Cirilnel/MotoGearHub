@@ -15,52 +15,26 @@ body {
 .content {
   flex: 1;
   display: flex;
+  flex-direction: column;
   padding-top: 70px; /* Altezza dell'header più un po' di margine */
 }
 
-/* Stili per la sidebar */
-.sidebar {
-  width: 200px;
-  background-color: #555;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-right: 20px;
-  position: sticky;
-  top: 70px; /* Altezza dell'header */
+main {
+  display: flex;
+  justify-content: center;
 }
 
-.sidebar h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #fff;
+.product-container {
+  display: flex; /* Usa flexbox per disporre le card in riga */
+  flex-wrap: wrap; /* Permette di andare a capo quando non c'è spazio sufficiente */
+  gap: 20px; /* Spaziatura tra le card */
+  padding: 0 20px; /* Padding orizzontale per spaziatura */
+  max-width: 1200px; /* Limita la larghezza massima della riga */
+  width: 100%;
+  justify-content: center; /* Allinea le card al centro */
 }
 
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2rem;
-  transition: color 0.3s;
-}
-
-.sidebar ul li a:hover {
-  color: #ccc;
-}
-
-/* Stili per la sezione dei prodotti */
-.row {
-  display: grid;
-  grid-gap: 20px;
-}
-
+/* Stili per le card dei prodotti */
 .product-card {
   background-color: white;
   border-radius: 10px;
@@ -69,135 +43,132 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 280px;
+  align-items: center;
+  max-width: 300px; /* Larghezza massima della card */
+  width: 100%;
+  box-sizing: border-box; /* Include padding e bordo nelle dimensioni */
+}
+
+.product-image {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-image img {
   max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+  max-height: 100%;
+  object-fit: cover; /* Adatta l'immagine all'area senza deformare */
 }
 
 .product-details {
   flex-grow: 1;
+  margin-top: 10px;
 }
 
 .product-title,
-.product-brand,
-.product-description,
 .product-price,
-.product-stock {
+.product-quantity {
   margin-bottom: 10px;
 }
 
-/* Stili per il footer */
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
+/* Stili per il pulsante all'interno della card */
+.product-card .btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; /* Rimuove la sottolineatura per i link */
 }
 
-/* Stili per il pulsante del menu */
-.menu-btn {
-  display: none;
-  background-color: #555;
-  color: #fff;
+.product-card .btn:hover {
+  background-color: #cc0000;
+}
+
+.product-card .btn ion-icon {
+  margin-right: 5px; /* Spazio tra l'icona e il testo */
+}
+
+/* Stili per il form di pagamento */
+.payment-method {
+  background: #fff;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto; /* Centra il form con un margine */
+}
+
+.payment-method h2 {
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75em;
+  background: #007BFF;
   border: none;
-  padding: 10px;
-  font-size: 1.2rem;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
   cursor: pointer;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    margin-right: 0;
-    padding: 10px;
-    box-shadow: none;
-    position: static;
-    top: auto;
-  }
-
-  .sidebar h2 {
-    font-size: 1.2rem;
-  }
-
-  .sidebar ul li a {
-    font-size: 0.9rem;
-  }
-
-  .row {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  .product-container {
+    flex-direction: column; /* Cambiato per visualizzare le card in colonna su schermi piccoli */
+    align-items: center; /* Allinea le card al centro su schermi piccoli */
   }
 }
 
-@media (max-width: 600px) {
-  .sidebar {
-    display: none; /* Nasconde la sidebar su schermi molto piccoli */
-  }
-
-  .content.show-sidebar .sidebar {
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 70px; /* Altezza dell'header */
-    width: 70%;
-    height: calc(100% - 70px); /* Altezza totale meno l'header */
-    z-index: 999;
-    background-color: #555;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .content.show-sidebar {
-    position: relative;
-  }
-}
-
-@media (min-width: 992px) {
-  .row {
-    grid-template-columns: repeat(3, 280px);
-  }
-}
-
-@media (min-width: 1200px) {
-  .row {
-    grid-template-columns: repeat(4, 280px);
-  }
-}
-
-/* Nuovo layout per schermi più grandi */
-@media (min-width: 1400px) {
-  .row {
-    grid-template-columns: repeat(5, 280px); /* Aumenta il numero di colonne */
-  }
-}
-
-.product-card .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-}
-
-.product-card .btn:hover {
-    background-color: #cc0000;
-}
-
-.product-card .btn ion-icon {
-    margin-right: 5px;
+.total-cost {
+    font-size: 1.5em; /* Dimensione del testo leggermente ridotta */
+    color: #333; /* Colore del testo */
+    font-weight: bold; /* Testo in grassetto */
+    margin: 1em 0; /* Spazio più contenuto sopra e sotto */
+    text-align: center; /* Centra il testo */
+    background-color: #f8f9fa; /* Colore di sfondo chiaro */
+    padding: 0.5em; /* Padding interno ridotto */
+    border-radius: 6px; /* Angoli arrotondati più piccoli */
+    border: 1px solid #007BFF; /* Bordo blu ridotto */
 }
