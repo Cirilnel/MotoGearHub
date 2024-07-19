@@ -175,4 +175,34 @@ public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
         }
         return carrelli;
     }
+    public int getMaxCarrelloId() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        String selectSQL = "SELECT MAX(IdCarrello) FROM " + CarrelloDAO.TABLE_NAME;
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0; // Nessun carrello trovato
+            }
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(connection);
+            }
+        }
+    }
 }

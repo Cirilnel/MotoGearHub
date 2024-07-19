@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Iterator;
@@ -14,9 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CarrelloBean;
+import model.CarrelloDAO;
 import model.UtenteBean;
 import model.UtenteDAO;
-
 @WebServlet("/Register.do")
 public class Register extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -25,6 +27,7 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         String mode = request.getParameter("mode");
         UtenteDAO dbUtenti = new UtenteDAO();
+        CarrelloDAO dbCarrelli = new CarrelloDAO();
         String path = null;
 
         if (mode.equals("register")) {
@@ -66,6 +69,19 @@ public class Register extends HttpServlet {
                     
                     if (!flag) {
                         dbUtenti.doSave(utente);
+
+                        // Creazione del carrello per l'utente registrato
+                        int maxCarrelloId = dbCarrelli.getMaxCarrelloId();
+                        int newCarrelloId = maxCarrelloId + 1;
+
+                        CarrelloBean nuovoCarrello = new CarrelloBean();
+                        nuovoCarrello.setIdCarrello(newCarrelloId);
+                        nuovoCarrello.setTotale(BigDecimal.ZERO);
+                        nuovoCarrello.setNumeroDiProdotti(0);
+                        nuovoCarrello.setEmailUtente(email);
+
+                        dbCarrelli.doSave(nuovoCarrello);
+
                         request.getSession().setAttribute("result", "Registrato con successo!");
                         path = "login.jsp";  // Redirige alla pagina di login in caso di successo
                     } else {
