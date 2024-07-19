@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Base64.Encoder;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +37,10 @@ public class Login extends HttpServlet {
             request.getSession().setAttribute("utente", user.getUsername());
             request.getSession().setAttribute("email", user.getEmail());
             request.getSession().setAttribute("logged", true);
+
+            // Avvia la servlet CarrelloServlet2
+            RequestDispatcher carrelloDispatcher = request.getRequestDispatcher("/carrello2");
+            carrelloDispatcher.include(request, response);
 
             if (user.isAdmin()) {
                 request.getSession().setAttribute("is_admin", true);

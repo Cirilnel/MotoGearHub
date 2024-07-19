@@ -36,7 +36,7 @@ public class SvuotaCarrello extends HttpServlet{
 	
 		String email = (String) request.getSession().getAttribute("email");
 		
-		System.out.println("Qui ci arrivo");
+		
 		List<String> errors = new ArrayList<>();
 		
 		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("carrello.jsp");
