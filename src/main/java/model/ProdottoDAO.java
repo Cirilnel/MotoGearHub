@@ -309,7 +309,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
             pstmt.setDouble(4, prodotto.getPrezzo());
             pstmt.setString(5, prodotto.getImage());
             pstmt.setInt(6, prodotto.getIdProdotto());
-            System.out.println("qui ci arrivo");
+            
             // Esegui l'aggiornamento
             pstmt.executeUpdate();
 
