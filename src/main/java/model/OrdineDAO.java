@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     private static String TABLE_NAME = "ordine";
@@ -109,10 +110,10 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
         return (result != 0);
     }
 
-    public synchronized Collection<OrdineBean> doRetrieveByUserKey(String code) throws SQLException {
+    public synchronized List<OrdineBean> doRetrieveByUserKey(String code) throws SQLException {
         String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE email = ?";
 
-        Collection<OrdineBean> ordini = new ArrayList<>();
+        List<OrdineBean> ordini = new ArrayList<>();
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
