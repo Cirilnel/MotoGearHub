@@ -182,6 +182,7 @@ public class CarrelloDAO implements BeanDAO<CarrelloBean,Integer> {
 
         String selectSQL = "SELECT MAX(IdCarrello) FROM " + CarrelloDAO.TABLE_NAME;
 
+        
         try {
             connection = DriverManagerConnectionPool.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);

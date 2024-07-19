@@ -98,6 +98,7 @@ public class Register extends HttpServlet {
                 path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
             }
             
+            
             request.removeAttribute("acquisto");
             RequestDispatcher view = request.getRequestDispatcher(path);
             view.forward(request, response);
