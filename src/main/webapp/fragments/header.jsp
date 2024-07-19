@@ -28,7 +28,7 @@
             <a href="${pageContext.request.contextPath}/collezione" class="navbar-link" data-nav-link>Collezione</a>
           </li>
           <li class="navbar-item">
-            <a href="${pageContext.request.contextPath}/ordini" class="navbar-link" data-nav-link>Ordini</a>
+            <a href="ordini.jsp" class="navbar-link" data-nav-link>Ordini</a>
           </li>
         </ul>
 		
