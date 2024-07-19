@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -29,8 +30,6 @@ public class OrdiniServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcherToOrders = request.getRequestDispatcher("ordini.jsp");
-       
         // Check if user is logged in
         String email = (String) request.getSession().getAttribute("email");
         if (email == null) {
@@ -38,15 +37,19 @@ public class OrdiniServlet extends HttpServlet {
             return;
         }
 
+        // Check if user is admin
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+        boolean admin = Boolean.TRUE.equals(isAdmin);
+
         List<String> errors = new ArrayList<>();
         
-        if (email.trim().isEmpty()) {
+        if (email.trim().isEmpty() && !admin) {
             errors.add("Il campo email non può essere vuoto!");
         }
 
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
-            dispatcherToOrders.forward(request, response);
+            forwardToAppropriatePage(request, response, admin);
             return;
         }
 
@@ -55,38 +58,49 @@ public class OrdiniServlet extends HttpServlet {
         ContenenteDAO contenenteDAO = new ContenenteDAO();
         ProdottoDAO prodottoDAO = new ProdottoDAO();
         
-        List<OrdineBean> ordiniList = (List<OrdineBean>) request.getSession().getAttribute("ordini");
-        if (ordiniList == null) {
-            try {
+        Collection<OrdineBean> ordiniList;
+        try {
+            if (admin) {
+                // If the user is an admin, retrieve all orders with default ordering
+                ordiniList = ordineDAO.doRetrieveAll("IdOrdine"); // Or another column if desired
+            } else {
+                // Otherwise, retrieve orders for the specific user
                 ordiniList = ordineDAO.doRetrieveByUserKey(email);
-                request.getSession().setAttribute("ordini", ordiniList);
-                
-                for (OrdineBean ordine : ordiniList) {
-                    int idOrdine = ordine.getIdOrdine();
-                    List<ContenenteBean> contenenteList = contenenteDAO.doRetrieveByOrderKey(idOrdine);
-                    request.getSession().setAttribute("contenente" + idOrdine, contenenteList);
-                    
-                    for (ContenenteBean contenente : contenenteList) {
-                        int idProdotto = contenente.getIdProdotto();
-                        ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(idProdotto);
-                        request.getSession().setAttribute("prodotto" + idProdotto, prodotto);
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                errors.add("Errore nel recupero degli ordini.");
-                request.setAttribute("errors", errors);
-                dispatcherToOrders.forward(request, response);
-                return;
             }
+
+            request.getSession().setAttribute("ordini", ordiniList);
+
+            for (OrdineBean ordine : ordiniList) {
+                int idOrdine = ordine.getIdOrdine();
+                List<ContenenteBean> contenenteList = contenenteDAO.doRetrieveByOrderKey(idOrdine);
+                request.getSession().setAttribute("contenente" + idOrdine, contenenteList);
+                
+                for (ContenenteBean contenente : contenenteList) {
+                    int idProdotto = contenente.getIdProdotto();
+                    ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(idProdotto);
+                    request.getSession().setAttribute("prodotto" + idProdotto, prodotto);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errors.add("Errore nel recupero degli ordini.");
+            request.setAttribute("errors", errors);
+            forwardToAppropriatePage(request, response, admin);
+            return;
         }
 
-        request.setAttribute("ordini", ordiniList);
-        dispatcherToOrders.forward(request, response);
+        // Forward to the appropriate JSP based on admin status
+        forwardToAppropriatePage(request, response, admin);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
+    }
+
+    private void forwardToAppropriatePage(HttpServletRequest request, HttpServletResponse response, boolean admin) throws ServletException, IOException {
+        String page = admin ? "ordiniAdmin.jsp" : "ordini.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+        dispatcher.forward(request, response);
     }
 }
