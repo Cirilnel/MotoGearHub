@@ -41,12 +41,17 @@ function updateQuantity(productId) {
 }
 
 function removeItem(productId) {
+    // Ottieni la selezione della quantità da sottrarre
+    const quantitySelect = document.getElementById('quantity_' + productId);
+    const quantityToRemove = quantitySelect ? parseInt(quantitySelect.value) : 0;
+
+    // Invio della richiesta per aggiornare la quantità
     fetch('UpdateQuantity', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'updateProductId=' + encodeURIComponent(productId) + '&quantity=0'
+        body: 'updateProductId=' + encodeURIComponent(productId) + '&quantityToRemove=' + encodeURIComponent(quantityToRemove)
     })
     .then(response => response.json())
     .then(data => {
@@ -54,11 +59,13 @@ function removeItem(productId) {
             // Ricarica la pagina per aggiornare il carrello
             location.reload();
         } else {
-            alert('Failed to remove item.');
+            alert('Failed to update quantity.');
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred while removing the item.');
+        alert('An error occurred while updating the quantity.');
     });
 }
+
+

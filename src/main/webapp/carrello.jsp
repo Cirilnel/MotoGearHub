@@ -132,18 +132,23 @@ function clearCart() {
                                 int quantity = item.getQuantita();
                             %>
                                 <div class="product-card">
-                                    <div class="product-image">
-                                        <!-- Immagine del prodotto -->
-                                        <img src="./images/<%= product.getImage() %>" alt="<%= product.getNome() %>">
-                                        
-                                    </div>
-                                    <div class="product-details">
-                                        <h3 class="product-title"><%= product.getNome() %></h3>
-                                        <p class="product-price">Prezzo: <%= product.getPrezzo() %>€</p>
-                                        <p class="product-quantity">Quantità: <%= quantity %></p>
-                                        <button type="button" class="btn" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
-                                    </div>
-                                </div>
+    <div class="product-image">
+        <!-- Immagine del prodotto -->
+        <img src="./images/<%= product.getImage() %>" alt="<%= product.getNome() %>">
+    </div>
+    <div class="product-details">
+        <h3 class="product-title"><%= product.getNome() %></h3>
+        <p class="product-price">Prezzo: <%= product.getPrezzo() %>€</p>
+        <p class="product-quantity">Quantità: <%= quantity %></p>
+        <!-- Selezione della quantità da rimuovere -->
+        <select id="quantity_<%= item.getIdProdotto() %>" class="quantity-select">
+            <% for (int i = 1; i <= quantity; i++) { %>
+                <option value="<%= i %>"><%= i %></option>
+            <% } %>
+        </select>
+        <button type="button" class="btn" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
+    </div>
+</div>
                             <% 
                                 // Calcola il costo totale
                                 totalCost += quantity * product.getPrezzo();

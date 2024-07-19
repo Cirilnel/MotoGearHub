@@ -6,13 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 import org.json.JSONObject;
 
@@ -21,11 +19,6 @@ import model.CarrelloDAO;
 import model.ContieneBean;
 import model.ContenenteCarrelloCombinedKey;
 import model.ContieneDAO;
-import model.ProdottoBean;
-import model.ProdottoDAO;
-import model.UtenteBean;
-
-
 
 @WebServlet("/UpdateQuantity")
 public class UpdateQuantityServlet extends HttpServlet {
@@ -60,20 +53,33 @@ public class UpdateQuantityServlet extends HttpServlet {
             String idProdotto = request.getParameter("updateProductId");
             ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(Integer.parseInt(idProdotto), idCarrello);
             ContieneBean contenenteCarrello = contenenteCarrelli.doRetrieveByKey(key);
-            int quantita = Integer.parseInt(request.getParameter("quantity"));
 
-            if (quantita >= 0) {
-                if (quantita != 0) {
-                    contenenteCarrello.setQuantita(quantita);
-                    contenenteCarrelli.doSave(contenenteCarrello);
-                } else {
-                    contenenteCarrelli.doDelete(key);
-                }
+            if (contenenteCarrello == null) {
+                // Il prodotto non è presente nel carrello
+                jsonResponse.put("success", false);
+                jsonResponse.put("message", "Il prodotto non è presente nel carrello.");
+                out.print(jsonResponse.toString());
+                return;
             }
-            
-            ContieneDAO Contenente = new ContieneDAO();
-            List<ContieneBean> ContenenteCarrelloBeanList = (List<ContieneBean>) Contenente.doRetrieveByCarrelloKey(idCarrello);
-			request.getSession().setAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello), ContenenteCarrelloBeanList);
+
+            int quantityToRemove = Integer.parseInt(request.getParameter("quantityToRemove"));
+            int currentQuantity = contenenteCarrello.getQuantita();
+
+            // Sottrai la quantità selezionata dal totale
+            int newQuantity = currentQuantity - quantityToRemove;
+
+            if (newQuantity > 0) {
+                // Aggiorna la quantità
+                contenenteCarrello.setQuantita(newQuantity);
+                contenenteCarrelli.doSave(contenenteCarrello);
+            } else {
+                // Rimuovi l'articolo se la quantità diventa zero o negativa
+                contenenteCarrelli.doDelete(key);
+            }
+
+            // Aggiorna la sessione
+            List<ContieneBean> ContenenteCarrelloBeanList = (List<ContieneBean>) contenenteCarrelli.doRetrieveByCarrelloKey(idCarrello);
+            request.getSession().setAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello), ContenenteCarrelloBeanList);
             
             jsonResponse.put("success", true);
 
