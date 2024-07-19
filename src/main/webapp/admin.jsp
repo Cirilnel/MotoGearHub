@@ -61,7 +61,7 @@
     </form>
 
     <!-- Bottone per modificare la collezione -->
-    <a href="Collezioneadmin.jsp" class="btn">Modifica Collezione</a>
+    <a href="${pageContext.request.contextPath}/LoadProdotti" class="btn">Modifica Collezione</a>
 
     <!-- Bottone per visualizzare gli ordini -->
     <a href="ordiniAdmin.jsp" class="btn">Visualizza Ordini</a>

@@ -59,7 +59,7 @@
                                     <p class="product-description"><%= prodotto.getDescrizione() %></p>
                                     <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
                                     <% 
-                                        if(request.getSession().getAttribute("email") != null) { 
+                                    if (request.getSession().getAttribute("email") != null && request.getSession().getAttribute("is_admin") != Boolean.TRUE) { 
                                     %>
                                     <form onsubmit="event.preventDefault()">
                                         <button type="submit" class="btn btn-primary" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></button>

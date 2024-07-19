@@ -286,4 +286,60 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
 
     	return nextAutoIncrementValue;
     }
+    public synchronized void updateProdotto(ProdottoBean prodotto) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        String updateSQL = "UPDATE " + ProdottoDAO.TABLE_NAME + " SET nome = ?, marca = ?, descrizione = ?, prezzo = ?, image = ? WHERE IdProdotto = ?";
+
+        try {
+            // Ottieni la connessione dal pool
+            conn = DriverManagerConnectionPool.getConnection();
+
+            // Disabilita l'auto-commit per gestire manualmente la transazione
+            conn.setAutoCommit(false);
+
+            // Prepara la query SQL
+            pstmt = conn.prepareStatement(updateSQL);
+
+            // Imposta i parametri della query
+            pstmt.setString(1, prodotto.getNome());
+            pstmt.setString(2, prodotto.getMarca());
+            pstmt.setString(3, prodotto.getDescrizione());
+            pstmt.setDouble(4, prodotto.getPrezzo());
+            pstmt.setString(5, prodotto.getImage());
+            pstmt.setInt(6, prodotto.getIdProdotto());
+            System.out.println("qui ci arrivo");
+            // Esegui l'aggiornamento
+            pstmt.executeUpdate();
+
+            // Effettua il commit della transazione
+            conn.commit();
+        } catch (SQLException e) {
+            // Rollback in caso di errore
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+            throw e; // Propaga l'eccezione per gestirla a un livello superiore
+        } finally {
+            // Chiudi il PreparedStatement
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Rilascia la connessione al pool
+                DriverManagerConnectionPool.releaseConnection(conn);
+            }
+        }
+    }
+
+
 }
