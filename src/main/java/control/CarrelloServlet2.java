@@ -55,6 +55,7 @@ public class CarrelloServlet2 extends HttpServlet {
         email = email.trim();
 
         try {
+        	
             CarrelloDAO carrelloDAO = new CarrelloDAO();
             CarrelloBean carrelloBean = carrelloDAO.doRetrieveByUserKey(email);
             if (carrelloBean == null) {

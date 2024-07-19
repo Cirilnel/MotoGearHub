@@ -34,6 +34,11 @@ public class Collezione extends HttpServlet {
 			List<ProdottoBean> ProdottiList = (List<ProdottoBean>) Prodotti.doRetrieveAll("");
 			request.getSession().setAttribute("ProdottiList", ProdottiList);
 			
+			if(request.getSession().getAttribute("email") != null) {
+			  RequestDispatcher carrelloDispatcher = request.getRequestDispatcher("/carrello2");
+	          carrelloDispatcher.include(request, response);
+			}			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

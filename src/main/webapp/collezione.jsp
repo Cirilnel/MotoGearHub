@@ -21,18 +21,20 @@
 <body id="top">
     <!-- Header -->
     <jsp:include page="fragments/header.jsp" />
-
-    <div class="content">
+         	
+         
+    
+<div class="content">
         <div class="sidebar">
             <h2>Categorie</h2>
             <br><br><br>
             <ul>
-                <li><a href="casco.jsp">Casco</a></li>
-                <li><a href="stivale.jsp">Stivale</a></li>
-                <li><a href="pneumatici.jsp">Pneumatici</a></li>
-                <li><a href="abbigliamento.jsp">Abbigliamento</a></li>
-                <li><a href="guanti.jsp">Guanti</a></li>
-            </ul>
+        <li><a href="${pageContext.request.contextPath}/CascoRedirectServlet">Casco</a></li>
+        <li><a href="${pageContext.request.contextPath}/StivaleRedirectServlet">Stivale</a></li>
+        <li><a href="${pageContext.request.contextPath}/PneumaticiRedirectServlet">Pneumatici</a></li>
+        <li><a href="${pageContext.request.contextPath}/AbbigliamentoRedirectServlet">Abbigliamento</a></li>
+        <li><a href="${pageContext.request.contextPath}/GuantiRedirectServlet">Guanti</a></li>
+    </ul>
         </div>
          
         <div class="main-content">

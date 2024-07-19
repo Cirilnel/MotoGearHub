@@ -10,40 +10,44 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/category.css">
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<%=request.getContextPath()%>/AddToCart.js"></script>
 </head>
 <body id="top">
     <!-- Header -->
     <jsp:include page="fragments/header.jsp" />
 
-
     <div class="content">
+        <!-- Sidebar con le categorie -->
         <div class="sidebar">
             <h2>Categorie</h2>
-            <br><br><br>
             <ul>
-                <li><a href="casco.jsp">Casco</a></li>
-                <li><a href="stivale.jsp">Stivale</a></li>
-                <li><a href="pneumatici.jsp">Pneumatici</a></li>
-                <li><a href="abbigliamento.jsp">Abbigliamento</a></li>
-                <li><a href="guanti.jsp">Guanti</a></li>
+                     <li><a href="${pageContext.request.contextPath}/CascoRedirectServlet">Casco</a></li>
+        <li><a href="${pageContext.request.contextPath}/StivaleRedirectServlet">Stivale</a></li>
+        <li><a href="${pageContext.request.contextPath}/PneumaticiRedirectServlet">Pneumatici</a></li>
+        <li><a href="${pageContext.request.contextPath}/AbbigliamentoRedirectServlet">Abbigliamento</a></li>
+        <li><a href="${pageContext.request.contextPath}/GuantiRedirectServlet">Guanti</a></li>
             </ul>
         </div>
-         
+
+        <!-- Main Content -->
         <div class="main-content">
             <% 
                 List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
                 if (prodotti != null) { 
             %>
+            <!-- Product Section -->
             <section class="product-section">
                 <div class="container">
                     <div class="row">
-                        <% for (ProdottoBean prodotto : prodotti) {
-                        	if (prodotto.getIdCategoria() == 2) {
-                        	%>
+                        <% 
+                            for (ProdottoBean prodotto : prodotti) { 
+                                if (prodotto.getIdCategoria() == 2) { 
+                        %>
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="product-card">
                                 <div class="product-image">
@@ -54,13 +58,20 @@
                                     <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
                                     <p class="product-description"><%= prodotto.getDescrizione() %></p>
                                     <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>
-                                    <% if (request.getSession().getAttribute("email") != null) { %>
-                                <a href="" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></a>
+                                    <% 
+                                        if (request.getSession().getAttribute("email") != null) { 
+                                    %>
+                                    <form onsubmit="event.preventDefault()">
+                                        <button type="submit" class="btn btn-primary" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart <ion-icon name="bag-add-outline"></ion-icon></button>
+                                    </form>
                                     <% } %>
                                 </div>
                             </div>
                         </div>
-                        <% }} %>
+                        <% 
+                                } 
+                            } 
+                        %>
                     </div>
                 </div>
             </section>
@@ -93,9 +104,11 @@
         backTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-       
     </script>
 
+    <!-- Script Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@ public class Carrello extends HttpServlet {
             out.print(jsonResponse);
             return;
         }
-        
+      
         String email = (String) request.getSession().getAttribute("email");
         CarrelloDAO carrelli = new CarrelloDAO();
         ContieneDAO contenenteCarrelli = new ContieneDAO();

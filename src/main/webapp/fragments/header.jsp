@@ -14,14 +14,15 @@
         <ion-icon name="close-outline" aria-label="true" class="close-icon"></ion-icon>
       </button>
 
-      <a href="home.jsp" class="logo">MotoGearHub</a>
+      <a href="${pageContext.request.contextPath}/HomeRedirectServlet" class="logo">MotoGearHub</a>
 
       <nav class="navbar" data-navbar>
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="home.jsp" class="navbar-link" data-nav-link>Home</a>
-          </li>
+    		<a href="${pageContext.request.contextPath}/HomeRedirectServlet" class="navbar-link" data-nav-link>Home</a>
+		</li>
+
 
           <li class="navbar-item">
             <a href="${pageContext.request.contextPath}/collezione" class="navbar-link" data-nav-link>Collezione</a>
