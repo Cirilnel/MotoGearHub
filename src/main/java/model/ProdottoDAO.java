@@ -261,4 +261,29 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
 
         return prodotti;
     }
+    public synchronized int nextId() throws SQLException{
+    	String selectSQL = "SELECT COUNT(*) AS numero_prodotti FROM prodotto"
+    			+ "";
+    	Connection con = null;
+        PreparedStatement statement = null;
+    	int nextAutoIncrementValue = 0;
+
+    	try{
+    		 con = DriverManagerConnectionPool.getConnection();
+	   	    PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+	   	    ResultSet rs = preparedStatement.executeQuery();
+
+    	    if (rs.next()) {
+    	        nextAutoIncrementValue = rs.getInt("numero_prodotti")+1;
+    	    }
+    	    preparedStatement.close();
+    	    con.close();
+    	}catch(SQLException e) {
+    		
+    	    e.printStackTrace(); // Gestione dell'eccezione SQL, puoi gestirla in modo più appropriato nel tuo caso
+    	}
+    	
+
+    	return nextAutoIncrementValue;
+    }
 }
