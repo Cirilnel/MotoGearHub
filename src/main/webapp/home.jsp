@@ -69,7 +69,7 @@
 
           <p class="hero-text">40% di sconto oggi</p>
 
-          <a href="#" class="btn">Acquista ora</a>
+          <a href="${pageContext.request.contextPath}/collezione" class="btn">Acquista ora</a>
 
         </div>
       </section>
@@ -102,7 +102,7 @@
                     </figure>
 
                     <h3 class="h3">
-                        <a href="casco.jsp" class="card-title">Caschi</a>
+                        <a href="${pageContext.request.contextPath}/CascoRedirectServlet" class="card-title">Caschi</a>
                     </h3>
 
                 </div>
@@ -119,7 +119,7 @@
                     </figure>
 
                     <h3 class="h3">
-                        <a href="abbigliamento.jsp" class="card-title">Abbigliamento da moto</a>
+                        <a href="${pageContext.request.contextPath}/AbbigliamentoRedirectServlet" class="card-title">Abbigliamento da moto</a>
                     </h3>
 
                 </div>
@@ -136,7 +136,7 @@
                     </figure>
 
                     <h3 class="h3">
-                        <a href="guanti.jsp" class="card-title">Guanti</a>
+                        <a href="${pageContext.request.contextPath}/GuantiRedirectServlet" class="card-title">Guanti</a>
                     </h3>
 
                 </div>
@@ -153,7 +153,7 @@
                     </figure>
 
                     <h3 class="h3">
-                        <a href="stivale.jsp" class="card-title">Stivali da moto</a>
+                        <a href="${pageContext.request.contextPath}/StivaleRedirectServlet" class="card-title">Stivali da moto</a>
                     </h3>
 
                 </div>
@@ -170,7 +170,7 @@
                     </figure>
 
                     <h3 class="h3">
-                        <a href="pneumatici.jsp" class="card-title">Pneumatici</a>
+                        <a href="${pageContext.request.contextPath}/PneumaticiRedirectServlet" class="card-title">Pneumatici</a>
                     </h3>
 
                 </div>
@@ -205,7 +205,7 @@
                   Calore non<span class="span">ti temo!</span>
                 </h3>
 
-                <a href="#" class="btn">Read More</a>
+                <a href="${pageContext.request.contextPath}/AbbigliamentoRedirectServlet" class="btn">Read More</a>
 
               </div>
             </li>
@@ -220,7 +220,7 @@
                   Sconti per<span class="span">il lancio</span>
                   <span class="span">Affrettatevi!</span>
                 </h3>
-                <a href="#" class="btn">Read More</a>
+                <a href="${pageContext.request.contextPath}/PneumaticiRedirectServlet" class="btn">Read More</a>
 
               </div>
             </li>
@@ -235,7 +235,7 @@
                 Novità  di<span class="span">quest'anno</span>
                 </h3>
 
-                <a href="#" class="btn">Read More</a>
+                <a href="${pageContext.request.contextPath}/CascoRedirectServlet" class="btn">Read More</a>
 
               </div>
             </li>
