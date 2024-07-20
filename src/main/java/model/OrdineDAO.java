@@ -84,6 +84,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
 
 
 
+
     @Override
     public synchronized boolean doDelete(Integer code) throws SQLException {
         Connection connection = null;

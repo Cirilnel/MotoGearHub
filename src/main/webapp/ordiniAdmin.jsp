@@ -15,6 +15,8 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<%= request.getContextPath() %>/filtraOrdini.js"></script>
+    
     <style>
         /* Stili base per html e body */
         html, body {
@@ -175,8 +177,16 @@
             margin-bottom: 20px;
         }
 
+        .filter-form label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
         .filter-form input, .filter-form select {
-            margin-right: 10px;
+            margin-bottom: 15px;
+            width: 100%;
         }
 
         /* Media Queries */
@@ -237,58 +247,40 @@
                 flex-direction: row;
             }
         }
-
-        .product-card .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 24px; /* Maggiore padding */
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem; /* Ingrandito rispetto al precedente 1.1rem */
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .product-card .btn:hover {
-            background-color: #cc0000;
-        }
-
-        .product-card .btn ion-icon {
-            margin-right: 5px;
-        }
     </style>
 </head>
 <body>
-    <jsp:include page="fragments/header.jsp" />
+     <jsp:include page="fragments/header.jsp" />
 
-    <main class="content">
-        <div class="container">
-            <h2 class="my-4">Gestione Ordini</h2>
+    <div class="content">
+        
+
+        <div class="main">
+            <h1>Gestione Ordini</h1>
 
             <!-- Form di filtro -->
-            <form class="filter-form" action="ordiniAdmin.jsp" method="get">
-                <input type="text" name="username" placeholder="Filtra per cliente" class="form-control d-inline-block w-auto">
-                <input type="date" name="start_date" placeholder="Data di inizio" class="form-control d-inline-block w-auto">
-                <input type="date" name="end_date" placeholder="Data di fine" class="form-control d-inline-block w-auto">
-                <button type="submit" class="btn btn-primary">Filtra</button>
+            <form id="filterForm" class="filter-form">
+                <label for="emailFilter">Filtra per Email:</label>
+                <input type="email" id="emailFilter" placeholder="Email cliente">
+
+                <label for="startDate">Data Inizio:</label>
+                <input type="date" id="startDate">
+
+                <label for="endDate">Data Fine:</label>
+                <input type="date" id="endDate">
+
+                <button type="button" onclick="filterOrders()">Filtra</button>
             </form>
 
-            <%
-                // Verifica se l'utente è loggato e se è admin
-                if (request.getSession().getAttribute("email") != null && Boolean.TRUE.equals(request.getSession().getAttribute("is_admin"))) {
-                    List<OrdineBean> ordini = (List<OrdineBean>) session.getAttribute("ordini");
-
-                    if (ordini != null && !ordini.isEmpty()) {
-            %>
-            <div class="row">
+            <div id="ordersContainer" class="row">
                 <% 
-                    for (OrdineBean ordine : ordini) {
+                    List<OrdineBean> ordini = (List<OrdineBean>) session.getAttribute("ordini");
+                    if (ordini != null && !ordini.isEmpty()) {
+                        for (OrdineBean ordine : ordini) {
                 %>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 orderRow" 
+                     data-order-date="<%= ordine.getData() %>" 
+                     data-order-email="<%= ordine.getEmail().toLowerCase() %>">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Ordine del <%= ordine.getData() %></h4>
@@ -303,13 +295,12 @@
                                     List<ContenenteBean> contenenteLista = (List<ContenenteBean>) session.getAttribute("contenente" + ordine.getIdOrdine());
                                     if (contenenteLista != null) {
                                         for (ContenenteBean contenente : contenenteLista) {
-                                            int quantità = contenente.getQuantita();
                                             ProdottoBean prodotto = (ProdottoBean) session.getAttribute("prodotto" + contenente.getIdProdotto());
                                 %>
                                 <li class="list-group-item">
                                     <p class="card-text"><strong>Nome:</strong> <%= prodotto.getNome() %></p>
                                     <p class="card-text"><strong>Prezzo:</strong> €<%= contenente.getPrezzoDiAcquisto() %></p>
-                                    <p class="card-text"><strong>Quantità:</strong> <%= quantità %></p>
+                                    <p class="card-text"><strong>Quantità:</strong> <%= contenente.getQuantita() %></p>
                                 </li>
                                 <% 
                                         }
@@ -320,28 +311,16 @@
                     </div>
                 </div>
                 <% 
+                        }
+                    } else {
+                %>
+                <p class="alert-info">Nessun ordine disponibile.</p>
+                <% 
                     }
                 %>
             </div>
-            <% 
-                    } else {
-            %>
-            <div class="alert alert-info">
-                <p>No orders available.</p>
-            </div>
-            <% 
-                    }
-                } else {
-            %>
-            <div class="alert alert-warning">
-                <p>You must be logged in as an admin to view this page.</p>
-            </div>
-            <% 
-                }
-            %>
         </div>
-    </main>
-
-    <jsp:include page="fragments/footer.jsp" />
+    </div>
+     <jsp:include page="fragments/footer.jsp" />
 </body>
 </html>
