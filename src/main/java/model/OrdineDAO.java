@@ -12,6 +12,7 @@ import java.util.List;
 public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     private static String TABLE_NAME = "ordine";
 
+    
     public OrdineDAO() {
         // Costruttore vuoto
     }
@@ -81,6 +82,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
             }
         }
     }
+
 
 
 
