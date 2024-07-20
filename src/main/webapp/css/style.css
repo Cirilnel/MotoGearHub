@@ -154,33 +154,30 @@ body {
 
 
 .sicurezza {
-    position: relative; 
-    top: -250px;
-    color: red; 
-    font-family: Arial, sans-serif; 
-    text-align: center;
-    overflow: hidden; 
-}
+            position: relative; 
+            top: -250px;
+            color: red; 
+            font-family: Arial, sans-serif; 
+            text-align: center;
+        }
 
+        /* Media query per schermi con larghezza massima di 768px (tablet) */
+        @media (max-width: 768px) {
+            .sicurezza {
+                top: -250px; /* Modifica la posizione per schermi più piccoli */
+                font-size: 18px; /* Riduce la dimensione del font */
+                padding: 10px; /* Aggiunge un po' di padding per migliorare la leggibilità */
+            }
+        }
 
-@media (max-width: 768px) {
-    .sicurezza {
-        top: -150px; 
-        font-size: 20px; 
-        padding: 15px;
-        white-space: normal; 
-}
-
-
-@media (max-width: 480px) {
-    .sicurezza {
-        top: -100px; 
-        font-size: 18px; 
-        padding: 20px; 
-        white-space: normal; 
-    }
-}
-
+        /* Media query per schermi con larghezza massima di 480px (smartphone) */
+        @media (max-width: 480px) {
+            .sicurezza {
+                top: -100px; /* Modifica ulteriormente la posizione per schermi molto piccoli */
+                font-size: 16px; /* Riduce ancora la dimensione del font */
+                padding: 15px; /* Aggiunge più padding per una migliore leggibilità */
+            }
+        }
 
 
 
@@ -1185,3 +1182,5 @@ body {
   }
 
   .footer { padding-block-start: 40px; }
+
+}
