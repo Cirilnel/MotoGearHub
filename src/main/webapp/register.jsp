@@ -4,29 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione</title>
-    <link rel="stylesheet" href="./css/enter.css"> <!-- Assicurati di aver salvato il tuo CSS in un file chiamato styles.css nella stessa directory -->
-    <style>
-        :root {
-            --platinum: #e5e4e2;
-            --black: #000000;
-            --white: #ffffff;
-            --eerie-black: #1b1b1b;
-            --light-gray: #d3d3d3;
-            --portland-orange: #ff5a36;
-            --radius-4: 4px;
-            --radius-10: 10px;
-            --shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            --transition-1: all 0.3s cubic-bezier(.25,.8,.25,1);
-            --fs-3: 1.75rem;
-            --fs-6: 1rem;
-        }
-
-        .error-message {
-            color: red;
-            margin-bottom: 15px;
-            font-size: var(--fs-6);
-        }
-    </style>
+    <link rel="stylesheet" href="./css/enter.css"> 
+      <link rel="stylesheet" href="./css/register.css"> 
 </head>
 <body style="background-image: url('./images/sfondo2.jpg');" >
     <div class="login-container">
