@@ -62,7 +62,7 @@
                         </div>
                        <div class="payment-method">
                             <h2>Inserisci informazioni di pagamento</h2>
-                            <form id="checkoutForm" action="<%= request.getContextPath() %>/order" method="post">
+                            <form id="checkoutForm">
     <div class="form-group">
         <label for="cardNumber">Numero di Carta:</label>
         <input type="text" id="cardNumber" name="cardNumber" required>
@@ -89,6 +89,7 @@
     
     <button type="submit" class="submit-btn">Effettua pagamento e concludi ordine</button>
 </form>
+
 
                         </div>
                         <% 

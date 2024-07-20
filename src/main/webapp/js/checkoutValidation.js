@@ -58,6 +58,11 @@ function validate() {
         spanAddress.innerHTML = "";
     }
 
+    // Se tutto è valido, invia la richiesta fetch
+    if (valid) {
+        sendOrderRequest();
+    }
+
     return valid;
 }
 
@@ -75,6 +80,44 @@ function validateFormElem(formElem, pattern, span, message) {
     return true;
 }
 
+// Funzione per inviare la richiesta fetch
+function sendOrderRequest() {
+    let form = document.getElementById("checkoutForm");
+
+    // Creazione dell'oggetto con i dati del form
+    let orderData = {
+        cardNumber: form.cardNumber.value,
+        expiryDate: form.expiryDate.value,
+        cvv: form.cvv.value,
+        cardHolderName: form.cardHolderName.value,
+        address: form.indirizzoSpedizione.value
+    };
+
+    // Invio della richiesta fetch
+    fetch('/order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Gestisci la risposta
+        if (data.success) {
+            alert('Ordine inviato con successo!');
+            // Redirect o pulisci il form se necessario
+            window.location.href = '/success'; // esempio di reindirizzamento alla pagina di successo
+        } else {
+            alert('Si è verificato un errore durante l\'invio dell\'ordine.');
+        }
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+        alert('Si è verificato un errore durante l\'invio dell\'ordine.');
+    });
+}
+
 // Listener per l'evento di caricamento del documento
 document.addEventListener("DOMContentLoaded", function() {
     // Listener per l'evento di submit del form
@@ -83,8 +126,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!validate()) {
             // Se la validazione fallisce, si impedisce l'invio del form
             event.preventDefault();
-            // Aggiungi un messaggio globale se desideri informarli che ci sono errori
-            alert("Per favore, correggi gli errori nel modulo prima di inviarlo.");
         }
     });
 });
