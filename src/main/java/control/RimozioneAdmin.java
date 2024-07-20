@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -48,6 +49,54 @@ public class RimozioneAdmin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        // Imposta il tipo di contenuto della risposta come JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        // Ottieni l'ID del prodotto da rimuovere dalla richiesta
+        String removeProdottoId = request.getParameter("RemoveProdottoId");
+        
+        // Inizializza una variabile per determinare se l'operazione è riuscita
+        boolean success = false;
+        String errorMessage = null;
+
+        try {
+            // Verifica se l'utente è un admin
+            Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+            if (isAdmin != null && isAdmin) {
+                // Crea un'istanza del DAO
+                ProdottoDAO prodottoDAO = new ProdottoDAO();
+                
+                // Rimuovi il prodotto dal database
+                success = prodottoDAO.doDelete(Integer.parseInt(removeProdottoId));
+                
+                if (success) {
+                    // Recupera di nuovo la lista aggiornata dei prodotti
+                    List<ProdottoBean> prodottiList = prodottoDAO.doRetrieveAll("");
+                    // Memorizza la lista dei prodotti nella sessione
+                    request.getSession().setAttribute("ProdottiList", prodottiList);
+                } else {
+                    errorMessage = "Impossibile rimuovere il prodotto.";
+                }
+            } else {
+                errorMessage = "Non sei autorizzato a effettuare questa operazione.";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorMessage = "Errore durante la rimozione del prodotto: " + e.getMessage();
+        }
+
+        // Crea la risposta JSON manualmente
+        PrintWriter out = response.getWriter();
+        String jsonResponse;
+        
+        if (success) {
+            jsonResponse = "{\"success\": true, \"message\": \"Prodotto rimosso con successo!\"}";
+        } else {
+            jsonResponse = "{\"success\": false, \"message\": \"" + (errorMessage != null ? errorMessage : "Errore sconosciuto") + "\"}";
+        }
+        
+        out.print(jsonResponse);
+        out.flush();
     }
 }

@@ -36,6 +36,7 @@ CREATE TABLE Prodotto (
     Nome VARCHAR(100),
     Descrizione TEXT,
     IdCategoria INT,
+    isActive BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria)
 );
 

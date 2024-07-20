@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="<%=request.getContextPath()%>/RemoveFromCart.js"></script>
+    <script src="<%=request.getContextPath()%>/RemoveAdmin.js"></script>
 </head>
 <body id="top">
     <!-- Header -->
@@ -31,7 +31,7 @@
                 <div class="container">
                     <div class="row">
                         <% for (ProdottoBean prodotto : prodotti) { %>
-                        <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="col-md-6 col-lg-4 mb-4" id="product-<%= prodotto.getIdProdotto() %>">
                             <div class="product-card">
                                 <div class="product-image">
                                     <img src="./images/<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
@@ -42,9 +42,7 @@
                                     <p class="product-description"><%= prodotto.getDescrizione() %></p>
                                     <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>                                    
                                     <% if (request.getSession().getAttribute("email") != null && request.getSession().getAttribute("is_admin") == Boolean.TRUE) { %>
-                                    <form onsubmit="event.preventDefault()">
-                                        <button type="submit" class="btn" onclick="RemoveFromCart(<%= prodotto.getIdProdotto() %>)">Rimuovi</button>
-                                    </form>
+                                    <button type="button" class="btn remove-product-button" data-product-id="<%= prodotto.getIdProdotto() %>">Rimuovi</button>
                                     <% } %>
                                 </div>
                             </div>

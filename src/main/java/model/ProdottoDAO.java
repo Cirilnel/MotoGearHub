@@ -15,7 +15,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
         Connection con = null;
         PreparedStatement statement = null;
 
-        String query = "INSERT INTO " + ProdottoDAO.TABLE_NAME + " (IdProdotto, marca, prezzo, nome, descrizione, image, idcategoria) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + ProdottoDAO.TABLE_NAME + " (IdProdotto, marca, prezzo, nome, descrizione, image, idcategoria, isActive) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = DriverManagerConnectionPool.getConnection();
@@ -28,6 +28,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
             statement.setString(5, bean.getDescrizione());
             statement.setString(6, bean.getImage());
             statement.setInt(7, bean.getIdCategoria());
+            statement.setBoolean(8, bean.isActive()); // Nuovo parametro
             statement.executeUpdate();
 
             con.commit();
@@ -42,12 +43,13 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
         }
     }
 
+
     @Override
     public synchronized boolean doDelete(Integer key) throws SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         int result = 0;
-        String query = "DELETE FROM " + ProdottoDAO.TABLE_NAME + " WHERE IdProdotto = ?";
+        String query = "UPDATE " + ProdottoDAO.TABLE_NAME + " SET isActive = FALSE WHERE IdProdotto = ?";
 
         try {
             con = DriverManagerConnectionPool.getConnection();
@@ -70,13 +72,14 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
         return result != 0;
     }
 
+
     @Override
     public synchronized ProdottoBean doRetrieveByKey(Integer key) throws SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         ProdottoBean prodotto = new ProdottoBean();
 
-        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE IdProdotto = ?";
+        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE IdProdotto = ? AND isActive = TRUE";
 
         try {
             con = DriverManagerConnectionPool.getConnection();
@@ -93,6 +96,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
                 prodotto.setNome(result.getString("nome"));
                 prodotto.setDescrizione(result.getString("descrizione"));
                 prodotto.setIdCategoria(result.getInt("idcategoria"));
+                prodotto.setActive(result.getBoolean("isActive")); // Nuovo campo
             }
         } finally {
             try {
@@ -107,6 +111,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
         return prodotto;
     }
 
+
     @Override
     public synchronized List<ProdottoBean> doRetrieveAll(String order) throws SQLException {
         Connection con = null;
@@ -114,7 +119,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
 
         List<ProdottoBean> prodotti = new ArrayList<>();
 
-        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME;
+        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE isActive = TRUE";
 
         try {
             con = DriverManagerConnectionPool.getConnection();
@@ -132,6 +137,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
                 prodotto.setNome(result.getString("nome"));
                 prodotto.setDescrizione(result.getString("descrizione"));
                 prodotto.setIdCategoria(result.getInt("idcategoria"));
+                prodotto.setActive(result.getBoolean("isActive")); // Nuovo campo
 
                 prodotti.add(prodotto);
             }
@@ -147,6 +153,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
 
         return prodotti;
     }
+
 
     public synchronized boolean doUpdate(ProdottoBean bean) throws SQLException {
         Connection con = null;
@@ -188,7 +195,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
         Connection con = null;
         PreparedStatement statement = null;
 
-        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE nome LIKE ?";
+        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE nome LIKE ? AND isActive = TRUE";
 
         try {
             con = DriverManagerConnectionPool.getConnection();
@@ -207,6 +214,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
                 prodotto.setNome(result.getString("nome"));
                 prodotto.setDescrizione(result.getString("descrizione"));
                 prodotto.setIdCategoria(result.getInt("idcategoria"));
+                prodotto.setActive(result.getBoolean("isActive")); // Nuovo campo
 
                 prodottiTrovati.add(prodotto);
             }
@@ -221,6 +229,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
         }
         return prodottiTrovati;
     }
+
 
     public synchronized ArrayList<ProdottoBean> doRetrieveByCategoria(String categoria) throws SQLException {
         ArrayList<ProdottoBean> prodotti = new ArrayList<>();

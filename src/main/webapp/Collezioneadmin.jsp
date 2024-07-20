@@ -42,7 +42,9 @@
             <section class="product-section">
                 <div class="container">
                     <div class="row">
-                        <% for (ProdottoBean prodotto : prodotti) { %>
+                        <% for (ProdottoBean prodotto : prodotti) { 
+                        if(prodotto.isActive()){
+                        %>
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="product-card">
                                 <div class="product-image">
@@ -82,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <% } %>
+                        <%} } %>
                     </div>
                 </div>
             </section>

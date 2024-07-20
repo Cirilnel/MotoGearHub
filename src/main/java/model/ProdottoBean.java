@@ -8,6 +8,7 @@ public class ProdottoBean {
     private String descrizione;
     private int idCategoria;
     private String image;
+    private boolean isActive; // Nuova variabile
 
     // Getters and Setters
     public int getIdProdotto() {
@@ -64,5 +65,13 @@ public class ProdottoBean {
 
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public boolean isActive() { // Nuovo getter
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) { // Nuovo setter
+        this.isActive = isActive;
     }
 }
