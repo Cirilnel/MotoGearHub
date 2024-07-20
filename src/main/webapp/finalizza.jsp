@@ -10,8 +10,8 @@
         
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="<%= request.getContextPath() %>/js/checkoutValidation.js"></script>
-    <script src="<%=request.getContextPath()%>/js/script.js" defer></script>
+    <script src="<%= request.getContextPath() %>/js/checkoutValidation.js" defer></script>
+    <script src="<%= request.getContextPath() %>/js/script.js" defer></script>
 </head>
 <body class="content">
     <!-- Inclusione dell'header -->
@@ -66,21 +66,25 @@
                                 <div class="form-group">
                                     <label for="cardNumber">Numero di Carta:</label>
                                     <input type="text" id="cardNumber" name="cardNumber" required>
+                                    <span id="errorCardNumber"></span>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="expiryDate">Data:</label>
                                     <input type="date" id="expiryDate" name="expiryDate" required>
+                                    <span id="errorDate"></span>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="cvv">CVV:</label>
                                     <input type="text" id="cvv" name="cvv" required>
+                                    <span id="errorCVV"></span>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
                                     <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
+                                    <span id="errorIndirizzo"></span>
                                 </div>
                                 
                                 <button type="submit" class="submit-btn">Effettua pagamento e concludi ordine</button>
