@@ -24,7 +24,7 @@ function clearCart() {
   });
 }
 </script>
-
+<script src="<%=request.getContextPath()%>/js/script.js" defer></script>
 
 </head>
 <body>

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
 
    
-
+<script src="<%=request.getContextPath()%>/js/script.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
@@ -59,22 +59,7 @@
         <ion-icon name="arrow-up-outline"></ion-icon>
     </button>
 
-    <script>
-        // Show/hide back to top button
-        const backTopBtn = document.querySelector('.back-top-btn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                backTopBtn.style.display = 'block';
-            } else {
-                backTopBtn.style.display = 'none';
-            }
-        });
-
-        // Scroll to top
-        backTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+ 
 	
 </body>
 </html>

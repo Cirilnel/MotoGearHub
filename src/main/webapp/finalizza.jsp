@@ -11,6 +11,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<%= request.getContextPath() %>/js/checkoutValidation.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js" defer></script>
 </head>
 <body class="content">
     <!-- Inclusione dell'header -->

@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<script src="<%=request.getContextPath()%>/js/script.js" defer></script>
   <title>MotoGearHub</title>
 
   <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">

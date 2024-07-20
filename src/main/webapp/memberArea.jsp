@@ -22,7 +22,7 @@
 
  
   <link rel="preload" as="image" href="./images/hero-banner.jpg">
-
+	<script src="<%=request.getContextPath()%>/js/script.js" defer></script>
 </head>
 
 <body id="top">
