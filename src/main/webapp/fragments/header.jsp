@@ -32,7 +32,7 @@
                 <% } %>
             </ul>
             
-            <a href="#" class="navbar-action-btn">Log In</a>
+            <a href="login.jsp" class="navbar-action-btn">Log In</a>
         </nav>
         
         <div class="header-actions">

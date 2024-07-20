@@ -16,6 +16,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<%=request.getContextPath()%>/js/AddToCart.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js" defer></script>
 </head>
 <body id="top">
     <!-- Header -->
@@ -89,22 +90,7 @@
         <ion-icon name="arrow-up-outline"></ion-icon>
     </button>
 
-    <script>
-        // Mostra/nascondi il pulsante "Back to Top"
-        const backTopBtn = document.querySelector('.back-top-btn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                backTopBtn.style.display = 'block';
-            } else {
-                backTopBtn.style.display = 'none';
-            }
-        });
-
-        // Scroll to top
-        backTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+    
 
     <!-- Script Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

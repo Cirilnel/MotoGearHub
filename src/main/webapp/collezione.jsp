@@ -16,66 +16,68 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<%=request.getContextPath()%>/js/AddToCart.js"></script>
-     <script src="<%=request.getContextPath()%>/js/script.js" defer></script>
-   
+    <script src="<%=request.getContextPath()%>/js/script.js" defer></script>
 </head>
 <body id="top">
     <!-- Header -->
     <jsp:include page="fragments/header.jsp" />
-         	
-         
-    
-<div class="content">
-        <div class="sidebar">
-            <h2>Categorie</h2>
-            <br><br><br>
-            <ul>
-        <li><a href="${pageContext.request.contextPath}/CascoRedirectServlet">Casco</a></li>
-        <li><a href="${pageContext.request.contextPath}/StivaleRedirectServlet">Stivale</a></li>
-        <li><a href="${pageContext.request.contextPath}/PneumaticiRedirectServlet">Pneumatici</a></li>
-        <li><a href="${pageContext.request.contextPath}/AbbigliamentoRedirectServlet">Abbigliamento</a></li>
-        <li><a href="${pageContext.request.contextPath}/GuantiRedirectServlet">Guanti</a></li>
-    </ul>
-        </div>
-         
-        <div class="main-content">
-            <% 
-                List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
-                if (prodotti != null) { 
-            %>
-            <section class="product-section">
-                <div class="container">
-                    <div class="row">
-                        <% for (ProdottoBean prodotto : prodotti) {
-                        	if(prodotto.isActive()){
-                        	%>
-                        <div class="col-md-6 col-lg-4 mb-4">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="./images/<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
-                                </div>
-                                <div class="product-details">
-                                    <h2 class="product-title"><%= prodotto.getNome() %></h2>
-                                    <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
-                                    <p class="product-description"><%= prodotto.getDescrizione() %></p>
-                                    <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>                                    
-                                    <% if (request.getSession().getAttribute("email") != null && request.getSession().getAttribute("is_admin") != Boolean.TRUE) { %>
-                                	<form onsubmit="event.preventDefault()">
-                                	<button type="submit" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart</button>
-                                   	</form>
-                                    <%} } %>
+
+    <main>
+        <!-- Contenuto principale -->
+        <div class="content">
+            <div class="sidebar">
+                <h2>Categorie</h2>
+                <br><br><br>
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/CascoRedirectServlet">Casco</a></li>
+                    <li><a href="${pageContext.request.contextPath}/StivaleRedirectServlet">Stivale</a></li>
+                    <li><a href="${pageContext.request.contextPath}/PneumaticiRedirectServlet">Pneumatici</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AbbigliamentoRedirectServlet">Abbigliamento</a></li>
+                    <li><a href="${pageContext.request.contextPath}/GuantiRedirectServlet">Guanti</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <% 
+                    List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
+                    if (prodotti != null) { 
+                %>
+                <section class="product-section">
+                    <div class="container">
+                        <div class="row">
+                            <% for (ProdottoBean prodotto : prodotti) {
+                                if (prodotto.isActive()) {
+                            %>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="./images/<%= prodotto.getImage() %>" alt="<%= prodotto.getNome() %>">
+                                    </div>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><%= prodotto.getNome() %></h2>
+                                        <p class="product-brand"><strong>Marca:</strong> <%= prodotto.getMarca() %></p>
+                                        <p class="product-description"><%= prodotto.getDescrizione() %></p>
+                                        <p class="product-price"><strong>Prezzo:</strong> €<%= prodotto.getPrezzo() %></p>                                    
+                                        <% if (request.getSession().getAttribute("email") != null && request.getSession().getAttribute("is_admin") != Boolean.TRUE) { %>
+                                        <form onsubmit="event.preventDefault()">
+                                        <button type="submit" class="btn" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Add to Cart</button>
+                                        </form>
+                                        <% } %>
+                                    </div>
                                 </div>
                             </div>
+                            <% 
+                                }
+                            } 
+                            %>
                         </div>
-                        <% } %>
                     </div>
-                </div>
-            </section>
-            <% } else { %>
-            <p>Nessun prodotto disponibile.</p>
-            <% } %>
+                </section>
+                <% } else { %>
+                <p>Nessun prodotto disponibile.</p>
+                <% } %>
+            </div>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <jsp:include page="fragments/footer.jsp" />
@@ -84,24 +86,5 @@
     <button class="back-top-btn" aria-label="back to top">
         <ion-icon name="arrow-up-outline"></ion-icon>
     </button>
-
-    <script>
-        console.log("Script inline caricato correttamente");
-        
-        // Mostra/nascondi il pulsante "Back to Top"
-        const backTopBtn = document.querySelector('.back-top-btn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                backTopBtn.style.display = 'block';
-            } else {
-                backTopBtn.style.display = 'none';
-            }
-        });
-
-        // Scroll to top
-        backTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
 </body>
 </html>

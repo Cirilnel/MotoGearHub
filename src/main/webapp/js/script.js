@@ -6,7 +6,7 @@
 const addEventOnElem = function (elem, type, callback) {
   if (!elem) {
     console.error(`Element not found for selector: ${elem}`);
-    return; // Verifica se elem esiste
+    return;
   }
 
   if (NodeList.prototype.isPrototypeOf(elem) || HTMLCollection.prototype.isPrototypeOf(elem)) {
@@ -16,7 +16,7 @@ const addEventOnElem = function (elem, type, callback) {
   } else {
     elem.addEventListener(type, callback);
   }
-}
+};
 
 /**
  * Navbar toggle
@@ -28,14 +28,14 @@ const navbarLinks = document.querySelectorAll("[data-nav-link]");
 const toggleNavbar = function () {
   if (navbar) navbar.classList.toggle("active");
   if (navToggler) navToggler.classList.toggle("active");
-}
+};
 
 addEventOnElem(navToggler, "click", toggleNavbar);
 
 const closeNavbar = function () {
   if (navbar) navbar.classList.remove("active");
   if (navToggler) navToggler.classList.remove("active");
-}
+};
 
 addEventOnElem(navbarLinks, "click", closeNavbar);
 
@@ -53,7 +53,7 @@ const activeElemOnScroll = function () {
     if (header) header.classList.remove("active");
     if (backTopBtn) backTopBtn.classList.remove("active");
   }
-}
+};
 
 addEventOnElem(window, "scroll", activeElemOnScroll);
 
@@ -63,9 +63,15 @@ console.log('navbar:', navbar);
 console.log('navbarLinks:', navbarLinks);
 console.log('header:', header);
 console.log('backTopBtn:', backTopBtn);
+
 window.addEventListener('load', function() {
   const footer = document.querySelector('.footer');
   const main = document.querySelector('main');
+
+  if (!footer || !main) {
+    console.error('Footer or main element not found');
+    return;
+  }
 
   function adjustFooter() {
     const footerHeight = footer.clientHeight;
