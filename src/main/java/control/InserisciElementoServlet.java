@@ -16,7 +16,15 @@ public class InserisciElementoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	  System.out.println("qui ci arrivo");
+        // Verifica se l'utente è un admin
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+        if (isAdmin == null || !isAdmin) {
+            // Se l'utente non è un admin, reindirizza alla pagina di errore o accesso negato
+            response.sendRedirect("accessoNegato.jsp"); // Cambia con la tua pagina di errore o accesso negato
+            return;
+        }
+
+        // Ottieni i parametri dal modulo
         String marca = request.getParameter("marca");
         String image = request.getParameter("image");
         double prezzo = Double.parseDouble(request.getParameter("prezzo"));

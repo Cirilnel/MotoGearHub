@@ -15,6 +15,14 @@ import model.ProdottoDAO;
 public class ModificaProdottoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Controlla se l'utente è un amministratore
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+        if (isAdmin == null || !isAdmin) {
+            // Se non è amministratore, reindirizza alla pagina di errore o accesso negato
+            response.sendRedirect(request.getContextPath() + "/accessoNegato.jsp");
+            return;
+        }
+
         // Recupera i parametri dal modulo
         int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
         String nome = request.getParameter("nome");
@@ -34,7 +42,6 @@ public class ModificaProdottoServlet extends HttpServlet {
 
         // Utilizza un DAO per aggiornare il prodotto nel database
         try {
-        
             ProdottoDAO prodottoDAO = new ProdottoDAO();
             prodottoDAO.updateProdotto(prodotto);
         } catch (Exception e) {

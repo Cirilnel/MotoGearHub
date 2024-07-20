@@ -25,25 +25,25 @@ public class RimozioneAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProdottoDAO prodottoDAO = new ProdottoDAO();
         
-        try {
-            // Recupera la lista dei prodotti dal database
-            List<ProdottoBean> prodottiList = prodottoDAO.doRetrieveAll("");
-            // Memorizza la lista dei prodotti nella sessione
-            request.getSession().setAttribute("ProdottiList", prodottiList);
-            
-            // Verifica se l'utente è un admin
-            Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
-            if (isAdmin != null && isAdmin) {
+        // Verifica se l'utente è un admin
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+        if (isAdmin != null && isAdmin) {
+            try {
+                // Recupera la lista dei prodotti dal database
+                List<ProdottoBean> prodottiList = prodottoDAO.doRetrieveAll("");
+                // Memorizza la lista dei prodotti nella sessione
+                request.getSession().setAttribute("ProdottiList", prodottiList);
+                
                 // Se l'utente è un admin, reindirizza alla pagina di rimozione
                 response.sendRedirect("rimozione.jsp");
-            } else {
-                // Se l'utente non è un admin, reindirizza alla pagina di errore o login
-                response.sendRedirect("error.jsp"); // Puoi modificare questo con la tua pagina di errore o login
+            } catch (Exception e) {
+                // Gestisce eventuali eccezioni
+                e.printStackTrace();
+                response.sendRedirect("error.jsp"); // Puoi sostituire "error.jsp" con la tua pagina di errore
             }
-        } catch (Exception e) {
-            // Gestisce eventuali eccezioni
-            e.printStackTrace();
-            response.sendRedirect("error.jsp"); // Puoi sostituire "error.jsp" con la tua pagina di errore
+        } else {
+            // Se l'utente non è un admin, reindirizza alla pagina di errore o login
+            response.sendRedirect("error.jsp"); // Puoi modificare questo con la tua pagina di errore o login
         }
     }
 
@@ -60,10 +60,10 @@ public class RimozioneAdmin extends HttpServlet {
         boolean success = false;
         String errorMessage = null;
 
-        try {
-            // Verifica se l'utente è un admin
-            Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
-            if (isAdmin != null && isAdmin) {
+        // Verifica se l'utente è un admin
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
+        if (isAdmin != null && isAdmin) {
+            try {
                 // Crea un'istanza del DAO
                 ProdottoDAO prodottoDAO = new ProdottoDAO();
                 
@@ -78,12 +78,12 @@ public class RimozioneAdmin extends HttpServlet {
                 } else {
                     errorMessage = "Impossibile rimuovere il prodotto.";
                 }
-            } else {
-                errorMessage = "Non sei autorizzato a effettuare questa operazione.";
+            } catch (Exception e) {
+                e.printStackTrace();
+                errorMessage = "Errore durante la rimozione del prodotto: " + e.getMessage();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            errorMessage = "Errore durante la rimozione del prodotto: " + e.getMessage();
+        } else {
+            errorMessage = "Non sei autorizzato a effettuare questa operazione.";
         }
 
         // Crea la risposta JSON manualmente
