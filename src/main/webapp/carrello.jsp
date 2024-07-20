@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/carrello.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="<%= request.getContextPath() %>/UpdateQuantityCart.js"></script>
+    <script src="<%= request.getContextPath() %>/js/UpdateQuantityCart.js"></script>
     <script>
 function clearCart() {
   fetch('<%= request.getContextPath() %>/SvuotaCarrello', {
