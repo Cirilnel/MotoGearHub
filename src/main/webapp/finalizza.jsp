@@ -63,32 +63,33 @@
                        <div class="payment-method">
                             <h2>Inserisci informazioni di pagamento</h2>
                             <form id="checkoutForm" action="<%= request.getContextPath() %>/order" method="post">
-                                <div class="form-group">
-                                    <label for="cardNumber">Numero di Carta:</label>
-                                    <input type="text" id="cardNumber" name="cardNumber" required>
-                                    <span id="errorCardNumber"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="expiryDate">Data:</label>
-                                    <input type="date" id="expiryDate" name="expiryDate" required>
-                                    <span id="errorDate"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="cvv">CVV:</label>
-                                    <input type="text" id="cvv" name="cvv" required>
-                                    <span id="errorCVV"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
-                                    <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
-                                    <span id="errorIndirizzo"></span>
-                                </div>
-                                
-                                <button type="submit" class="submit-btn">Effettua pagamento e concludi ordine</button>
-                            </form>
+    <div class="form-group">
+        <label for="cardNumber">Numero di Carta:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+        <span id="errorCardNumber"></span> <!-- Aggiungi questo span per il messaggio di errore -->
+    </div>
+    
+    <div class="form-group">
+        <label for="expiryDate">Data:</label>
+        <input type="date" id="expiryDate" name="expiryDate" required>
+        <span id="errorDate"></span> <!-- Aggiungi questo span per il messaggio di errore -->
+    </div>
+    
+    <div class="form-group">
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+        <span id="errorCVV"></span> <!-- Aggiungi questo span per il messaggio di errore -->
+    </div>
+    
+    <div class="form-group">
+        <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
+        <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
+        <span id="errorIndirizzo"></span> <!-- Aggiungi questo span per il messaggio di errore -->
+    </div>
+    
+    <button type="submit" class="submit-btn">Effettua pagamento e concludi ordine</button>
+</form>
+
                         </div>
                         <% 
                     } else {

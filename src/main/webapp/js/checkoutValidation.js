@@ -11,7 +11,6 @@ const addressErrorMessage = "L'indirizzo di spedizione è obbligatorio";
 
 // Funzione principale di validazione del form
 function validate() {
-
     let valid = true;
     let form = document.getElementById("checkoutForm");
 
@@ -84,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!validate()) {
             // Se la validazione fallisce, si impedisce l'invio del form
             event.preventDefault();
+            // Aggiungi un messaggio globale se desideri informarli che ci sono errori
+            alert("Per favore, correggi gli errori nel modulo prima di inviarlo.");
         }
     });
 });
