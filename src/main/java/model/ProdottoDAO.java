@@ -349,6 +349,48 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean,Integer> {
             }
         }
     }
+    
+    public synchronized List<ProdottoBean> doRetrieveAllIncludingInactive() throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
+
+        List<ProdottoBean> prodotti = new ArrayList<>();
+
+        String query = "SELECT * FROM " + ProdottoDAO.TABLE_NAME;
+
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                ProdottoBean prodotto = new ProdottoBean();
+
+                prodotto.setIdProdotto(result.getInt("IdProdotto"));
+                prodotto.setMarca(result.getString("marca"));
+                prodotto.setImage(result.getString("image"));
+                prodotto.setPrezzo(result.getInt("prezzo"));
+                prodotto.setNome(result.getString("nome"));
+                prodotto.setDescrizione(result.getString("descrizione"));
+                prodotto.setIdCategoria(result.getInt("idcategoria"));
+                prodotto.setActive(result.getBoolean("isActive")); // Nuovo campo
+
+                prodotti.add(prodotto);
+            }
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
+
+        return prodotti;
+    }
+
 
 
 }

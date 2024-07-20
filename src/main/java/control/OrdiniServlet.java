@@ -20,6 +20,8 @@ import model.ContenenteDAO;
 import model.ProdottoBean;
 import model.ProdottoDAO;
 
+
+
 @WebServlet("/ordini")
 public class OrdiniServlet extends HttpServlet {
     private static final long serialVersionUID = -676741214133898518L;
@@ -33,11 +35,10 @@ public class OrdiniServlet extends HttpServlet {
         // Check if user is logged in
         String email = (String) request.getSession().getAttribute("email");
         if (email == null) {
-            response.sendRedirect("login.jsp"); // Redirect to login page if user is not logged in
+            response.sendRedirect("login.jsp");
             return;
         }
 
-        // Check if user is admin
         Boolean isAdmin = (Boolean) request.getSession().getAttribute("is_admin");
         boolean admin = Boolean.TRUE.equals(isAdmin);
 
@@ -61,14 +62,15 @@ public class OrdiniServlet extends HttpServlet {
         Collection<OrdineBean> ordiniList;
         try {
             if (admin) {
-                // If the user is an admin, retrieve all orders with default ordering
-                ordiniList = ordineDAO.doRetrieveAll("IdOrdine"); // Or another column if desired
+                ordiniList = ordineDAO.doRetrieveAll("IdOrdine");
             } else {
-                // Otherwise, retrieve orders for the specific user
                 ordiniList = ordineDAO.doRetrieveByUserKey(email);
             }
 
             request.getSession().setAttribute("ordini", ordiniList);
+
+            // Recupera tutti i prodotti, inclusi quelli non attivi, solo per la pagina degli ordini
+            List<ProdottoBean> tuttiIProdotti = prodottoDAO.doRetrieveAllIncludingInactive();
 
             for (OrdineBean ordine : ordiniList) {
                 int idOrdine = ordine.getIdOrdine();
@@ -77,7 +79,10 @@ public class OrdiniServlet extends HttpServlet {
                 
                 for (ContenenteBean contenente : contenenteList) {
                     int idProdotto = contenente.getIdProdotto();
-                    ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(idProdotto);
+                    ProdottoBean prodotto = tuttiIProdotti.stream()
+                        .filter(p -> p.getIdProdotto() == idProdotto)
+                        .findFirst()
+                        .orElse(null);
                     request.getSession().setAttribute("prodotto" + idProdotto, prodotto);
                 }
             }
@@ -89,7 +94,6 @@ public class OrdiniServlet extends HttpServlet {
             return;
         }
 
-        // Forward to the appropriate JSP based on admin status
         forwardToAppropriatePage(request, response, admin);
     }
 
