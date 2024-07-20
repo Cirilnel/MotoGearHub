@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*, model.*"%>
+<%
+    // Controllo se l'utente è un amministratore
+    if (request.getSession().getAttribute("is_admin") != Boolean.TRUE) {
+        // Redirigi l'utente a una pagina di accesso negato
+        response.sendRedirect(request.getContextPath() + "/accessoNegato.jsp");
+        return; // Ferma l'esecuzione della pagina
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Controllo se l'utente è un amministratore
+    if (request.getSession().getAttribute("is_admin") != Boolean.TRUE) {
+        // Redirigi l'utente a una pagina di accesso negato
+        response.sendRedirect(request.getContextPath() + "/accessoNegato.jsp");
+        return; // Ferma l'esecuzione della pagina
+    }
+%>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -17,7 +25,6 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<%=request.getContextPath()%>/js/script.js" defer></script>
-    
 </head>
 <body>
     <jsp:include page="fragments/header.jsp" />
