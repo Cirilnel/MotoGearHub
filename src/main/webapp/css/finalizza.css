@@ -172,3 +172,21 @@ main {
     border-radius: 6px; /* Angoli arrotondati più piccoli */
     border: 1px solid #007BFF; /* Bordo blu ridotto */
 }
+
+.section-title {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.total-cost p {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+    margin: 1em 0;
+    text-align: center;
+}
+

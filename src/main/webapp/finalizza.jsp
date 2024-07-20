@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/finalizza.css">
         
-
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<%= request.getContextPath() %>/checkoutValidation.js"></script>
@@ -21,14 +20,7 @@
     <main class="row">
         <section class="section cart">
             <div class="container">
-<h2 class="section-title" style="
-    margin-bottom: 1em;
-    font-size: 1.5em;
-    color: #333;
-    text-align: center; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-    ">Finalizza Pagamento</h2>
+                <h2 class="section-title">Finalizza Pagamento</h2>
 
                 <% 
                 // Verifica se l'utente è loggato
@@ -65,38 +57,34 @@
                         %>
                         </div>
                         <div class="total-cost">
-                            <p style="font-size: 1.2em; color: #333; font-weight: bold; margin: 1em 0;text-align: center;">
-    						Costo totale: <b><%= totalCost %></b>€
-							</p>
-
+                            <p>Costo totale: <b><%= totalCost %></b>€</p>
                         </div>
                        <div class="payment-method">
-    <h2>Inserisci informazioni di pagamento</h2>
-    <form id="checkoutForm" action="<%= request.getContextPath() %>/order" method="post">
-        <div class="form-group">
-            <label for="cardNumber">Numero di Carta:</label>
-            <input type="text" id="cardNumber" name="cardNumber" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="expiryDate">Data:</label>
-            <input type="date" id="expiryDate" name="expiryDate" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
-            <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
-        </div>
-        
-        <button type="submit" class="submit-btn">Effettua pagamento e concludi ordine</button>
-    </form>
-</div>
-
+                            <h2>Inserisci informazioni di pagamento</h2>
+                            <form id="checkoutForm" action="<%= request.getContextPath() %>/order" method="post">
+                                <div class="form-group">
+                                    <label for="cardNumber">Numero di Carta:</label>
+                                    <input type="text" id="cardNumber" name="cardNumber" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="expiryDate">Data:</label>
+                                    <input type="date" id="expiryDate" name="expiryDate" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="cvv">CVV:</label>
+                                    <input type="text" id="cvv" name="cvv" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
+                                    <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn">Effettua pagamento e concludi ordine</button>
+                            </form>
+                        </div>
                         <% 
                     } else {
                         %>

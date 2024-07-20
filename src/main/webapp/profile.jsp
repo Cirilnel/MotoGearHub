@@ -10,80 +10,12 @@
     <title>Profilo - MotoGearHub</title>
     <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
     <link rel="stylesheet" href="./css/style.css">
+      <link rel="stylesheet" href="./css/profile.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #f7b453;
-            margin: 0;
-            padding: 0;
-            font-family: 'Nunito Sans', Arial, sans-serif;
-        }
-        .profile-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 50px auto;
-            text-align: center;
-        }
-        .profile-image img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-        .profile-info h2 {
-            font-family: 'Bangers', cursive;
-            font-size: 2.5rem;
-            color: #333;
-            margin: 10px 0;
-        }
-        .profile-text {
-            font-family: 'Nunito Sans', sans-serif;
-            font-size: 1.2rem;
-            color: #666;
-            margin: 5px 0;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
-        .btn:hover {
-            background-color: #cc0000;
-        }
-        .btn ion-icon {
-            margin-right: 5px;
-        }
-        .back-top-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            cursor: pointer;
-            display: none;
-        }
-        .back-top-btn ion-icon {
-            font-size: 1.5rem;
-        }
-    </style>
+   
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
