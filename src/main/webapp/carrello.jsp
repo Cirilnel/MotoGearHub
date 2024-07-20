@@ -10,6 +10,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<%= request.getContextPath() %>/js/UpdateQuantityCart.js"></script>
+     <script src="<%= request.getContextPath() %>/js/clearActions.js"></script>
     <script>
 function clearCart() {
   fetch('<%= request.getContextPath() %>/SvuotaCarrello', {
@@ -96,10 +97,10 @@ function clearCart() {
                         </button>
                          <br>
                       <button type="button" 
-                                onclick="window.location.href='finalizza.jsp'" 
-                                style="background-color: #dc3545; color: white; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
-                            Svuota carrello
-                        </button>
+        onclick="clearCart()" 
+        style="background-color: #dc3545; color: white; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
+    Svuota carrello
+</button>
 
 		      <% 
                     }
