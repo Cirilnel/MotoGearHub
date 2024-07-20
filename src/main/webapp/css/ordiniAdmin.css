@@ -155,23 +155,47 @@ body {
 /* Stili per il modulo di filtro */
 .filter-form {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto; /* Centra orizzontalmente il contenitore */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 50%; /* Dimezza la larghezza del contenitore */
+    max-width: 600px; /* Imposta una larghezza massima per evitare che diventi troppo grande */
 }
 
 .filter-form label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
     display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.filter-form input, .filter-form select {
-    flex: 1;
-    margin-bottom: 15px;
-    max-width: 220px; /* Media grandezza dei campi */
-    margin-right: 10px;
+.filter-form input {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%; /* Assicura che gli input riempiano il contenitore */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-form button {
+    display: block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%; /* Assicura che il bottone riempia il contenitore */
+}
+
+.filter-form button:hover {
+    background-color: #0056b3;
 }
 
 /* Media Queries */
@@ -205,6 +229,10 @@ body {
         max-width: 100%;
         margin-right: 0;
     }
+
+    .filter-form button {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
@@ -237,17 +265,29 @@ body {
         max-width: 100%;
         margin-right: 0;
     }
+
+    .filter-form button {
+        width: 100%;
+    }
 }
 
 @media (min-width: 992px) {
     .row {
         flex-direction: row;
+        gap: 20px;
+    }
+    .orderRow {
+        flex: 1 1 calc(33.333% - 20px); /* Tre card per riga con spaziatura */
     }
 }
 
 @media (min-width: 1200px) {
     .row {
         flex-direction: row;
+        gap: 20px;
+    }
+    .orderRow {
+        flex: 1 1 calc(33.333% - 20px); /* Tre card per riga con spaziatura */
     }
 }
 
@@ -263,4 +303,13 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
     text-decoration: none;
+}
+.content .main h1 {
+    text-align: center; /* Centra il testo orizzontalmente */
+    margin: 0; /* Rimuove margini predefiniti */
+    padding: 20px 0; /* Aggiunge spazio sopra e sotto il titolo */
+    font-size: 2.5rem; /* Dimensione del font */
+    color: #333; /* Colore del testo */
+    font-weight: bold; /* Rende il testo in grassetto */
+    font-family: 'Roboto', sans-serif; /* Specifica il font da usare */
 }
