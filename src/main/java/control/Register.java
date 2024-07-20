@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import java.util.Base64.Encoder;
 
 import javax.servlet.RequestDispatcher;
@@ -19,9 +21,14 @@ import model.CarrelloBean;
 import model.CarrelloDAO;
 import model.UtenteBean;
 import model.UtenteDAO;
+
 @WebServlet("/Register.do")
 public class Register extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
+    // Regex per la validazione dell'email e dei nomi
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,8 +48,18 @@ public class Register extends HttpServlet {
             String pwd64 = encoder.encodeToString(password.getBytes());
             String pwdchk64 = encoder.encodeToString(passwordCheck.getBytes());
             
+            boolean isValidEmail = EMAIL_PATTERN.matcher(email).matches();
+            boolean isValidNome = NAME_PATTERN.matcher(nome).matches();
+            boolean isValidCognome = NAME_PATTERN.matcher(cognome).matches();
+            
             try {
-                if (pwd64.equals(pwdchk64)) {
+                if (!isValidEmail) {
+                    request.setAttribute("error", "Email non valida.");
+                    path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
+                } else if (!isValidNome || !isValidCognome) {
+                    request.setAttribute("error", "Nome e cognome non possono contenere numeri.");
+                    path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
+                } else if (pwd64.equals(pwdchk64)) {
                     UtenteBean utente = new UtenteBean();
                     UtenteBean utenteRicercato = new UtenteBean();
                     boolean flag = false;
@@ -97,7 +114,6 @@ public class Register extends HttpServlet {
                 request.setAttribute("error", "Errore nel processo di registrazione. Riprovare.");
                 path = "register.jsp";  // Resta nella pagina di registrazione in caso di errore
             }
-            
             
             request.removeAttribute("acquisto");
             RequestDispatcher view = request.getRequestDispatcher(path);
