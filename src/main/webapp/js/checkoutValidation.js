@@ -6,7 +6,6 @@ const namePattern = /^[A-Za-z\s]+$/;
 // Messaggi di errore per i campi di input
 const cardNumberErrorMessage = "Inserisci un numero di carta valido (16 cifre)";
 const cvvErrorMessage = "Inserisci un CVV valido (3 o 4 cifre)";
-const nameErrorMessage = "Il nome del titolare della carta può contenere solo lettere e spazi";
 const addressErrorMessage = "L'indirizzo di spedizione è obbligatorio";
 
 // Funzione principale di validazione del form
@@ -39,12 +38,6 @@ function validate() {
         valid = false;
     }
 
-    // Validazione Nome del Titolare della Carta
-    let spanName = document.getElementById("errorName");
-    if (!validateFormElem(form.cardHolderName, namePattern, spanName, nameErrorMessage)) {
-        valid = false;
-    }
-
     // Validazione Indirizzo di Spedizione
     let spanAddress = document.getElementById("errorIndirizzo");
     if (form.indirizzoSpedizione.value === "") {
@@ -58,10 +51,8 @@ function validate() {
         spanAddress.innerHTML = "";
     }
 
-    // Se tutto è valido, invia la richiesta fetch
-    if (valid) {
-        sendOrderRequest();
-    }
+    // Set the hidden field to indicate form validation status
+    form.formValid.value = valid ? "true" : "false";
 
     return valid;
 }
@@ -78,44 +69,6 @@ function validateFormElem(formElem, pattern, span, message) {
     span.style.color = "black";
     span.innerHTML = "";
     return true;
-}
-
-// Funzione per inviare la richiesta fetch
-function sendOrderRequest() {
-    let form = document.getElementById("checkoutForm");
-
-    // Creazione dell'oggetto con i dati del form
-    let orderData = {
-        cardNumber: form.cardNumber.value,
-        expiryDate: form.expiryDate.value,
-        cvv: form.cvv.value,
-        cardHolderName: form.cardHolderName.value,
-        address: form.indirizzoSpedizione.value
-    };
-
-    // Invio della richiesta fetch
-    fetch('/order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Gestisci la risposta
-        if (data.success) {
-            alert('Ordine inviato con successo!');
-            // Redirect o pulisci il form se necessario
-            window.location.href = '/success'; // esempio di reindirizzamento alla pagina di successo
-        } else {
-            alert('Si è verificato un errore durante l\'invio dell\'ordine.');
-        }
-    })
-    .catch(error => {
-        console.error('Errore:', error);
-        alert('Si è verificato un errore durante l\'invio dell\'ordine.');
-    });
 }
 
 // Listener per l'evento di caricamento del documento
