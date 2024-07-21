@@ -59,13 +59,6 @@ CREATE TABLE Ordine (
     FOREIGN KEY (NCarta) REFERENCES Metodo_Di_Pagamento(NCarta)
 );
 
-CREATE TABLE Spedizione (
-    IdSpedizione INT PRIMARY KEY,
-    IndirizzoSpedizione VARCHAR(200),
-    GiornoDiArrivo DATE,
-    Corriere VARCHAR(100)
-);
-
 CREATE TABLE Stivale (
     IdStivale INT PRIMARY KEY,
     LivelloDiProtezione VARCHAR(50),
@@ -135,13 +128,6 @@ CREATE TABLE UtenteOrdine (
 
 
 
-CREATE TABLE OrdineSpedizione (
-    IdOrdine INT,
-    IdSpedizione INT,
-    PRIMARY KEY (IdOrdine, IdSpedizione),
-    FOREIGN KEY (IdOrdine) REFERENCES Ordine(IdOrdine),
-    FOREIGN KEY (IdSpedizione) REFERENCES Spedizione(IdSpedizione)
-);
 
 -- Inserimento dati
 
@@ -173,11 +159,6 @@ INSERT INTO Prodotto (IdProdotto, Marca,Image, Prezzo,Nome, Descrizione, IdCateg
 (8,'Pirelli','product-8.jpg',240.00,'Pirelli Diablo Rosso Corsa 2','Pneumatici da corsa Pirelli, colore rosso Ferrari',2);
 
 
-
-
-INSERT INTO Spedizione (IdSpedizione, IndirizzoSpedizione, GiornoDiArrivo, Corriere) VALUES
-(1, 'Via Roma 1, Milano', '2024-05-03', 'CorriereA'),
-(2, 'Via Milano 2, Roma', '2024-05-04', 'CorriereB');
 
 INSERT INTO Stivale (IdStivale, LivelloDiProtezione, Taglia) VALUES
 (1, 'Alta', 'M'),
